@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1.view.Admin.Buttons"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Icon="/Assets/beauty_logo.ico" ResizeMode="NoResize"
+        Icon="/Assets/CLEANCUT_Нежелательный фон 2 2.png" ResizeMode="NoResize"
         Title="Добавить" Height="538.499" Width="800">
     <Grid>
         <Grid>

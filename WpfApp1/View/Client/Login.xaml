@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Icon="/Assets/beauty_logo.ico"
+        Icon="/Assets/CLEANCUT_Нежелательный фон 2 2.png"
         WindowStartupLocation="CenterScreen"
         Title="Авторизация" ResizeMode="NoResize" Height="530" Width="400">
     <Grid>

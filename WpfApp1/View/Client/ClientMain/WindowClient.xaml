@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.view"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Icon="/Assets/beauty_logo.ico"
+        Icon="/Assets/CLEANCUT_Нежелательный фон 2 2.png"
         xmlns:hamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
         Title="Личный кабинет" Height="450" Width="800"
          MinHeight="400" MinWidth="700">
