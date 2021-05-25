@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.Sql;
 using System.Data.SqlClient;
-using DbConnect;
 using System.Data;
 using System.Collections.ObjectModel;
 using WpfApp1.Model;

@@ -9,7 +9,7 @@ namespace WpfApp1.Model
     public class Service
     {
         public int ID { get; set; }
-
+        public object Id { get; internal set; }
         public int IDusers { get; set; }
 
         public string Email { get; set; }

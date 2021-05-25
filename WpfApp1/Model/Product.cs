@@ -10,12 +10,13 @@ namespace WpfApp1.Model
     {
 
         public int ID { get; set; }
-
+        public object Id { get; internal set; }
         public string Title { get; set; }
 
         public string Cost { get; set; }
 
         public string CostEdit { get; set; }
+        public string Costedit { get; internal set; }
         public string Description { get; set; }
 
         public string DescriptionEdit { get; set; }

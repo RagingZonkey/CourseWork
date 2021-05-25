@@ -44,32 +44,32 @@
 
                 <TextBlock Text ="Title" DockPanel.Dock="Top" Margin="0,13,0,0" />
 
-                <TextBox x:Name="title_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}" />
+                <TextBox Text ="{Binding Title_Box, Mode=TwoWay}" x:Name="title_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}" />
 
                 <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Price" />
 
 
-                <TextBox   x:Name="cost_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}" />
+                <TextBox   Text ="{Binding Cost_Box, Mode=TwoWay}" x:Name="cost_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}" />
 
                 <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Description" />
 
-                <TextBox x:Name="Desription_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}" />
+                <TextBox Text ="{Binding Description_Box, Mode=TwoWay}" x:Name="Desription_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}" />
 
 
 
                 <DockPanel Width="596">
                     <Button   Margin="35,0,35,0"
                          Width="150" Height="40"
-                           Content="Select image" Click="select_image" Background="Transparent"/>
+                           Content="Select image"  Command="{Binding Select_Image}" Background="Transparent"/>
 
                     <Button  Margin="0,0,35,0" 
                          Width="150" Height="40"
-                           Content="Добавить" Click="go_add" Background="Transparent"/>
+                           Content="Добавить" Command="{Binding Add_Service}" Background="Transparent"/>
                     <Button  Margin="0,0,35,0"
                          Width="150" Height="40"
-                         Content="Назад" Click="go_back" Background="Transparent"/>
+                         Content="Назад" Command="{Binding GoBack_AddProductView}" Background="Transparent"/>
                 </DockPanel>
             </DockPanel>
         </Grid>

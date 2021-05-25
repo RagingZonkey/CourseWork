@@ -1,5 +1,4 @@
-﻿using DbConnect;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -25,7 +24,7 @@ namespace WpfApp1.view.Admin.Buttons
     /// </summary>
     public partial class Add : Window
     {
-        public string imagepath;
+        
         public Add()
         {
             InitializeComponent();

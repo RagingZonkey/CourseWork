@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.Sql;
 using System.Data.SqlClient;
-using DbConnect;
 using System.Data;
 using System.Collections.ObjectModel;
 using WpfApp1.Model;
@@ -31,34 +30,34 @@ namespace WpfApp1.view.Admin
         public WindowRecord()
         {
             InitializeComponent();
-            DB db = new DB();
-            DataTable table = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            SqlCommand command = new SqlCommand("SELECT * FROM OrderService", db.getConnection());
-            db.openConnection();
-            SqlDataReader reader = command.ExecuteReader();
+            //DB db = new DB();
+            //DataTable table = new DataTable();
+            //SqlDataAdapter adapter = new SqlDataAdapter();
+            //SqlCommand command = new SqlCommand("SELECT * FROM OrderService", db.getConnection());
+            //db.openConnection();
+            //SqlDataReader reader = command.ExecuteReader();
 
-            Services = new ObservableCollection<Service> { };
-            while (reader.Read())
-            {
-                Services.Add(new Service
-                {
-                    ID = int.Parse(reader[0].ToString()),
-                    Title = reader[1].ToString(),
-                    Cost = "Итоговая стоимость - " + float.Parse(reader[3].ToString()).ToString() + " рублей",
-                    Costedit = float.Parse(reader[3].ToString()).ToString(),
-                    DurationInSeconds = "Оплаченное время работы мастера - " + int.Parse(reader[4].ToString()).ToString() + " мин",
-                    DurationInSecondsEdit = int.Parse(reader[4].ToString()).ToString(),
-                    Discount = "Скидка - " + float.Parse(reader[5].ToString()).ToString() + "%",
-                    DiscountEdit = float.Parse(reader[5].ToString()).ToString(),
-                    OrderDate = "Дата заказа - " + reader[6].ToString(),
-                    OrderDateEdit = reader[6].ToString(),
-                    ReservDay = "Дата записи - " + reader[7].ToString(),
-                    MainImagePath = reader[9].ToString()
-                });
+            //Services = new ObservableCollection<Service> { };
+            //while (reader.Read())
+            //{
+            //    Services.Add(new Service
+            //    {
+            //        ID = int.Parse(reader[0].ToString()),
+            //        Title = reader[1].ToString(),
+            //        Cost = "Итоговая стоимость - " + float.Parse(reader[3].ToString()).ToString() + " рублей",
+            //        Costedit = float.Parse(reader[3].ToString()).ToString(),
+            //        DurationInSeconds = "Оплаченное время работы мастера - " + int.Parse(reader[4].ToString()).ToString() + " мин",
+            //        DurationInSecondsEdit = int.Parse(reader[4].ToString()).ToString(),
+            //        Discount = "Скидка - " + float.Parse(reader[5].ToString()).ToString() + "%",
+            //        DiscountEdit = float.Parse(reader[5].ToString()).ToString(),
+            //        OrderDate = "Дата заказа - " + reader[6].ToString(),
+            //        OrderDateEdit = reader[6].ToString(),
+            //        ReservDay = "Дата записи - " + reader[7].ToString(),
+            //        MainImagePath = reader[9].ToString()
+            //    });
 
-            }
-            recordlist.ItemsSource = Services;
+            //}
+            //recordlist.ItemsSource = Services;
         }
 
         private void recordlist_SelectionChanged(object sender, SelectionChangedEventArgs e)

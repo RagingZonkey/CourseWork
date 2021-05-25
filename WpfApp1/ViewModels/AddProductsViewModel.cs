@@ -17,7 +17,7 @@ namespace WpfApp1.ViewModels
     public class AddProductsViewModel : BaseViewModel
     {
         public ICommand Add_Service { get; private set; }
-        public ICommand GoBack_AddView { get; private set; }
+        public ICommand GoBack_AddProductView { get; private set; }
         public ICommand Select_Image { get; private set; }
         private string title_box;
 
@@ -70,11 +70,20 @@ namespace WpfApp1.ViewModels
 
         private string imagepath;
 
+        public string ImagePath
+        {
+            get { return imagepath; }
+            set
+            {
+                imagepath = value;
+                
+            }
+        }
 
         public AddProductsViewModel()
         {
             Add_Service = new RelayCommand(go_add);
-            GoBack_AddView = new RelayCommand(go_back);
+            GoBack_AddProductView = new RelayCommand(go_back);
             Select_Image = new RelayCommand(select_image);
 
         }
@@ -126,7 +135,7 @@ namespace WpfApp1.ViewModels
             {
                 try
                 {
-                    App.db.Services.Add(new Product { Title = Title_Box, Cost = Cost_Box , Description = Description_Box, MainImagePath = imagepath });
+                    App.db.Products.Add(new Product { Title = Title_Box, Cost = Cost_Box, Description = Description_Box, MainImagePath = ImagePath });
                     App.db.SaveChangesAsync().GetAwaiter();
 
                 }
@@ -140,8 +149,15 @@ namespace WpfApp1.ViewModels
                     {
                         if (ProductsCheckTextBoxes())
                         {
-                            MessageBox.Show("Услуга успешно добавлена!");
+                            MessageBox.Show("Продукт успешно добавлен!");
                             WindowAdminService winadm = new WindowAdminService();
+                            foreach (Window win in Application.Current.Windows)
+                            {
+                                if (win is Add)
+                                {
+                                    win.Close();
+                                }
+                            }
                             winadm.Show();
                         }
                         else

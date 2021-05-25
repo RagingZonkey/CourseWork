@@ -46,38 +46,38 @@
                            Text="Title" 
                            ></TextBlock>
 
-            <TextBox x:Name="title_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <TextBox Text ="{Binding Title_Box, Mode=TwoWay}" x:Name="title_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
 
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Price" 
                            ></TextBlock>
 
 
-            <TextBox x:Name="cost_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <TextBox Text ="{Binding Cost_Box, Mode=TwoWay}" x:Name="cost_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Time" 
                            ></TextBlock>
 
-            <TextBox x:Name="time_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <TextBox Text ="{Binding Time_Box, Mode=TwoWay}" x:Name="time_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Discount" 
                            ></TextBlock>
 
-            <TextBox x:Name="skidka_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <TextBox Text ="{Binding Skidka_Box, Mode=TwoWay}" x:Name="skidka_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
 
 
 
             <DockPanel Width="596">
                 <Button   Margin="35,0,35,0"
                          Width="150" Height="40"
-                         Content="Select image" Click="select_image" Background="Transparent"/>
+                         Content="Select image" Command="{Binding Select_Image}" Background="Transparent"/>
 
                 <Button  Margin="0,0,35,0" 
                          Width="150" Height="40"
-                         Content="Изменить" Click="go_save" Background="Transparent"/>
+                         Content="Изменить" Command="{Binding Save_Service}" Background="Transparent"/>
                 <Button  Margin="0,0,35,0"
                          Width="150" Height="40"
-                         Content="Назад" Click="go_back" Background="Transparent"/>
+                         Content="Назад" Command="{Binding GoBack_EditView}" Background="Transparent"/>
             </DockPanel>
 
 

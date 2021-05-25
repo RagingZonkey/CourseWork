@@ -137,6 +137,13 @@
     <Compile Include="ViewModels\AddProductsViewModel.cs" />
     <Compile Include="ViewModels\AddViewModel.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\EditProductsViewModel.cs" />
+    <Compile Include="ViewModels\EditRecordViewModel.cs" />
+    <Compile Include="ViewModels\EditViewModel.cs" />
+    <Compile Include="ViewModels\WindowAdminServiceViewModel.cs" />
+    <Compile Include="ViewModels\WindowAdminViewModel.cs" />
+    <Compile Include="ViewModels\WindowProductsViewModel.cs" />
+    <Compile Include="ViewModels\WindowRecordViewModel.cs" />
     <Compile Include="View\Admin\Buttons\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>
     </Compile>

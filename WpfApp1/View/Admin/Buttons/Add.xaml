@@ -56,7 +56,7 @@
 
                 <TextBox   Text ="{Binding Cost_Box, Mode=TwoWay}" x:Name="cost_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}" ></TextBox>
                 <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="DurationInSeconds" 
+                           Text="Time" 
                            ></TextBlock>
 
                 <TextBox  Text ="{Binding Time_Box, Mode=TwoWay}" x:Name="time_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}" ></TextBox>

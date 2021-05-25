@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfApp1.Model;
-using DbConnect;
 using System.Data.SqlClient;
 namespace WpfApp1.view.Admin.Buttons
 {
@@ -35,31 +34,31 @@ namespace WpfApp1.view.Admin.Buttons
 
         }
 
-        private void record_save(object sender, RoutedEventArgs e)
-        {
-            DateTime? selectedDate = calendar_record.SelectedDate;
-            if (selectedDate > DateTime.Now)
-            {
+        //private void record_save(object sender, RoutedEventArgs e)
+        //{
+        //    DateTime? selectedDate = calendar_record.SelectedDate;
+        //    if (selectedDate > DateTime.Now)
+        //    {
 
-                DB db = new DB();
-                SqlCommand command = new SqlCommand("UPDATE OrderService SET DayReserv = @day Where ID = @ids", db.getConnection());
-                command.Parameters.AddWithValue("@ids", Service.ID);
-                command.Parameters.AddWithValue("@day", selectedDate.Value.Date.ToShortDateString());
-                db.openConnection();
+        //        DB db = new DB();
+        //        SqlCommand command = new SqlCommand("UPDATE OrderService SET DayReserv = @day Where ID = @ids", db.getConnection());
+        //        command.Parameters.AddWithValue("@ids", Service.ID);
+        //        command.Parameters.AddWithValue("@day", selectedDate.Value.Date.ToShortDateString());
+        //        db.openConnection();
 
-                if (command.ExecuteNonQuery() == 1)
-                {
-                    WindowRecord winadm = new WindowRecord();
-                    MessageBox.Show("Запись успешно отредактирована!");
-                    this.Close();
-                    winadm.Show();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Выберите правильную дату!", "Error");
-            }
-        }
+        //        if (command.ExecuteNonQuery() == 1)
+        //        {
+        //            WindowRecord winadm = new WindowRecord();
+        //            MessageBox.Show("Запись успешно отредактирована!");
+        //            this.Close();
+        //            winadm.Show();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Выберите правильную дату!", "Error");
+        //    }
+        //}
 
 
         private void go_back(object sender, RoutedEventArgs e)

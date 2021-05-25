@@ -1,8 +1,13 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WpfApp1.Commands;
+using WpfApp1.Context;
 using WpfApp1.Model;
 using WpfApp1.view.Admin;
 using WpfApp1.view.Admin.Buttons;
@@ -10,19 +15,47 @@ using WpfApp1.ViewModels.Base;
 
 namespace WpfApp1.ViewModels
 {
-    public class AddViewModel : BaseViewModel
+    class EditProductsViewModel : BaseViewModel 
     {
-        public ICommand Add_Service { get; private set; }
-        public ICommand GoBack_AddView { get; private set; }
+
+        public ICommand Save_Service { get; private set; }
+        public ICommand GoBack_EditView { get; private set; }
         public ICommand Select_Image { get; private set; }
 
+        Product Product;
+        public EditProductsViewModel(Product init)
+        {
+            this.Product = init;
+            title_box = init.Title;
+            cost_box = init.Costedit;
+            desc_box = init.DescriptionEdit;
+            Save_Service = new RelayCommand(go_save);
+            GoBack_EditView = new RelayCommand(go_back);
+            Select_Image = new RelayCommand(select_image);
+        }
+
         #region Fields and Properties
+        private string desc_box;
+
+
+        public string Description_Box
+        {
+            get { return desc_box; }
+            set
+            {
+                desc_box = value;
+                OnPropertyChanged("Description_Box");
+            }
+        }
+
         private string title_box;
 
         public string Title_Box
         {
             get { return title_box; }
-            set { title_box = value;
+            set
+            {
+                title_box = value;
                 OnPropertyChanged("Title_Box");
             }
         }
@@ -52,7 +85,7 @@ namespace WpfApp1.ViewModels
         }
 
         private string skidka_box;
-        
+
 
         public string Skidka_Box
         {
@@ -72,78 +105,48 @@ namespace WpfApp1.ViewModels
             set { imagepath = value; }
         }
 
+        public object Id { get; private set; }
+
         #endregion
 
-        public AddViewModel()
+        private void go_save(object obj)
         {
-            Add_Service = new RelayCommand(go_add);
-            GoBack_AddView = new RelayCommand(go_back);
-            Select_Image = new RelayCommand(select_image);
-
-        }
-
-        private void go_add(object obj)
-        {
-            try
+            using (DataBaseContext db = new DataBaseContext())
             {
-                App.db.Services.Add(new Service { Title = Title_Box, Cost = Cost_Box, DurationInSeconds = Time_Box, Discount = Skidka_Box, MainImagePath = ImagePath });
-                App.db.SaveChangesAsync().GetAwaiter();
 
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-            finally 
-            {
-                if (imagepath.ToString() != "")
+                try
                 {
-                    if (CheckTextBoxes())
+                    var entity = db.Products.Where(x => x.Id == Id).SingleOrDefault();
+                    entity.Title = Title_Box;
+                    entity.Description = Description_Box;
+                    entity.Cost = Cost_Box;
+                    entity.MainImagePath = ImagePath;
+                    entity.Id = Product.Id;
+                    db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                    App.db.SaveChangesAsync().GetAwaiter();
+
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    WindowAdminService winadm = new WindowAdminService();
+                    MessageBox.Show("Продукт успешно отредактирован!");
+                    foreach (Window win in Application.Current.Windows)
                     {
-                        MessageBox.Show("Услуга успешно добавлена!");
-                        WindowAdminService winadm = new WindowAdminService();
-                        foreach (Window win in Application.Current.Windows)
+                        if (win is Add)
                         {
-                            if (win is Add)
-                            {
-                                win.Close();
-                            }
+                            win.Close();
                         }
-                        winadm.Show();
                     }
-                    else
-                    {
-                        MessageBox.Show("Заполните пустые поля");
-                    }
+                    winadm.Show();
                 }
-                else
-                {
-                    MessageBox.Show("Выберите изображение");
-                }
-                
-            }
-           
-        }
-
-        public Boolean CheckTextBoxes()
-        {
-            String Title = title_box;
-            String Cost = cost_box;
-            String DurationInSeconds = time_box;
-            
 
 
-            if (Title == String.Empty || Cost == String.Empty || DurationInSeconds == String.Empty)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
             }
         }
-
-
 
         private void select_image(object sender)
         {
@@ -163,7 +166,7 @@ namespace WpfApp1.ViewModels
             {
                 Console.WriteLine("path" + imagepath);
             }
-            
+
         }
 
 
@@ -189,5 +192,7 @@ namespace WpfApp1.ViewModels
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
+
     }
+    
 }

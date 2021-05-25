@@ -15,7 +15,6 @@ using WpfApp1.view;
 using WpfApp1.Model;
 using System.Data.Sql;
 using System.Data.SqlClient;
-using DbConnect;
 using System.Data;
 using WpfApp1.view.Client.Buy;
 using System.Diagnostics;

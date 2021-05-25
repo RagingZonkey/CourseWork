@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
-using DbConnect;
 using System.Data;
 using System.Collections.ObjectModel;
 using WpfApp1.Model;
@@ -31,29 +30,29 @@ namespace WpfApp1.view.Admin
         public WindowProducts()
         {
             InitializeComponent();
-            DB db = new DB();
-            DataTable table = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            SqlCommand command = new SqlCommand("SELECT * FROM Product", db.getConnection());
-            db.openConnection();
-            SqlDataReader reader = command.ExecuteReader();
+            //DB db = new DB();
+            //DataTable table = new DataTable();
+            //SqlDataAdapter adapter = new SqlDataAdapter();
+            //SqlCommand command = new SqlCommand("SELECT * FROM Product", db.getConnection());
+            //db.openConnection();
+            //SqlDataReader reader = command.ExecuteReader();
 
-            Services = new ObservableCollection<Service> { };
-            while (reader.Read())
-            {
-                Services.Add(new Service
-                {
-                    ID = int.Parse(reader[0].ToString()),
-                    Title = reader[1].ToString(),
-                    Cost = "Цена - " + float.Parse(reader[2].ToString()).ToString() + " рублей",
-                    Costedit = float.Parse(reader[2].ToString()).ToString(),
-                    DescriptionEdit = reader[3].ToString(),
-                    Description = "Описание - " + reader[3].ToString(),
-                    MainImagePath = reader[4].ToString()
-                });
+            //Services = new ObservableCollection<Service> { };
+            //while (reader.Read())
+            //{
+            //    Services.Add(new Service
+            //    {
+            //        ID = int.Parse(reader[0].ToString()),
+            //        Title = reader[1].ToString(),
+            //        Cost = "Цена - " + float.Parse(reader[2].ToString()).ToString() + " рублей",
+            //        Costedit = float.Parse(reader[2].ToString()).ToString(),
+            //        DescriptionEdit = reader[3].ToString(),
+            //        Description = "Описание - " + reader[3].ToString(),
+            //        MainImagePath = reader[4].ToString()
+            //    });
 
-            }
-            productlist.ItemsSource = Services;
+            //}
+            //productlist.ItemsSource = Services;
         }
 
 
@@ -75,28 +74,28 @@ namespace WpfApp1.view.Admin
         {
             s = productlist.SelectedItem as Service;
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную услугу?", "Delete", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
-            {
-                DB db = new DB();
-                SqlCommand command = new SqlCommand("DELETE FROM Product WHERE ID = @id", db.getConnection());
-                command.Parameters.AddWithValue("@id", s.ID);
-                db.openConnection();
-                if (command.ExecuteNonQuery() == 1)
-                {
-                    MessageBox.Show("Услуга успешно удалена!", "Ok");
-                    WindowProducts adm = new WindowProducts();
-                    this.Close();
-                    adm.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Выберите услугу");
-                }
-            }
-            else
-            {
+            //if (result == MessageBoxResult.Yes)
+            //{
+            //    DB db = new DB();
+            //    SqlCommand command = new SqlCommand("DELETE FROM Product WHERE ID = @id", db.getConnection());
+            //    command.Parameters.AddWithValue("@id", s.ID);
+            //    db.openConnection();
+            //    if (command.ExecuteNonQuery() == 1)
+            //    {
+            //        MessageBox.Show("Услуга успешно удалена!", "Ok");
+            //        WindowProducts adm = new WindowProducts();
+            //        this.Close();
+            //        adm.Show();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Выберите услугу");
+            //    }
+            //}
+            //else
+            //{
 
-            }
+            //}
         }
 
         private void go_add(object sender, RoutedEventArgs e)
