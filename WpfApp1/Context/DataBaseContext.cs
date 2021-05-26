@@ -13,6 +13,8 @@ namespace WpfApp1.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<OrderedService> OrderedServices { get; set; }
+        
 
         public  DataBaseContext() :
             base("DBConnection")

@@ -30,54 +30,54 @@ namespace WpfApp1.view.Admin
         public WindowRecord()
         {
             InitializeComponent();
-            //DB db = new DB();
-            //DataTable table = new DataTable();
-            //SqlDataAdapter adapter = new SqlDataAdapter();
-            //SqlCommand command = new SqlCommand("SELECT * FROM OrderService", db.getConnection());
-            //db.openConnection();
-            //SqlDataReader reader = command.ExecuteReader();
+            DB db = new DB();
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlCommand command = new SqlCommand("SELECT * FROM OrderService", db.getConnection());
+            db.openConnection();
+            SqlDataReader reader = command.ExecuteReader();
 
-            //Services = new ObservableCollection<Service> { };
-            //while (reader.Read())
-            //{
-            //    Services.Add(new Service
-            //    {
-            //        ID = int.Parse(reader[0].ToString()),
-            //        Title = reader[1].ToString(),
-            //        Cost = "Итоговая стоимость - " + float.Parse(reader[3].ToString()).ToString() + " рублей",
-            //        Costedit = float.Parse(reader[3].ToString()).ToString(),
-            //        DurationInSeconds = "Оплаченное время работы мастера - " + int.Parse(reader[4].ToString()).ToString() + " мин",
-            //        DurationInSecondsEdit = int.Parse(reader[4].ToString()).ToString(),
-            //        Discount = "Скидка - " + float.Parse(reader[5].ToString()).ToString() + "%",
-            //        DiscountEdit = float.Parse(reader[5].ToString()).ToString(),
-            //        OrderDate = "Дата заказа - " + reader[6].ToString(),
-            //        OrderDateEdit = reader[6].ToString(),
-            //        ReservDay = "Дата записи - " + reader[7].ToString(),
-            //        MainImagePath = reader[9].ToString()
-            //    });
+            Services = new ObservableCollection<Service> { };
+            while (reader.Read())
+            {
+                Services.Add(new Service
+                {
+                    ID = int.Parse(reader[0].ToString()),
+                    Title = reader[1].ToString(),
+                    Cost = "Итоговая стоимость - " + float.Parse(reader[3].ToString()).ToString() + " рублей",
+                    Costedit = float.Parse(reader[3].ToString()).ToString(),
+                    DurationInSeconds = "Оплаченное время работы мастера - " + int.Parse(reader[4].ToString()).ToString() + " мин",
+                    DurationInSecondsEdit = int.Parse(reader[4].ToString()).ToString(),
+                    Discount = "Скидка - " + float.Parse(reader[5].ToString()).ToString() + "%",
+                    DiscountEdit = float.Parse(reader[5].ToString()).ToString(),
+                    OrderDate = "Дата заказа - " + reader[6].ToString(),
+                    OrderDateEdit = reader[6].ToString(),
+                    ReservDay = "Дата записи - " + reader[7].ToString(),
+                    MainImagePath = reader[9].ToString()
+                });
 
-            //}
-            //recordlist.ItemsSource = Services;
+            }
+            recordlist.ItemsSource = Services;
         }
 
-        private void recordlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void recordlist_SelectionChanged(object sender)
         {
             Service p = (Service)recordlist.SelectedItem;
         }
 
-        private void Click_Change(object sender, RoutedEventArgs e)
+        private void Click_Change(object sender)
         {
             Login login = new Login();
             login.Show();
             this.Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender)
         {
             this.Close();
         }
 
-        private void delete_record(object sender, RoutedEventArgs e)
+        private void delete_record(object sender)
         {
             s = recordlist.SelectedItem as Service;
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную запись?", "Delete", MessageBoxButton.YesNo);
@@ -105,7 +105,7 @@ namespace WpfApp1.view.Admin
             }
         }
 
-        private void edit_record(object sender, RoutedEventArgs e)
+        private void edit_record(object sender)
         {
             if (recordlist.SelectedIndex != -1) // Магия / не трогать
             {
@@ -119,7 +119,7 @@ namespace WpfApp1.view.Admin
             }
         }
 
-        private void go_admzap(object sender, RoutedEventArgs e)
+        private void go_admzap(object sender)
         {
             WindowAdmin adm = new WindowAdmin();
             this.Close();

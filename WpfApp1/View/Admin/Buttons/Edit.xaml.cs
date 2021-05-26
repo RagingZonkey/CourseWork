@@ -23,7 +23,7 @@ namespace WpfApp1.view.Admin.Buttons
     {
 
         
-        public Edit()
+        public Edit(Service init)
         {
             InitializeComponent();
 

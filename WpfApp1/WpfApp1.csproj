@@ -131,6 +131,7 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Context\DataBaseContext.cs" />
+    <Compile Include="Model\OrderedService.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\User.cs" />

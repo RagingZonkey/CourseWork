@@ -15,7 +15,7 @@ using WpfApp1.ViewModels.Base;
 
 namespace WpfApp1.ViewModels
 {
-    class EditViewModel : BaseViewModel
+    public class EditViewModel : BaseViewModel
     {
         public ICommand Save_Service { get; private set; }
         public ICommand GoBack_EditView { get; private set; }
@@ -98,18 +98,17 @@ namespace WpfApp1.ViewModels
 
         private void go_save(object obj)
         {
-            using (DataBaseContext db = new DataBaseContext())
-            {
+            
 
                 try
                 {
-                    var entity = db.Services.Where(x => x.Id == Id).SingleOrDefault();
+                    var entity = App.db.Services.Where(x => x.Id == Id).SingleOrDefault();
                     entity.Cost = Cost_Box;
                     entity.DurationInSeconds = Time_Box;
                     entity.Discount = Skidka_Box;
                     entity.MainImagePath = ImagePath;
                     entity.Id = Service.Id;
-                    db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                    App.db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                     App.db.SaveChangesAsync().GetAwaiter();
 
                 }
@@ -132,7 +131,7 @@ namespace WpfApp1.ViewModels
                 }
 
                
-            }
+            
         }
 
         private void select_image(object sender)

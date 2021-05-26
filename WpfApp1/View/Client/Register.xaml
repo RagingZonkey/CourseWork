@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Icon="/Assets/CLEANCUT_Нежелательный фон 2 2.png"
         WindowStartupLocation="CenterScreen"
-        Title="Регистрация" ResizeMode="NoResize" Height="640" Width="400">
+        Title="Регистрация" ResizeMode="NoResize" Height="660" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="33*"/>
@@ -20,7 +20,7 @@
             <RowDefinition Height="496*"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Background="#FFA800">
+        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="3" Background="#a6c1ee">
                 
         </Border>
 

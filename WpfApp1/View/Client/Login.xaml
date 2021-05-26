@@ -22,16 +22,11 @@
 
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,-0.4,-1">
-            <Border.Background>
-                <LinearGradientBrush SpreadMethod="Reflect" StartPoint="0,0" EndPoint="1,1 ">
-                    <GradientStop Color="#fdcbf1" Offset="0"></GradientStop>
-                    <GradientStop Color="#e6dee9" Offset="1"></GradientStop>
-                </LinearGradientBrush>
-            </Border.Background>
-        </Border>
+        <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Background="#a6c1ee" Margin="0,0,-0.4,-1" />
 
-        <StackPanel VerticalAlignment="Center" Grid.Column="1" >
+
+
+        <StackPanel VerticalAlignment="Center" Grid.Column="1"  Margin="0 20 0 0">
 
             <Image Width="75"  Source="/Assets/CLEANCUT_Нежелательный фон 2 2.png" ></Image>
             <TextBlock HorizontalAlignment="Center"
@@ -69,7 +64,7 @@
             </DockPanel>
 
 
-            <DockPanel  Margin="0,20,0,0">
+            <DockPanel  Margin="0,20,20,0">
                 <Button Foreground="Black" FontFamily="Helvetica"
                     Background="Transparent" DockPanel.Dock="Left"
                     BorderThickness="2" Margin="20,0,0,0" Width="100" Height="40"

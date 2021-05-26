@@ -15,7 +15,7 @@ using WpfApp1.ViewModels.Base;
 
 namespace WpfApp1.ViewModels
 {
-    class EditProductsViewModel : BaseViewModel 
+    public class EditProductsViewModel : BaseViewModel 
     {
 
         public ICommand Save_Service { get; private set; }
@@ -111,18 +111,17 @@ namespace WpfApp1.ViewModels
 
         private void go_save(object obj)
         {
-            using (DataBaseContext db = new DataBaseContext())
-            {
+            
 
                 try
                 {
-                    var entity = db.Products.Where(x => x.Id == Id).SingleOrDefault();
+                    var entity = App.db.Products.Where(x => x.Id == Id).SingleOrDefault();
                     entity.Title = Title_Box;
                     entity.Description = Description_Box;
                     entity.Cost = Cost_Box;
                     entity.MainImagePath = ImagePath;
                     entity.Id = Product.Id;
-                    db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                    App.db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                     App.db.SaveChangesAsync().GetAwaiter();
 
                 }
@@ -145,7 +144,7 @@ namespace WpfApp1.ViewModels
                 }
 
 
-            }
+            
         }
 
         private void select_image(object sender)
