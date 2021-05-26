@@ -137,7 +137,7 @@ namespace WpfApp1.ViewModels
                     MessageBox.Show("Запись успешно отредактирована!");
                     foreach (Window win in Application.Current.Windows)
                     {
-                        if (win is Add)
+                        if (win is EditRecord)
                         {
                             win.Close();
                         }
@@ -153,7 +153,7 @@ namespace WpfApp1.ViewModels
             WindowRecord winadm = new WindowRecord();
             foreach (Window win in Application.Current.Windows)
             {
-                if (win is Add)
+                if (win is EditRecord)
                 {
                     win.Close();
                 }

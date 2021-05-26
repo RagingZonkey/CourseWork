@@ -144,7 +144,7 @@
     <Compile Include="ViewModels\Admin\WindowAdminViewModel.cs" />
     <Compile Include="ViewModels\Admin\WindowProductsViewModel.cs" />
     <Compile Include="ViewModels\Admin\WindowRecordViewModel.cs" />
-    <Compile Include="ViewModels\Client\LoginVIewModel.cs" />
+    <Compile Include="ViewModels\Client\LoginViewModel.cs" />
     <Compile Include="ViewModels\Client\OrderProductsViewModel.cs" />
     <Compile Include="ViewModels\Client\OrderViewModel.cs" />
     <Compile Include="ViewModels\Client\RegisterViewModel.cs" />

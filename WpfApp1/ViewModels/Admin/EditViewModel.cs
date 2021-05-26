@@ -122,7 +122,7 @@ namespace WpfApp1.ViewModels
                     MessageBox.Show("Услуга успешно отредактирована!");
                     foreach (Window win in Application.Current.Windows)
                     {
-                        if (win is Add)
+                        if (win is Edit)
                         {
                             win.Close();
                         }
@@ -165,7 +165,7 @@ namespace WpfApp1.ViewModels
                 WindowAdminService winadm = new WindowAdminService();
                 foreach (Window win in Application.Current.Windows)
                 {
-                    if (win is Add)
+                    if (win is Edit)
                     {
                         win.Close();
                     }

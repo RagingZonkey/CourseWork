@@ -135,7 +135,7 @@ namespace WpfApp1.ViewModels
                     MessageBox.Show("Продукт успешно отредактирован!");
                     foreach (Window win in Application.Current.Windows)
                     {
-                        if (win is Add)
+                        if (win is EditProducts)
                         {
                             win.Close();
                         }
@@ -178,7 +178,7 @@ namespace WpfApp1.ViewModels
                 WindowAdminService winadm = new WindowAdminService();
                 foreach (Window win in Application.Current.Windows)
                 {
-                    if (win is Add)
+                    if (win is EditProducts)
                     {
                         win.Close();
                     }

@@ -57,7 +57,7 @@ namespace WpfApp1.ViewModels.Client
             {
                 ID = int.Parse(entity.ID.ToString()),
                 Title = entity.Title.ToString(),
-                Cost = float.Parse(entity.Cost.ToString()).ToString() + " рублей за " /*+ int.Parse(entity.DurationInSeconds.ToInt32())/60) + " мин"*/,
+                Cost = float.Parse(entity.Cost.ToString()).ToString() + " рублей за " + (int.Parse(entity.DurationInSeconds) / 60) + " мин",
                 Costedit = float.Parse(entity.Costedit.ToString()).ToString(),
                 DurationInSeconds = int.Parse(entity.DurationInSeconds.ToString()).ToString(),
                 Discount = float.Parse(entity.Discount.ToString()).ToString() + "% скидка",
@@ -67,8 +67,8 @@ namespace WpfApp1.ViewModels.Client
             Tovari = new RelayCommand(Click_Tovari);
             Order = new RelayCommand(go_order);
             Change = new RelayCommand(Click_change);
-            WinClient = new RelayCommand()
-            Exit
+            WinClient = new RelayCommand(Click_Akk);
+            Exit = new RelayCommand(Click_Exit);
 
         }
 

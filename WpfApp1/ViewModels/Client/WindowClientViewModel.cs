@@ -42,15 +42,15 @@ namespace WpfApp1.ViewModels.Client
             entity.Login = logins;
             App.db.SaveChangesAsync().GetAwaiter();
 
-            //Services.Add(new Service
-            //{
-            //    ID = int.Parse(reader[0].ToString()),
-            //    Title = reader[1].ToString(),
-            //    DurationInSecondsEdit = "Время работы мастера " + float.Parse(reader[4].ToString()).ToString() + " мин",
-            //    OrderDate = "Дата записи: " + reader[7].ToString(),
-            //    Discount = "Цена с учетом скидок: " + float.Parse(reader[3].ToString()).ToString() + " руб",
-            //    MainImagePath = reader[9].ToString()
-            //});
+            Services.Add(new Service
+            {
+                ID = int.Parse(entity.Id.ToString()),
+                Title = entity.Title.ToString(),
+                DurationInSecondsEdit = "Время работы мастера " + int.Parse(entity.DurationInSeconds)/60 + " мин",
+                OrderDate = "Дата записи: " + entity.OrderDate.ToString(),
+                Discount = "Цена с учетом скидок: " + float.Parse(entity.Discount.ToString()).ToString() + " руб",
+                MainImagePath = entity.ImagePath.ToString()
+            });
 
             Tovari = new RelayCommand(Click_Tovari);
             Service = new RelayCommand(Click_Service);

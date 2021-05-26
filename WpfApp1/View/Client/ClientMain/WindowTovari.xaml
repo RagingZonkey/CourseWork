@@ -74,7 +74,10 @@
                       Grid.Row="1" Grid.ColumnSpan="2">
 
             <DockPanel Grid.Column="1" Grid.Row="1"  >
-                <ListBox x:Name="productList" SelectionChanged="productList_SelectionChanged" DockPanel.Dock="Top" >
+                <ListBox x:Name="productList" 
+                         ItemsSource="{Binding Products}"
+                         SelectedItem="{Binding SelectedProduct}"
+                         DockPanel.Dock="Top" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
 

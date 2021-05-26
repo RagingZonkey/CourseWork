@@ -33,7 +33,23 @@ namespace WpfApp1.ViewModels
             Main = new RelayCommand(go_main);
             Exit = new RelayCommand(go_exit);
             Change = new RelayCommand(go_change);
+
+            var entity = App.db.Services.SingleOrDefault();
             
+            Services.Add(new Service
+            {
+                Id = int.Parse(entity.Id.ToString()),
+                Title = entity.Title.ToString(),
+                Cost = float.Parse(entity.Cost.ToString()).ToString() + " рублей за "
+                + int.Parse(entity.DurationInSeconds)/60 + " мин",
+                Costedit = float.Parse(entity.Costedit.ToString()).ToString(),
+                DurationInSeconds = int.Parse(reader[3].ToString()).ToString(),
+                Discount = float.Parse(reader[4].ToString()).ToString() + "% скидка",
+                DiscountEdit = float.Parse(reader[4].ToString()).ToString(),
+                MainImagePath = reader[5].ToString()
+            });
+
+
         }
         private Service selectedService;
 
@@ -61,29 +77,7 @@ namespace WpfApp1.ViewModels
 
 
 
-        //DataTable table = new DataTable();
-        //SqlDataAdapter adapter = new SqlDataAdapter();
-        //SqlCommand command = new SqlCommand("SELECT * FROM Service", db.getConnection());
-        //db.o      penConnection();
-        //SqlDataReader reader = command.ExecuteReader();
-
-        //while (reader.Read())
-        //{
-        //    Services.Add(new Service
-        //    {
-        //        ID = int.Parse(reader[0].ToString()),
-        //        Title = reader[1].ToString(),
-        //        Cost = float.Parse(reader[2].ToString()).ToString() + " рублей за "
-        //        + float.Parse(reader[3].ToString()).ToString() + " мин",
-        //        Costedit = float.Parse(reader[2].ToString()).ToString(),
-        //        DurationInSeconds = int.Parse(reader[3].ToString()).ToString(),
-        //        Discount = float.Parse(reader[4].ToString()).ToString() + "% скидка",
-        //        DiscountEdit = float.Parse(reader[4].ToString()).ToString(),
-        //        MainImagePath = reader[5].ToString()
-        //    });
-
-        //}
-        //servicelist.ItemsSource = Services;
+        
 
 
 

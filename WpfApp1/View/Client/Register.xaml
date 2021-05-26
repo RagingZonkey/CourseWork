@@ -126,7 +126,6 @@
                      FontFamily="Helvetica"
                      FontWeight="Light"
                      FontSize="20" 
-                     Password="Password"
                      BorderThickness="0"
                      Opacity="0.7" x:Name="passwordbox_one">
                 </PasswordBox>
@@ -141,7 +140,7 @@
 
                 <PasswordBox 
                      HorizontalAlignment="Stretch" 
-                     Password="Password"
+                     
                      Height="25"
                      FontFamily="Helvetica"
                      FontWeight="Light"
