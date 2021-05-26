@@ -33,7 +33,7 @@ namespace WpfApp1.ViewModels
             Main = new RelayCommand(go_main);
             Exit = new RelayCommand(go_exit);
             Change = new RelayCommand(go_change);
-            App.db.
+            
         }
         private Service selectedService;
 

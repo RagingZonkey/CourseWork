@@ -131,7 +131,6 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Context\DataBaseContext.cs" />
-    <Compile Include="Model\OrderedService.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\User.cs" />
@@ -145,6 +144,13 @@
     <Compile Include="ViewModels\Admin\WindowAdminViewModel.cs" />
     <Compile Include="ViewModels\Admin\WindowProductsViewModel.cs" />
     <Compile Include="ViewModels\Admin\WindowRecordViewModel.cs" />
+    <Compile Include="ViewModels\Client\LoginVIewModel.cs" />
+    <Compile Include="ViewModels\Client\OrderProductsViewModel.cs" />
+    <Compile Include="ViewModels\Client\OrderViewModel.cs" />
+    <Compile Include="ViewModels\Client\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\Client\WindowClientViewModel.cs" />
+    <Compile Include="ViewModels\Client\WindowServiceViewModel.cs" />
+    <Compile Include="ViewModels\Client\WindowTovariViewModel.cs" />
     <Compile Include="View\Admin\Buttons\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>
     </Compile>

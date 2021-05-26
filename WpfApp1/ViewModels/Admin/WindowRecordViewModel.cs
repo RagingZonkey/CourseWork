@@ -23,28 +23,28 @@ namespace WpfApp1.ViewModels
         public ICommand Exit { get; private set; }
         public ICommand Change { get; private set; }
 
-        Service s;
-        private Service selectedService;
+        OrderedService os;
+        private OrderedService selectedOrderedService;
 
-        public Service SelectedService
+        public OrderedService SelectedOrderedService
         {
-            get { return selectedService; }
+            get { return selectedOrderedService; }
             set
             {
-                selectedService = value;
+                selectedOrderedService = value;
                 OnPropertyChanged("SelectedService");
             }
         }
 
-        private ObservableCollection<Service> services;
+        private ObservableCollection<OrderedService> orderedServices;
 
-        public ObservableCollection<Service> Services
+        public ObservableCollection<OrderedService> OrderedServices
         {
-            get { return services; }
+            get { return orderedServices; }
             set
             {
-                services = value;
-                OnPropertyChanged("Services");
+                orderedServices = value;
+                OnPropertyChanged("OrderedServices");
             }
         }
         public WindowRecordViewModel()
@@ -113,7 +113,7 @@ namespace WpfApp1.ViewModels
 
         private void go_delete(object sender)
         {
-            s = SelectedService;
+            os = SelectedOrderedService;
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную запись?", "Delete", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
@@ -123,7 +123,7 @@ namespace WpfApp1.ViewModels
                 //db.openConnection();
                 try 
                 {
-                    App.db.Services.Remove(s);
+                    App.db.OrderedServices.Remove(s);
                     App.db.SaveChangesAsync().GetAwaiter();
                 }
                 catch(Exception ex)
@@ -153,9 +153,9 @@ namespace WpfApp1.ViewModels
 
         private void go_edit(object sender)
         {
-            if (SelectedService != null) // Магия / не трогать
+            if (SelectedOrderedService != null) // Магия / не трогать
             {
-                EditRecord ed = new EditRecord(SelectedService);
+                EditRecord ed = new EditRecord(SelectedOrderedService);
                 ed.Show();
                 foreach (Window win in Application.Current.Windows)
                 {

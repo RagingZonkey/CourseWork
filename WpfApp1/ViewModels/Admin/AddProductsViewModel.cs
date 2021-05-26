@@ -19,6 +19,8 @@ namespace WpfApp1.ViewModels
         public ICommand Add_Service { get; private set; }
         public ICommand GoBack_AddProductView { get; private set; }
         public ICommand Select_Image { get; private set; }
+
+
         private string title_box;
 
         public string Title_Box

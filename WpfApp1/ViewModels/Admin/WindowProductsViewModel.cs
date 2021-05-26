@@ -90,7 +90,8 @@ namespace WpfApp1.ViewModels
 
                 try 
                 {
-                
+                    App.db.Products.Remove(p);
+                    App.db.SaveChangesAsync().GetAwaiter();
                 }
                 catch(Exception ex)
                 {
@@ -131,10 +132,7 @@ namespace WpfApp1.ViewModels
 
 
         }
-        private void productlist_SelectionChanged(object sender)
-        {
-            Service p = (Service)productlist.SelectedItem;
-        }
+       
 
         private void go_main(object sender)
         {
