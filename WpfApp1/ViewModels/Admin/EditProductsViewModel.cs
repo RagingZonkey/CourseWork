@@ -121,7 +121,7 @@ namespace WpfApp1.ViewModels
                     entity.Cost = Cost_Box;
                     entity.MainImagePath = ImagePath;
                     entity.Id = Product.Id;
-                    App.db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                    //App.db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                     App.db.SaveChangesAsync().GetAwaiter();
 
                 }

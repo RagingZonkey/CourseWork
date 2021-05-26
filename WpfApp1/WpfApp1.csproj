@@ -135,16 +135,16 @@
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="ViewModels\AddProductsViewModel.cs" />
-    <Compile Include="ViewModels\AddViewModel.cs" />
+    <Compile Include="ViewModels\Admin\AddProductsViewModel.cs" />
+    <Compile Include="ViewModels\Admin\AddViewModel.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
-    <Compile Include="ViewModels\EditProductsViewModel.cs" />
-    <Compile Include="ViewModels\EditRecordViewModel.cs" />
-    <Compile Include="ViewModels\EditViewModel.cs" />
-    <Compile Include="ViewModels\WindowAdminServiceViewModel.cs" />
-    <Compile Include="ViewModels\WindowAdminViewModel.cs" />
-    <Compile Include="ViewModels\WindowProductsViewModel.cs" />
-    <Compile Include="ViewModels\WindowRecordViewModel.cs" />
+    <Compile Include="ViewModels\Admin\EditProductsViewModel.cs" />
+    <Compile Include="ViewModels\Admin\EditRecordViewModel.cs" />
+    <Compile Include="ViewModels\Admin\EditViewModel.cs" />
+    <Compile Include="ViewModels\Admin\WindowAdminServiceViewModel.cs" />
+    <Compile Include="ViewModels\Admin\WindowAdminViewModel.cs" />
+    <Compile Include="ViewModels\Admin\WindowProductsViewModel.cs" />
+    <Compile Include="ViewModels\Admin\WindowRecordViewModel.cs" />
     <Compile Include="View\Admin\Buttons\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>
     </Compile>

@@ -108,7 +108,7 @@ namespace WpfApp1.ViewModels
                     entity.Discount = Skidka_Box;
                     entity.MainImagePath = ImagePath;
                     entity.Id = Service.Id;
-                    App.db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                    //App.db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                     App.db.SaveChangesAsync().GetAwaiter();
 
                 }

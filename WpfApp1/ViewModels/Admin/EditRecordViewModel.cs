@@ -23,14 +23,8 @@ namespace WpfApp1.ViewModels
         public ICommand GoBack_EditView { get; private set; }
 
         Service Service;
-        public EditRecordViewModel(Service init)
+        public EditRecordViewModel()
         {
-            this.Service = init;
-            title_box = init.Title;
-            cost_box = init.Costedit;
-            time_box = init.DurationInSecondsEdit;
-            skidka_box = init.DiscountEdit;
-            order_date = init.OrderDateEdit;
             
 
         }

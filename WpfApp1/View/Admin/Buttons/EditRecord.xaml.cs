@@ -5,10 +5,9 @@ namespace WpfApp1.view.Admin.Buttons
    
     public partial class EditRecord : Window
     {
-        public EditRecord()
+        public EditRecord(Service init)
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
 
         }
 

@@ -21,7 +21,7 @@ namespace WpfApp1.view.Admin.Buttons
     public partial class EditProducts : Window
     {
         
-        public EditProducts(Service init)
+        public EditProducts(Product init)
         {
             InitializeComponent();
             

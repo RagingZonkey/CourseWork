@@ -60,12 +60,12 @@
 
         <Border Grid.Column="0" Grid.Row="1" BorderBrush="#b2b6c2" BorderThickness="2">
             <DockPanel LastChildFill="False">
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_add">Добавить</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_delete">Удалить</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_edit">Редактировать</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_main">Главная</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_change">Сменить пользователя</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_exit">Выход</Button>
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_add" Command="{Binding Add}" Content="Добавить"/>
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_delete" Command="{Binding Delete}" Content="Удалить" />
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_edit" Command="{Binding Edit}" Content="Редактировать"/>
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_main" Command="{Binding Main}" Content="Главная"/>
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_change" Command="{Binding Change}" Content="Сменить пользователя"/>
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_exit" Command="{Binding Exit}" Content="Выход"/>
             </DockPanel>
 
         </Border>
@@ -74,7 +74,10 @@
                       Grid.Row="1" Grid.ColumnSpan="2">
 
             <DockPanel Grid.Column="1" Grid.Row="1"  >
-                <ListBox x:Name="productlist" SelectionChanged="productlist_SelectionChanged" DockPanel.Dock="Top" >
+                <ListBox x:Name="productlist"  
+                         ItemsSource="{Binding Products}"
+                         SelectedItem="{Binding SelectedProduct}"
+                         DockPanel.Dock="Top" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
 

@@ -117,10 +117,7 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private void adminlist_SelectionChanged(object sender)
-        {
-            Service p = (Service)adminlist.SelectedItem;
-        }
+        
 
 
 
