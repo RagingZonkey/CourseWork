@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using WpfApp1.Commands;
 using WpfApp1.Model;
 using WpfApp1.view;
 using WpfApp1.view.Client.Buttons;
@@ -13,6 +15,9 @@ namespace WpfApp1.ViewModels.Client
 {
     public class OrderProductsViewModel : BaseViewModel
     {
+
+        public ICommand Order { get; private set; }
+        public ICommand Back { get; private set; }
         Product product;
         public string logins;
         public OrderProductsViewModel(Product init, string login)
@@ -24,7 +29,8 @@ namespace WpfApp1.ViewModels.Client
             desc_box = init.DescriptionEdit;
             cost_box = init.CostEdit;
             resultingCost_box = init.CostEdit;
-
+            Order = new RelayCommand(go_order);
+            Back = new RelayCommand(go_back);
         }
 
         private string title_box;
@@ -106,8 +112,12 @@ namespace WpfApp1.ViewModels.Client
             try
             {
                 var entity = App.db.OrderedProducts.FirstOrDefault(x => x.Id == Id);
-                
-                
+                entity.Title = Title_Box;
+                entity.Cost = Cost_Box;
+                entity.TotalPrice = ResultingCost_Box;
+                entity.Description = Description_Box;
+                entity.UserLogin = logins;
+                entity.ImagePath = product.MainImagePath;
                 App.db.SaveChangesAsync().GetAwaiter();
             }
             catch(Exception ex) 
@@ -127,15 +137,7 @@ namespace WpfApp1.ViewModels.Client
                 }
                 winadm.Show();
             }
-            DB db = new DB();
-            SqlCommand command = new SqlCommand("INSERT INTO OrderProduct ( Name, Price, TopPrice, Description, Login, ImagePath)"
-                + "VALUES (@title, @price, @topprice, @desk, @login, @image)", db.getConnection());
-            command.Parameters.AddWithValue("@title", title_box.Text);
-            command.Parameters.AddWithValue("@price", price_box.Text);
-            command.Parameters.AddWithValue("@topprice", topprice_box.Text);
-            command.Parameters.AddWithValue("@desk", desk_box.Text);
-            command.Parameters.AddWithValue("@login", logins);
-            command.Parameters.AddWithValue("@image", product.MainImagePath);
+          
 
 
             

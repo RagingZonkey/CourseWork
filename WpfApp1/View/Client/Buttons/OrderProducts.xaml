@@ -44,30 +44,30 @@
                            Text="Наименование товара" 
                            ></TextBlock>
 
-            <TextBox x:Name="title_box" IsReadOnly="True" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <TextBox  Text ="{Binding Title_Box, Mode=TwoWay}" x:Name="title_box" IsReadOnly="True" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
 
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Описание товара" 
                            ></TextBlock>
 
-            <TextBox x:Name="desk_box" IsReadOnly="True" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <TextBox Text ="{Binding Description_Box, Mode=TwoWay}" x:Name="desk_box" IsReadOnly="True" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
             
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0" Text="Цена" ></TextBlock>
 
-            <TextBox IsReadOnly="True" x:Name="price_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <TextBox Text ="{Binding Cost_Box, Mode=TwoWay}" IsReadOnly="True" x:Name="price_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
 
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Итогавая стоимость" 
                            ></TextBlock>
-            <TextBox IsReadOnly="True" x:Name="topprice_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <TextBox Text ="{Binding ResultingCostBox, Mode=TwoWay}" IsReadOnly="True" x:Name="topprice_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
 
             <DockPanel Width="596">
             <Button   Margin="35,0,0,0"
                          Width="250" Height="40"
-                         Content="Зарезервировать" Click="go_order" Background="Transparent"/>
+                         Content="Зарезервировать" Command="{Binding Order}" Background="Transparent"/>
             <Button 
                          Width="250" Height="40"
-                         Content="Назад" Click="go_back" Background="Transparent"/>
+                         Content="Назад" Command="{Binding Back}" Background="Transparent"/>
             </DockPanel>
         </DockPanel>
     </Grid>

@@ -38,39 +38,6 @@ namespace WpfApp1.view.Client.Buttons
             topprice_box.Text = init.CostEdit;
 
         }
-        private void go_order(object sender, RoutedEventArgs e)
-        {
-
-            DB db = new DB();
-            SqlCommand command = new SqlCommand("INSERT INTO OrderProduct ( Name, Price, TopPrice, Description, Login, ImagePath)"
-                + "VALUES (@title, @price, @topprice, @desk, @login, @image)", db.getConnection());
-            command.Parameters.AddWithValue("@title", title_box.Text);
-            command.Parameters.AddWithValue("@price", price_box.Text);
-            command.Parameters.AddWithValue("@topprice", topprice_box.Text);
-            command.Parameters.AddWithValue("@desk", desk_box.Text);
-            command.Parameters.AddWithValue("@login", logins);
-            command.Parameters.AddWithValue("@image", product.MainImagePath);
-
-
-            db.openConnection();
-
-            if (command.ExecuteNonQuery() == 1)
-            {
-                WindowClient winadm = new WindowClient(logins);
-                MessageBox.Show("Товар успешно зарезервирована!");
-                this.Close();
-                winadm.Show();
-            }
-        }
-
-
-
-
-        private void go_back(object sender, RoutedEventArgs e)
-        {
-            WindowClient winadm = new WindowClient(logins);
-            this.Close();
-            winadm.Show();
-        }
+        
     }
 }

@@ -53,10 +53,10 @@
 
         <Border Grid.Column="0" Grid.Row="1" BorderBrush="#b2b6c2" BorderThickness="2">
             <DockPanel LastChildFill="False">
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="Click_Tovari">Товары</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="Click_Sirvice">Услуги</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="Click_change">Сменить пользователя</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent">Выход</Button>
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent"  Command="{Binding Tovari}">Товары</Button>
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Service}">Услуги</Button>
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Change}">Сменить пользователя</Button>
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent"  Command="{Binding Close}">Выход</Button>
 
             </DockPanel>
 
@@ -81,7 +81,7 @@
                       Grid.Row="1" Grid.ColumnSpan="2">
 
             <DockPanel Grid.Column="1" Grid.Row="1"  >
-                <ListBox x:Name="client_ak"  DockPanel.Dock="Top" >
+                <ListBox x:Name="client_ak"  DockPanel.Dock="Top">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
 

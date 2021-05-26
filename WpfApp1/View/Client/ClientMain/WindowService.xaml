@@ -77,7 +77,10 @@
                       Grid.Row="1" Grid.ColumnSpan="2">
 
             <DockPanel Grid.Column="1" Grid.Row="1"  >
-                <ListBox x:Name="phonesList" SelectionChanged="phonesList_SelectionChanged" DockPanel.Dock="Top" >
+                <ListBox x:Name="phonesList" 
+                         ItemsSource="{Binding Services}"
+                         SelectedItem="{Binding SelectedService}"
+                         DockPanel.Dock="Top" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                     <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="603">
