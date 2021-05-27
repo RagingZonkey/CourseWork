@@ -106,6 +106,7 @@ namespace WpfApp1.ViewModels.Client
             }
         }
 
+        public int Id { get; private set; }
 
         private void go_order(object sender)
         {
@@ -116,8 +117,8 @@ namespace WpfApp1.ViewModels.Client
                 entity.Cost = Cost_Box;
                 entity.TotalPrice = ResultingCost_Box;
                 entity.Description = Description_Box;
-                entity.UserLogin = logins;
-                entity.ImagePath = product.MainImagePath;
+                entity.Login = logins;
+                entity.MainImagePath = product.MainImagePath;
                 App.db.SaveChangesAsync().GetAwaiter();
             }
             catch(Exception ex) 
@@ -127,7 +128,7 @@ namespace WpfApp1.ViewModels.Client
             finally 
             {
                 WindowClient winadm = new WindowClient(logins);
-                MessageBox.Show("Товар успешно зарезервирована!");
+                MessageBox.Show("Товар успешно зарезервирован!");
                 foreach (Window win in Application.Current.Windows)
                 {
                     if (win is OrderProducts)

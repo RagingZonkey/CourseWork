@@ -58,7 +58,7 @@ namespace WpfApp1.ViewModels.Client
 
             products.Add(new Product
             {
-                ID = int.Parse(entity.Id.ToString()),
+                Id = int.Parse(entity.Id.ToString()),
                 Title = entity.Title.ToString(),
                 Cost = "Цена - " + float.Parse(entity.Cost.ToString()).ToString() + " рублей",
                 CostEdit = float.Parse(entity.CostEdit.ToString()).ToString(),

@@ -75,8 +75,8 @@
 
             <DockPanel Grid.Column="1" Grid.Row="1"  >
                 <ListBox x:Name="recordlist" 
-                         ItemsSource="{Binding Services}"
-                         SelectedItem="{Binding SelectedService}"
+                         ItemsSource="{Binding OrderedServices}"
+                         SelectedItem="{Binding SelectedOrderedService}"
                          DockPanel.Dock="Top" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>

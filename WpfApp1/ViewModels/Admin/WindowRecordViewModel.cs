@@ -23,10 +23,10 @@ namespace WpfApp1.ViewModels
         public ICommand Exit { get; private set; }
         public ICommand Change { get; private set; }
 
-        OrderedService os;
-        private OrderedService selectedOrderedService;
+        OrderedService s;
+        private Service selectedOrderedService;
 
-        public OrderedService SelectedOrderedService
+        public Service SelectedOrderedService
         {
             get { return selectedOrderedService; }
             set
@@ -36,9 +36,9 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private ObservableCollection<OrderedService> orderedServices;
+        private ObservableCollection<Service> orderedServices;
 
-        public ObservableCollection<OrderedService> OrderedServices
+        public ObservableCollection<Service> OrderedServices
         {
             get { return orderedServices; }
             set
@@ -55,30 +55,24 @@ namespace WpfApp1.ViewModels
             Exit = new RelayCommand(go_exit);
             Change = new RelayCommand(go_change);
 
-            //DataTable table = new DataTable();
-            //SqlDataAdapter adapter = new SqlDataAdapter();
-            //SqlCommand command = new SqlCommand("SELECT * FROM OrderService", db.getConnection());
-            //db.openConnection();
-            //SqlDataReader reader = command.ExecuteReader();
-
-            //Services = new ObservableCollection<Service> { };
-            //while (reader.Read())
-            //{
-            //    Services.Add(new Service
-            //    {
-            //        ID = int.Parse(reader[0].ToString()),
-            //        Title = reader[1].ToString(),
-            //        Cost = "Итоговая стоимость - " + float.Parse(reader[3].ToString()).ToString() + " рублей",
-            //        Costedit = float.Parse(reader[3].ToString()).ToString(),
-            //        DurationInSeconds = "Оплаченное время работы мастера - " + int.Parse(reader[4].ToString()).ToString() + " мин",
-            //        DurationInSecondsEdit = int.Parse(reader[4].ToString()).ToString(),
-            //        Discount = "Скидка - " + float.Parse(reader[5].ToString()).ToString() + "%",
-            //        DiscountEdit = float.Parse(reader[5].ToString()).ToString(),
-            //        OrderDate = "Дата заказа - " + reader[6].ToString(),
-            //        OrderDateEdit = reader[6].ToString(),
-            //        ReservDay = "Дата записи - " + reader[7].ToString(),
-            //        MainImagePath = reader[9].ToString()
-            //    });
+            
+            var entity = App.db.OrderedServices.SingleOrDefault();
+            
+            OrderedServices.Add(new Service
+            {
+                Id = int.Parse(entity.Id.ToString()),
+                Title = entity.Title.ToString(),
+                Cost = "Итоговая стоимость - " + float.Parse(entity.Cost.ToString()).ToString() + " рублей",
+                //Costedit = float.Parse(entity.Costedit.ToString()).ToString(),
+                DurationInSeconds = "Оплаченное время работы мастера - " + int.Parse(entity.DurationInSeconds.ToString()).ToString() + " мин",
+                DurationInSecondsEdit = int.Parse(reader[4].ToString()).ToString(),
+                Discount = "Скидка - " + float.Parse(reader[5].ToString()).ToString() + "%",
+                DiscountEdit = float.Parse(reader[5].ToString()).ToString(),
+                OrderDate = "Дата заказа - " + reader[6].ToString(),
+                OrderDateEdit = reader[6].ToString(),
+                ReservDay = "Дата записи - " + reader[7].ToString(),
+                MainImagePath = reader[9].ToString()
+            });
 
             //}
             //recordlist.ItemsSource = Services;
@@ -113,7 +107,7 @@ namespace WpfApp1.ViewModels
 
         private void go_delete(object sender)
         {
-            os = SelectedOrderedService;
+            s = SelectedOrderedService;
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную запись?", "Delete", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {

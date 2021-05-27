@@ -145,7 +145,7 @@ namespace WpfApp1.ViewModels.Client
             set { date_box = value; }
         }
 
-
+        public int Id { get; private set; }
 
         private void go_order(object sender)
         {
@@ -160,11 +160,10 @@ namespace WpfApp1.ViewModels.Client
                     entity.Cost = Cost_Box;
                     entity.TotalPrice = ResultingCost_Box;
                     entity.Description = Description_Box;
-                    entity.UserLogin = logins;
                     entity.Discount = Service.DiscountEdit;
-                    entity.OrderDate = curDate;
-                    entity.PurchaseDate = Date_Box.Date.ToShortDateString();
-                    entity.ImagePath = Service.MainImagePath;
+                    entity.OrderDate = curDate.ToShortDateString();
+                    entity.DayReserv = Date_Box.Date.ToShortDateString();
+                    entity.MainImagePath = Service.MainImagePath;
                     entity.Login = logins;
                     App.db.SaveChangesAsync().GetAwaiter();
                 }

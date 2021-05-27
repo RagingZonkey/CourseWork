@@ -55,7 +55,7 @@ namespace WpfApp1.ViewModels.Client
             var entity = App.db.Services.SingleOrDefault();
             Services.Add(new Service
             {
-                ID = int.Parse(entity.ID.ToString()),
+                Id = int.Parse(entity.Id.ToString()),
                 Title = entity.Title.ToString(),
                 Cost = float.Parse(entity.Cost.ToString()).ToString() + " рублей за " + (int.Parse(entity.DurationInSeconds) / 60) + " мин",
                 Costedit = float.Parse(entity.Costedit.ToString()).ToString(),

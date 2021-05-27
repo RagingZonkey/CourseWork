@@ -25,7 +25,8 @@ namespace WpfApp1.ViewModels
         Service Service;
         public EditRecordViewModel()
         {
-            
+            Save_Service = new RelayCommand(record_save);
+            GoBack_EditView = new RelayCommand(go_back);
 
         }
 
@@ -111,7 +112,9 @@ namespace WpfApp1.ViewModels
             set { order_date = value; }
         }
 
-        public object Id { get; private set; }
+        public int Id { get; private set; }
+
+
 
         #endregion
 

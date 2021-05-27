@@ -9,8 +9,8 @@ namespace WpfApp1.Model
    public class Product
     {
 
-        public int ID { get; set; }
-        public object Id { get; internal set; }
+        
+        public int Id { get; set; }
         public string Title { get; set; }
 
         public string Cost { get; set; }
