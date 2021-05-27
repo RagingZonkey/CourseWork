@@ -68,11 +68,11 @@
                 <Button Foreground="Black" FontFamily="Helvetica"
                     Background="Transparent" DockPanel.Dock="Left"
                     BorderThickness="2" Margin="20,0,0,0" Width="100" Height="40"
-                    Content="Login" Click="Button_Click"  ></Button>
+                    Content="Login"  ></Button>
                 <Button Foreground="Black" FontFamily="Helvetica"
                     Background="Transparent" DockPanel.Dock="Right" 
                     BorderThickness="2" Margin="20,0,0,0" Width="100" Height="40"
-                    Content="Register" Click="Button_Click_1"></Button>
+                    Content="Register" ></Button>
             </DockPanel>
         </StackPanel>
     </Grid>

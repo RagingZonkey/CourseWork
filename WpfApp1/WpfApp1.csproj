@@ -153,57 +153,60 @@
     <Compile Include="ViewModels\Client\WindowClientViewModel.cs" />
     <Compile Include="ViewModels\Client\WindowServiceViewModel.cs" />
     <Compile Include="ViewModels\Client\WindowTovariViewModel.cs" />
-    <Compile Include="View\Admin\Buttons\Add.xaml.cs">
+    <Compile Include="view\Admin\Buttons\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\Buttons\AddProducts.xaml.cs">
+    <Compile Include="view\Admin\Buttons\AddProducts.xaml.cs">
       <DependentUpon>AddProducts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\Buttons\Edit.xaml.cs">
+    <Compile Include="view\Admin\Buttons\Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\Buttons\EditProducts.xaml.cs">
+    <Compile Include="view\Admin\Buttons\EditProducts.xaml.cs">
       <DependentUpon>EditProducts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\Buttons\EditRecord.xaml.cs">
+    <Compile Include="view\Admin\Buttons\EditRecord.xaml.cs">
       <DependentUpon>EditRecord.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\WindowProducts.xaml.cs">
+    <Compile Include="view\Admin\Buttons\EditWindow.xaml.cs">
+      <DependentUpon>EditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Admin\WindowProducts.xaml.cs">
       <DependentUpon>WindowProducts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\WindowRecord.xaml.cs">
+    <Compile Include="view\Admin\WindowRecord.xaml.cs">
       <DependentUpon>WindowRecord.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\WindowAdminService.xaml.cs">
+    <Compile Include="view\Admin\WindowAdminService.xaml.cs">
       <DependentUpon>WindowAdminService.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Client\Buttons\Order.xaml.cs">
+    <Compile Include="view\Client\Buttons\Order.xaml.cs">
       <DependentUpon>Order.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Client\Buttons\OrderProducts.xaml.cs">
+    <Compile Include="view\Client\Buttons\OrderProducts.xaml.cs">
       <DependentUpon>OrderProducts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Error.xaml.cs">
+    <Compile Include="view\Error.xaml.cs">
       <DependentUpon>Error.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Client\ClientMain\WindowClient.xaml.cs">
+    <Compile Include="view\Client\ClientMain\WindowClient.xaml.cs">
       <DependentUpon>WindowClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\WindowAdmin.xaml.cs">
+    <Compile Include="view\Admin\WindowAdmin.xaml.cs">
       <DependentUpon>WindowAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Client\ClientMain\WindowService.xaml.cs">
+    <Compile Include="view\Client\ClientMain\WindowService.xaml.cs">
       <DependentUpon>WindowService.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Client\Register.xaml.cs">
+    <Compile Include="view\Client\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Client\ClientMain\WindowTovari.xaml.cs">
+    <Compile Include="view\Client\ClientMain\WindowTovari.xaml.cs">
       <DependentUpon>WindowTovari.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\Client\Login.xaml.cs">
+    <Compile Include="view\Client\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -246,71 +249,75 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Admin\Buttons\Add.xaml">
+    <Page Include="view\Admin\Buttons\Add.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Admin\Buttons\AddProducts.xaml">
+    <Page Include="view\Admin\Buttons\AddProducts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Admin\Buttons\Edit.xaml">
+    <Page Include="view\Admin\Buttons\Edit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Admin\Buttons\EditProducts.xaml">
+    <Page Include="view\Admin\Buttons\EditProducts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Admin\Buttons\EditRecord.xaml">
+    <Page Include="view\Admin\Buttons\EditRecord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Admin\WindowProducts.xaml">
+    <Page Include="view\Admin\Buttons\EditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Admin\WindowRecord.xaml">
+    <Page Include="view\Admin\WindowProducts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Admin\WindowAdminService.xaml">
+    <Page Include="view\Admin\WindowRecord.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Client\Buttons\Order.xaml">
+    <Page Include="view\Admin\WindowAdminService.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Client\Buttons\OrderProducts.xaml">
+    <Page Include="view\Client\Buttons\Order.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Error.xaml">
+    <Page Include="view\Client\Buttons\OrderProducts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Client\Login.xaml">
+    <Page Include="view\Error.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Client\ClientMain\WindowClient.xaml">
+    <Page Include="view\Client\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Admin\WindowAdmin.xaml">
+    <Page Include="view\Client\ClientMain\WindowClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Client\ClientMain\WindowService.xaml">
+    <Page Include="view\Admin\WindowAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Client\Register.xaml">
+    <Page Include="view\Client\ClientMain\WindowService.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Client\ClientMain\WindowTovari.xaml">
+    <Page Include="view\Client\Register.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\Client\ClientMain\WindowTovari.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

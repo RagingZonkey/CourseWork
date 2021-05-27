@@ -11,6 +11,7 @@ using WpfApp1.Model;
 using WpfApp1.view;
 using WpfApp1.view.Admin;
 using WpfApp1.view.Admin.Buttons;
+using WpfApp1.View.Admin.Buttons;
 using WpfApp1.ViewModels.Base;
 
 namespace WpfApp1.ViewModels
@@ -35,20 +36,22 @@ namespace WpfApp1.ViewModels
             Change = new RelayCommand(go_change);
 
             var entity = App.db.Services.SingleOrDefault();
-            
-            Services.Add(new Service
-            {
-                Id = int.Parse(entity.Id.ToString()),
-                Title = entity.Title.ToString(),
-                Cost = float.Parse(entity.Cost.ToString()).ToString() + " рублей за "
-                + int.Parse(entity.DurationInSeconds)/60 + " мин",
-                Costedit = float.Parse(entity.Costedit.ToString()).ToString(),
-                DurationInSeconds = int.Parse(reader[3].ToString()).ToString(),
-                Discount = float.Parse(reader[4].ToString()).ToString() + "% скидка",
-                DiscountEdit = float.Parse(reader[4].ToString()).ToString(),
-                MainImagePath = reader[5].ToString()
-            });
 
+            if (entity != null)
+            {
+                Services.Add(new Service
+                {
+                    Id = int.Parse(entity.Id.ToString()),
+                    Title = entity.Title.ToString(),
+                    Cost = float.Parse(entity.Cost.ToString()).ToString() + " рублей за "
+                    + int.Parse(entity.DurationInSeconds) / 60 + " мин",
+                    Costedit = float.Parse(entity.Costedit.ToString()).ToString(),
+                    DurationInSeconds = int.Parse(entity.DurationInSeconds.ToString()).ToString(),
+                    Discount = float.Parse(entity.Discount.ToString()).ToString() + "% скидка",
+                    DiscountEdit = float.Parse(entity.DiscountEdit.ToString()).ToString(),
+                    MainImagePath = entity.MainImagePath.ToString()
+                });
+            }
 
         }
         private Service selectedService;
@@ -63,7 +66,7 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private ObservableCollection<Service> services;
+        private ObservableCollection<Service> services = new ObservableCollection<Service> { };
 
         public ObservableCollection<Service> Services
         {
@@ -88,7 +91,7 @@ namespace WpfApp1.ViewModels
         {
             if (SelectedService != null) // Магия / не трогать
             {
-                Edit ed = new Edit(SelectedService);
+                EditWindow ed = new EditWindow(SelectedService);
                 ed.Show();
                 foreach (Window win in Application.Current.Windows)
                 {

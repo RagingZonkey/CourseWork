@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using WpfApp1.Model;
+using WpfApp1.ViewModels;
 
 namespace WpfApp1.view.Admin.Buttons
 {
@@ -24,7 +25,7 @@ namespace WpfApp1.view.Admin.Buttons
         public EditProducts(Product init)
         {
             InitializeComponent();
-            
+            DataContext = new EditProductsViewModel(init);
         }
 
         

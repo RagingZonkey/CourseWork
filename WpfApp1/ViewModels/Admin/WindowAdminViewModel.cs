@@ -43,7 +43,7 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private ObservableCollection<Service> services;
+        private ObservableCollection<Service> services = new ObservableCollection<Service> { };
 
         public ObservableCollection<Service> Services
         {

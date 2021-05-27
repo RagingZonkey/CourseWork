@@ -14,6 +14,7 @@ namespace WpfApp1.Model
         public string TotalPrice { get; set; }
         public string Description { get; set; }
         public string Discount { get; set; }
+        public string DurationInSeconds { get; set; }
         public string OrderDate { get; set; }
         public string DayReserv { get; set; }
         public string MainImagePath { get; set; }

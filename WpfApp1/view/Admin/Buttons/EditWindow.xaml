@@ -1,13 +1,11 @@
-﻿<Window x:Class="WpfApp1.view.Admin.Buttons.EditRecord"
+﻿<Window x:Class="WpfApp1.View.Admin.Buttons.EditWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1.view.Admin.Buttons"
-        mc:Ignorable="d" ResizeMode="NoResize" Icon="/Assets/CLEANCUT_Нежелательный фон 2 2.png"
-        WindowStartupLocation="CenterScreen"
-        Title="Редактирование записи" Height="600" Width="800">
-    
+        xmlns:local="clr-namespace:WpfApp1.View.Admin.Buttons"
+        mc:Ignorable="d"
+        Title="EditWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="108*"/>
@@ -40,51 +38,48 @@
 
         <DockPanel Grid.Column="1" Grid.Row="1" LastChildFill="False">
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0" HorizontalAlignment="Center" FontSize="28"
-                           Text="Редактирование записи" 
+                           Text="Редактирование" 
                            ></TextBlock>
 
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Наименование услуги" 
                            ></TextBlock>
 
-            <TextBox Text ="{Binding Title_Box, Mode=TwoWay}" IsReadOnly="True" x:Name="title_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <TextBox Text ="{Binding Title_Box, Mode=TwoWay}" x:Name="title_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
 
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Стоимость" 
                            ></TextBlock>
 
 
-            <TextBox Text ="{Binding Cost_Box, Mode=TwoWay}" IsReadOnly="True" x:Name="cost_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <TextBox Text ="{Binding Cost_Box, Mode=TwoWay}" x:Name="cost_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Оплаченное время мастера" 
+                           Text="Время выполнения" 
                            ></TextBlock>
 
-            <TextBox Text ="{Binding Cost_Box, Mode=TwoWay}" IsReadOnly="True" x:Name="time_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <TextBox Text ="{Binding Time_Box, Mode=TwoWay}" x:Name="time_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Скидка" 
                            ></TextBlock>
 
-            <TextBox IsReadOnly="True" x:Name="skidka_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <TextBox Text ="{Binding Skidka_Box, Mode=TwoWay}" x:Name="skidka_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
 
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Дата заказа" 
-                           ></TextBlock>
 
-            <TextBox IsReadOnly="True" Name="order_date" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Дата заказа" 
-                           ></TextBlock>
-            <Calendar x:Name="calendar_record"
-                      SelectedDate="{Binding Date_Box}"></Calendar>
-         
 
             <DockPanel Width="596">
-                <Button   Margin="15,0,0,0"
-                         Width="129" Height="40"
-                          Content="Изменить" Command="{Binding Save_Service}" Background="Transparent"/>
-                <Button  DockPanel.Dock="Top" Height="40" Width="129" 
-                         Content="Назад" Command="{Binding GoBack_EditView}" Background="Transparent" Margin="47,0,261,0"/>
+                <Button   Margin="35,0,35,0"
+                         Width="150" Height="40"
+                         Content="Select image" Command="{Binding Select_Image}" Background="Transparent"/>
+
+                <Button  Margin="0,0,35,0" 
+                         Width="150" Height="40"
+                         Content="Изменить" Command="{Binding Save_Service}" Background="Transparent"/>
+                <Button  Margin="0,0,35,0"
+                         Width="150" Height="40"
+                         Content="Назад" Command="{Binding GoBack_EditView}" Background="Transparent"/>
             </DockPanel>
+
+
 
         </DockPanel>
     </Grid>

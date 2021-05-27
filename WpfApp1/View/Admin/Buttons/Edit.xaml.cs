@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using WpfApp1.Model;
 using WpfApp1.Context;
+using WpfApp1.ViewModels;
 
 namespace WpfApp1.view.Admin.Buttons
 {
@@ -25,9 +26,14 @@ namespace WpfApp1.view.Admin.Buttons
         
         public Edit(Service init)
         {
+            //this.Service = init;
+            //title_box = init.Title;
+            //cost_box = init.Costedit;
+            //time_box = init.DurationInSeconds;
+            //skidka_box = init.DiscountEdit;
             InitializeComponent();
+            DataContext = new EditViewModel(init);
 
-           
         }
 
        

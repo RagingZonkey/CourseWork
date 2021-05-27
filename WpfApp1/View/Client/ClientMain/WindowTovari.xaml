@@ -50,10 +50,10 @@
 
         <Border Grid.Column="0" Grid.Row="1" BorderBrush="#b2b6c2" BorderThickness="2">
             <DockPanel LastChildFill="False">
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_main">Аккаунт</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_service">Услуги</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_change">Сменить пользователя</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_exit">Выход</Button>
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Main}">Аккаунт</Button>
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Service}">Услуги</Button>
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Change}">Сменить пользователя</Button>
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Exit}">Выход</Button>
             </DockPanel>
 
         </Border>
@@ -89,7 +89,7 @@
                                     <TextBlock DockPanel.Dock="Top" x:Name="Skidka" Text="{Binding Path=Description}"></TextBlock>
                                     <Button DockPanel.Dock="Left"
                                     Background="Transparent"
-                                    Margin="36,17,-250,4" Width="120" Click="go_order" >Заказать</Button>
+                                    Margin="36,17,-250,4" Width="120" Command="{Binding Order}" >Заказать</Button>
                                 </DockPanel>
                             </Border>
                         </DataTemplate>

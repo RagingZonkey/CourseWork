@@ -22,7 +22,7 @@ namespace WpfApp1.ViewModels
         public ICommand Add { get; private set; }
         public ICommand Exit { get; private set; }
         public ICommand Change { get; private set; }
-
+        public ICommand Main { get; private set; }
         Product p;
         private Product selectedProduct;
 
@@ -36,7 +36,7 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private ObservableCollection<Product> products;
+        private ObservableCollection<Product> products = new ObservableCollection<Product> { };
 
         public ObservableCollection<Product> Products
         {
@@ -55,6 +55,21 @@ namespace WpfApp1.ViewModels
             Add = new RelayCommand(go_add);
             Exit = new RelayCommand(go_exit);
             Change = new RelayCommand(go_change);
+            Main = new RelayCommand(go_main);
+
+            var entity = App.db.Products.SingleOrDefault();
+
+            products.Add(new Product
+            {
+                Id = int.Parse(entity.Id.ToString()),
+                Title = entity.Title.ToString(),
+                Cost = "Цена - " + float.Parse(entity.Cost.ToString()).ToString() + " рублей",
+                Costedit = float.Parse(entity.CostEdit.ToString()).ToString(),
+                DescriptionEdit = entity.DescriptionEdit.ToString(),
+                Description = "Описание - " + entity.Description.ToString(),
+                MainImagePath = entity.MainImagePath.ToString()
+            });
+
         }
 
         private void go_edit(object sender)
@@ -83,10 +98,7 @@ namespace WpfApp1.ViewModels
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данный товар?", "Delete", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
-                //DB db = new DB();
-                //SqlCommand command = new SqlCommand("DELETE FROM Product WHERE ID = @id", db.getConnection());
-                //command.Parameters.AddWithValue("@id", s.ID);
-                //db.openConnection();
+                
 
                 try 
                 {

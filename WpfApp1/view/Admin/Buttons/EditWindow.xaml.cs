@@ -11,28 +11,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Data.SqlClient;
-using System.Data;
-using System.Collections.ObjectModel;
 using WpfApp1.Model;
-using WpfApp1.view.Admin.Buttons;
-using WpfApp1.view.Admin;
+using WpfApp1.ViewModels;
 
-namespace WpfApp1.view.Admin
+namespace WpfApp1.View.Admin.Buttons
 {
     /// <summary>
-    /// Логика взаимодействия для WindowProducts.xaml
+    /// Логика взаимодействия для EditWindow.xaml
     /// </summary>
-    public partial class WindowProducts : Window
+    public partial class EditWindow : Window
     {
-        
-        public WindowProducts()
+        public EditWindow(Service init)
         {
             InitializeComponent();
-            
+            DataContext = new EditViewModel(init);
+
         }
-
-
-       
     }
 }

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using WpfApp1.Model;
 using System.Data;
+using WpfApp1.ViewModels;
 
 namespace WpfApp1.view.Admin.Buttons
 {
@@ -25,6 +26,7 @@ namespace WpfApp1.view.Admin.Buttons
         public AddProducts()
         {
             InitializeComponent();
+            DataContext = new AddProductsViewModel();
         }
 
         

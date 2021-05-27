@@ -26,9 +26,9 @@ namespace WpfApp1.ViewModels
         public EditProductsViewModel(Product init)
         {
             this.Product = init;
-            title_box = init.Title;
-            cost_box = init.Costedit;
-            desc_box = init.DescriptionEdit;
+            Title_Box = init.Title;
+            Cost_Box = init.Costedit;
+            Description_Box = init.DescriptionEdit;
             Save_Service = new RelayCommand(go_save);
             GoBack_EditView = new RelayCommand(go_back);
             Select_Image = new RelayCommand(select_image);
@@ -105,7 +105,7 @@ namespace WpfApp1.ViewModels
             set { imagepath = value; }
         }
 
-        public object Id { get; private set; }
+        public int Id { get; private set; }
 
         #endregion
 

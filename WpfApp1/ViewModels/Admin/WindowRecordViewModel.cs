@@ -23,20 +23,20 @@ namespace WpfApp1.ViewModels
         public ICommand Exit { get; private set; }
         public ICommand Change { get; private set; }
 
-        OrderedService s;
-        private Service selectedOrderedService;
+        Service s;
+        private Service selectedService;
 
-        public Service SelectedOrderedService
+        public Service SelectedService
         {
-            get { return selectedOrderedService; }
+            get { return selectedService; }
             set
             {
-                selectedOrderedService = value;
+                selectedService = value;
                 OnPropertyChanged("SelectedService");
             }
         }
 
-        private ObservableCollection<Service> orderedServices;
+        private ObservableCollection<Service> orderedServices = new ObservableCollection<Service> { };
 
         public ObservableCollection<Service> OrderedServices
         {
@@ -63,19 +63,14 @@ namespace WpfApp1.ViewModels
                 Id = int.Parse(entity.Id.ToString()),
                 Title = entity.Title.ToString(),
                 Cost = "Итоговая стоимость - " + float.Parse(entity.Cost.ToString()).ToString() + " рублей",
-                //Costedit = float.Parse(entity.Costedit.ToString()).ToString(),
                 DurationInSeconds = "Оплаченное время работы мастера - " + int.Parse(entity.DurationInSeconds.ToString()).ToString() + " мин",
-                DurationInSecondsEdit = int.Parse(reader[4].ToString()).ToString(),
-                Discount = "Скидка - " + float.Parse(reader[5].ToString()).ToString() + "%",
-                DiscountEdit = float.Parse(reader[5].ToString()).ToString(),
-                OrderDate = "Дата заказа - " + reader[6].ToString(),
-                OrderDateEdit = reader[6].ToString(),
-                ReservDay = "Дата записи - " + reader[7].ToString(),
-                MainImagePath = reader[9].ToString()
+                Discount = "Скидка - " + float.Parse(entity.Discount.ToString()).ToString() + "%",
+                OrderDate = "Дата заказа - " + entity.OrderDate.ToString(),
+                ReservDay = "Дата записи - " + entity.DayReserv.ToString(),
+                MainImagePath = entity.MainImagePath.ToString()
             });
 
-            //}
-            //recordlist.ItemsSource = Services;
+            
         }
 
        
@@ -107,7 +102,7 @@ namespace WpfApp1.ViewModels
 
         private void go_delete(object sender)
         {
-            s = SelectedOrderedService;
+            s = SelectedService;
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную запись?", "Delete", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
@@ -117,7 +112,7 @@ namespace WpfApp1.ViewModels
                 //db.openConnection();
                 try 
                 {
-                    App.db.OrderedServices.Remove(s);
+                    App.db.Services.Remove(s);
                     App.db.SaveChangesAsync().GetAwaiter();
                 }
                 catch(Exception ex)
@@ -147,9 +142,9 @@ namespace WpfApp1.ViewModels
 
         private void go_edit(object sender)
         {
-            if (SelectedOrderedService != null) // Магия / не трогать
+            if (SelectedService != null) // Магия / не трогать
             {
-                EditRecord ed = new EditRecord(SelectedOrderedService);
+                EditRecord ed = new EditRecord(SelectedService);
                 ed.Show();
                 foreach (Window win in Application.Current.Windows)
                 {

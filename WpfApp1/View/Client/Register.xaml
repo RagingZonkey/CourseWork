@@ -157,11 +157,11 @@
                 <Button Margin="20,0,0,0" 
                         DockPanel.Dock="Left" 
                         Width="100" Height="40"
-                        Content="REGISTER" Background="Transparent" x:Name="Click_Regiter" Click="Click_Regiter_Click"/>
+                        Content="REGISTER" Background="Transparent" x:Name="Click_Regiter" />
 
                 <Button  DockPanel.Dock="Right" 
                          Width="100" Height="40"
-                         Content="LOGIN" Click="Button_Click" Background="Transparent"/>
+                         Content="LOGIN"  Background="Transparent"/>
             </DockPanel>
 
         </StackPanel>

@@ -23,15 +23,30 @@ namespace WpfApp1.ViewModels
         public ICommand GoBack_EditView { get; private set; }
 
         Service Service;
-        public EditRecordViewModel()
+        public EditRecordViewModel(Service init)
         {
+            this.Service = init;
+            Title_Box = init.Title;
+            Cost_Box = init.Costedit;
+            Time_Box = init.DurationInSecondsEdit;
+            Skidka_Box = init.DiscountEdit;
+            Order_Date = init.OrderDateEdit;
             Save_Service = new RelayCommand(record_save);
             GoBack_EditView = new RelayCommand(go_back);
-
+            
         }
 
 
         #region Fields and Properties
+
+        private DateTime date_box;
+
+        public DateTime Date_Box
+        {
+            get { return date_box; }
+            set { date_box = value; }
+        }
+
         private string desc_box;
 
 
@@ -104,7 +119,7 @@ namespace WpfApp1.ViewModels
         }
 
         private string order_date;
-        private DateTime selectedDate;
+        //private DateTime selectedDate;
 
         public string Order_Date
         {
@@ -122,13 +137,13 @@ namespace WpfApp1.ViewModels
         private void record_save(object obj)
         {
 
-            DateTime? selectedDate = DateTime.Parse(Service.ReservDay);
-            if (selectedDate > DateTime.Now)
+            
+            if (Date_Box > DateTime.Now)
             {
                 try
                 {
                     var entity = App.db.OrderedServices.FirstOrDefault(x => x.Id == Id);
-                    entity.DayReserv = selectedDate.Value.Date.ToShortDateString();
+                    entity.DayReserv = date_box.Date.ToShortDateString();
                     entity.Id = Service.Id;
                     //App.db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                     App.db.SaveChangesAsync().GetAwaiter();

@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using WpfApp1.Model;
+using WpfApp1.ViewModels;
+
 namespace WpfApp1.view.Admin.Buttons
 {
    
@@ -7,8 +9,8 @@ namespace WpfApp1.view.Admin.Buttons
     {
         public EditRecord(Service init)
         {
-            InitializeComponent();            
-
+            InitializeComponent();
+            DataContext = new EditRecordViewModel(init);
         }
 
         

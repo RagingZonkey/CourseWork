@@ -23,7 +23,7 @@ namespace WpfApp1.ViewModels.Client
 
         public string logins;
 
-        private ObservableCollection<Service> services;
+        private ObservableCollection<Service> services = new ObservableCollection<Service> { };
 
         public ObservableCollection<Service> Services
         {
@@ -44,12 +44,12 @@ namespace WpfApp1.ViewModels.Client
 
             Services.Add(new Service
             {
-                ID = int.Parse(entity.Id.ToString()),
+                Id = int.Parse(entity.Id.ToString()),
                 Title = entity.Title.ToString(),
                 DurationInSecondsEdit = "Время работы мастера " + int.Parse(entity.DurationInSeconds)/60 + " мин",
                 OrderDate = "Дата записи: " + entity.OrderDate.ToString(),
                 Discount = "Цена с учетом скидок: " + float.Parse(entity.Discount.ToString()).ToString() + " руб",
-                MainImagePath = entity.ImagePath.ToString()
+                MainImagePath = entity.MainImagePath.ToString()
             });
 
             Tovari = new RelayCommand(Click_Tovari);

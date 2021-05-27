@@ -25,10 +25,10 @@ namespace WpfApp1.ViewModels
         public EditViewModel(Service init)
         {
             this.Service = init;
-            title_box = init.Title;
-            cost_box = init.Costedit;
-            time_box = init.DurationInSeconds;
-            skidka_box = init.DiscountEdit;
+            Title_Box= init.Title;
+            Cost_Box= init.Costedit;
+            Time_Box= init.DurationInSeconds;
+            Skidka_Box = init.DiscountEdit;
             Save_Service = new RelayCommand(go_save);
             GoBack_EditView = new RelayCommand(go_back);
             Select_Image = new RelayCommand(select_image);
@@ -92,7 +92,7 @@ namespace WpfApp1.ViewModels
             set { imagepath = value; }
         }
 
-        public object Id { get; private set; }
+        public int Id { get; private set; }
 
         #endregion
 

@@ -26,7 +26,7 @@ namespace WpfApp1.ViewModels.Client
         Product p;
         public string logins;
 
-        private ObservableCollection<Product> products;
+        private ObservableCollection<Product> products = new ObservableCollection<Product> { };
 
         public ObservableCollection<Product> Products
         {
@@ -55,6 +55,7 @@ namespace WpfApp1.ViewModels.Client
         {
             logins = login;
             var entity = App.db.Products.SingleOrDefault();
+            
 
             products.Add(new Product
             {
