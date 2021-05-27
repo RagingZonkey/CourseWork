@@ -50,8 +50,10 @@ namespace WpfApp1.ViewModels.Client
         }
 
 
-        public WindowServiceViewModel()
+        public WindowServiceViewModel(string login)
         {
+            logins = login;
+            Console.WriteLine(logins);
             var entity = App.db.Services.SingleOrDefault();
             Services.Add(new Service
             {

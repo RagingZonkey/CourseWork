@@ -17,6 +17,7 @@ using System.Data;
 using System.Collections.ObjectModel;
 using WpfApp1.Model;
 using WpfApp1.view.Admin.Buttons;
+using WpfApp1.ViewModels.Client;
 
 namespace WpfApp1.view.Client.Buy
 {
@@ -25,17 +26,11 @@ namespace WpfApp1.view.Client.Buy
     /// </summary>
     public partial class Order : Window
     {
-        Service Service;
-        public string logins;
+        
         public Order(Service init, string login)
         {
             InitializeComponent();
-            logins = login;
-            this.Service = init;
-            title_box.Text = init.Title;
-            time_box.Text = init.DurationInSeconds;
-            cost_box.Text = init.Costedit;
-            skidka_box.Text = init.DiscountEdit.ToString() + "%";
+            DataContext = new OrderViewModel(init, login);
 
          
 

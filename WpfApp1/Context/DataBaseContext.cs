@@ -12,7 +12,7 @@ namespace WpfApp1.Context
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Service> Services { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Client> Clients { get; set; }
         public DbSet<OrderedService> OrderedServices {get; set;}
         public DbSet<OrderedProduct> OrderedProducts { get; set; }
    

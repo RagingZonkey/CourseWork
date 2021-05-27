@@ -143,7 +143,7 @@ namespace WpfApp1.ViewModels
                 try
                 {
                     var entity = App.db.OrderedServices.FirstOrDefault(x => x.Id == Id);
-                    entity.DayReserv = date_box.Date.ToShortDateString();
+                    entity.DayReserv = Date_Box.Date.ToShortDateString();
                     entity.Id = Service.Id;
                     //App.db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                     App.db.SaveChangesAsync().GetAwaiter();

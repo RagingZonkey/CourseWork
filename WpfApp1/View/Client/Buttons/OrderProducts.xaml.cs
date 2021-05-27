@@ -17,6 +17,7 @@ using System.Data;
 using System.Collections.ObjectModel;
 using WpfApp1.Model;
 using WpfApp1.view.Admin.Buttons;
+using WpfApp1.ViewModels.Client;
 
 namespace WpfApp1.view.Client.Buttons
 {
@@ -25,17 +26,11 @@ namespace WpfApp1.view.Client.Buttons
     /// </summary>
     public partial class OrderProducts : Window
     {
-        Product product;
-        public string logins;
+        
         public OrderProducts(Product init, string login)
         {
             InitializeComponent();
-            logins = login;
-            this.product = init;
-            title_box.Text = init.Title;
-            desk_box.Text = init.DescriptionEdit;
-            price_box.Text = init.CostEdit;
-            topprice_box.Text = init.CostEdit;
+            DataContext = new OrderProductsViewModel(init, login);
 
         }
         

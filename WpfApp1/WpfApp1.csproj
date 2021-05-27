@@ -135,7 +135,7 @@
     <Compile Include="Model\OrderedService.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\Product.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\Client.cs" />
     <Compile Include="ViewModels\Admin\AddProductsViewModel.cs" />
     <Compile Include="ViewModels\Admin\AddViewModel.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />

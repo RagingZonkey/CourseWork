@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfApp1.Model;
+using WpfApp1.ViewModels.Client;
 
 namespace WpfApp1.view
 {
@@ -27,6 +28,7 @@ namespace WpfApp1.view
         public WindowClient( string login)
         {
             InitializeComponent();
+            DataContext = new WindowClientViewModel(login);
         }
 
        

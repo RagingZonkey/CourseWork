@@ -68,7 +68,7 @@
                 -->
                 <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Record}" Content="Управление записями" />
                 <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Service}" Content="Управление услугами" />
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Products}" Content="Управление Товарами" />
+                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Products}" Content="Управление товарами" />
                 <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Change}" Content="Сменить пользователя" />
                 <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Exit}" Content="Выход" />
             </DockPanel>

@@ -17,19 +17,18 @@ using System.Collections.ObjectModel;
 using WpfApp1.Model;
 using WpfApp1.view.Admin.Buttons;
 using WpfApp1.view.Admin;
+using WpfApp1.ViewModels;
 
 namespace WpfApp1.view.Admin
 {
-    /// <summary>
-    /// Логика взаимодействия для WindowProducts.xaml
-    /// </summary>
+  
     public partial class WindowProducts : Window
     {
         
         public WindowProducts()
         {
             InitializeComponent();
-            
+            DataContext = new WindowProductsViewModel();
         }
 
 

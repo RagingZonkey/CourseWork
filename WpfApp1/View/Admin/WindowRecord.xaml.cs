@@ -18,16 +18,17 @@ using System.Collections.ObjectModel;
 using WpfApp1.Model;
 using WpfApp1.view.Admin.Buttons;
 using WpfApp1.view.Admin;
+using WpfApp1.ViewModels;
+
 namespace WpfApp1.view.Admin
 {
-    /// <summary>
-    /// Логика взаимодействия для WindowRecord.xaml
-    /// </summary>
+    
     public partial class WindowRecord : Window
     {
         public WindowRecord()
         {
             InitializeComponent();
+            DataContext = new WindowRecordViewModel();
         }
     }
 }

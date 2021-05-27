@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-
+using WpfApp1.ViewModels;
 
 namespace WpfApp1.view
 {
@@ -10,6 +10,7 @@ namespace WpfApp1.view
         public WindowAdmin()
         {
             InitializeComponent();
+            DataContext = new WindowAdminViewModel();
         }
 
 

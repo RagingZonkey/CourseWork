@@ -151,7 +151,7 @@ namespace WpfApp1.ViewModels.Client
         {
             DateTime curDate = DateTime.Now;
             //DateTime? selectedDate = Date_Box.SelectedDate;
-            if(date_box > DateTime.Now)
+            if(Date_Box > DateTime.Now)
             {
                 try
                 {
@@ -162,7 +162,7 @@ namespace WpfApp1.ViewModels.Client
                     entity.Description = Description_Box;
                     entity.Discount = Service.DiscountEdit;
                     entity.OrderDate = curDate.ToShortDateString();
-                    entity.DayReserv = date_box.Date.ToShortDateString();
+                    entity.DayReserv = Date_Box.Date.ToShortDateString();
                     entity.MainImagePath = Service.MainImagePath;
                     entity.Login = logins;
                     App.db.SaveChangesAsync().GetAwaiter();
