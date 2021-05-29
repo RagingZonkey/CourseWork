@@ -36,7 +36,7 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private ObservableCollection<Product> products = new ObservableCollection<Product> { };
+        private ObservableCollection<Product> products;
 
         public ObservableCollection<Product> Products
         {
@@ -44,7 +44,7 @@ namespace WpfApp1.ViewModels
             set
             {
                 products = value;
-                OnPropertyChanged("Services");
+                OnPropertyChanged("Products");
             }
         }
 

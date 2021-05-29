@@ -23,7 +23,7 @@ namespace WpfApp1.ViewModels.Client
 
         public string logins;
 
-        private ObservableCollection<Service> services = new ObservableCollection<Service> { };
+        private ObservableCollection<Service> services;
 
         public ObservableCollection<Service> Services
         {

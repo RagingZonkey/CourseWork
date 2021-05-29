@@ -36,9 +36,9 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private ObservableCollection<Service> orderedServices = new ObservableCollection<Service> { };
+        private ObservableCollection<OrderedService> orderedServices;
 
-        public ObservableCollection<Service> OrderedServices
+        public ObservableCollection<OrderedService> OrderedServices
         {
             get { return orderedServices; }
             set
@@ -58,7 +58,7 @@ namespace WpfApp1.ViewModels
             
             var entity = App.db.OrderedServices.SingleOrDefault();
             
-            OrderedServices.Add(new Service
+            OrderedServices.Add(new OrderedService
             {
                 Id = int.Parse(entity.Id.ToString()),
                 Title = entity.Title.ToString(),
@@ -66,7 +66,6 @@ namespace WpfApp1.ViewModels
                 DurationInSeconds = "Оплаченное время работы мастера - " + int.Parse(entity.DurationInSeconds.ToString()).ToString() + " мин",
                 Discount = "Скидка - " + float.Parse(entity.Discount.ToString()).ToString() + "%",
                 OrderDate = "Дата заказа - " + entity.OrderDate.ToString(),
-                ReservDay = "Дата записи - " + entity.DayReserv.ToString(),
                 MainImagePath = entity.MainImagePath.ToString()
             });
 

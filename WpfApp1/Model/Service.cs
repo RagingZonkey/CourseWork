@@ -10,7 +10,6 @@ namespace WpfApp1.Model
     {
         
         public int Id { get; set; }
-        public int IDusers { get; set; }
 
         public string Email { get; set; }
 
@@ -18,20 +17,14 @@ namespace WpfApp1.Model
 
         public string Cost { get; set; }
 
-        public string Costedit { get; set; }
 
-        public string DurationInSeconds { get; set; }
+        public string DurationInMinutes { get; set; }
 
-        public string DurationInSecondsEdit { get; set; }
 
         public string Discount { get; set; }
 
-        public string DiscountEdit { get; set; }
-
         public string MainImagePath { get; set; }
 
-        public string OrderDate { get; set; }
-        public string OrderDateEdit { get; set; }
 
         public string ReservDay { get; set; }
 

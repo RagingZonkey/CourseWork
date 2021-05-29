@@ -287,15 +287,10 @@ namespace WpfApp1.ViewModels.Client
             string birthday = Date_Box.ToShortDateString();
             string email = Email_Box.Trim();
             string passwordag = FirstPasswordBox.Trim();
-            string passwordag2 = SecondPasswordBox.Trim();
+            string passwordag2 = SecondPasswordBox.Trim()
 
 
-            /// <summary>
-            /// Поля для работы с паролем 
-            /// </summary>
-            IntPtr passwordBSTR = default(IntPtr);
-            string insecurePassword = "";
-            bool flag = true;
+            
 
 
             /// <summary>
@@ -353,14 +348,14 @@ namespace WpfApp1.ViewModels.Client
                         return;
                     }
                     if (passwordag2 == null || passwordag2 == "")
-                    {
+                    { 
                         MessageBox.Show("Повторите введенный пароль для проверки!");
                         return;
                     }
                 }
 
 
-                App.db.Clients.Add(new Client {  });
+                App.db.Clients.Add(new Client { FirstName = name, LastName = lastname, Birthday = birthday, Email = email, Password = passwordag, Role =  });
                 App.db.SaveChangesAsync().GetAwaiter();
             }
             catch

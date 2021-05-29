@@ -47,7 +47,11 @@
                            Text="Наименование услуги" 
                            ></TextBlock>
 
-            <TextBox Text ="{Binding Title_Box, Mode=TwoWay}" IsReadOnly="True" x:Name="title_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <ComboBox x:Name="gender_code" DockPanel.Dock="Top" FontFamily="Helvetica" FontWeight="Light" FontSize="20"
+                          Opacity="0.6">
+                <ComboBoxItem>Мужской</ComboBoxItem>
+                <ComboBoxItem>Женский</ComboBoxItem>
+            </ComboBox>
 
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Стоимость" 

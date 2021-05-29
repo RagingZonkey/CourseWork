@@ -26,7 +26,7 @@ namespace WpfApp1.ViewModels.Client
         Product p;
         public string logins;
 
-        private ObservableCollection<Product> products = new ObservableCollection<Product> { };
+        private ObservableCollection<Product> products;
 
         public ObservableCollection<Product> Products
         {

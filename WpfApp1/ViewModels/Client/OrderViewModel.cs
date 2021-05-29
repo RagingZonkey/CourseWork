@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,40 +30,37 @@ namespace WpfApp1.ViewModels.Client
             logins = login;
             this.Service = init;
             title_box = init.Title;
-            time_box = init.DurationInSeconds;
-            cost_box = init.Costedit;
-            skidka_box = init.DiscountEdit.ToString() + "%";
-
-            if (double.Parse(init.DiscountEdit) != 0)
-            {
-                double percent = double.Parse(init.DiscountEdit);
-                double number = double.Parse(cost_box);
-                int result = int.Parse(cost_box) - (int)Math.Round(number * (percent / 100));
-                resultingCost_box = result.ToString();
-            }
-            else if (double.Parse(init.DiscountEdit) == 0)
-            {
-                skidka_box = "Отсутствует";
-                resultingCost_box = init.Costedit;
-            }
-
 
             OrderService = new RelayCommand(go_order);
             Back = new RelayCommand(go_back);
         }
 
-        private string skidka_box;
 
+        private ObservableCollection<Service> services;
 
-        public string Skidka_Box
+        public ObservableCollection<Service> Services
         {
-            get { return skidka_box; }
+            get { return services; }
             set
             {
-                skidka_box = value;
-                OnPropertyChanged("Skidka_Box");
+                services = value;
+                OnPropertyChanged("Products");
             }
         }
+
+        private Service selectedService;
+
+        public Service SelectedService
+        {
+            get { return selectedService; }
+            set
+            {
+                selectedService = value;
+                OnPropertyChanged("SelectedProduct");
+            }
+        }
+
+       
 
         private string title_box;
 
@@ -73,67 +71,6 @@ namespace WpfApp1.ViewModels.Client
             {
                 title_box = value;
                 OnPropertyChanged("Title_Box");
-            }
-        }
-
-        private string resultingCost_box;
-
-        public string ResultingCost_Box
-        {
-            get { return resultingCost_box; }
-            set
-            {
-                resultingCost_box = value;
-                OnPropertyChanged("ResultingCost_Box");
-            }
-        }
-
-        private string cost_box;
-
-        public string Cost_Box
-        {
-            get { return cost_box; }
-            set
-            {
-                cost_box = value;
-                OnPropertyChanged("Cost_Box");
-            }
-        }
-
-        private string time_box;
-
-        public string Time_Box
-        {
-            get { return time_box; }
-            set
-            {
-                time_box = value;
-                OnPropertyChanged("Time_Box");
-            }
-        }
-
-        private string desc_box;
-
-
-        public string Description_Box
-        {
-            get { return desc_box; }
-            set
-            {
-                desc_box = value;
-                OnPropertyChanged("Description_Box");
-            }
-        }
-
-        private string imagepath;
-
-        public string ImagePath
-        {
-            get { return imagepath; }
-            set
-            {
-                imagepath = value;
-
             }
         }
 
@@ -155,6 +92,14 @@ namespace WpfApp1.ViewModels.Client
             {
                 try
                 {
+                    Services = new ObservableCollection<Service>(App.db.Services);
+                    OrderedService orderedService = new OrderedService
+                    {
+                        Title = SelectedService.Title,
+                        Cost = SelectedService.Cost,
+                        DayReserv = SelectedService.
+                        
+                    }
                     var entity = App.db.OrderedServices.FirstOrDefault(x => x.Id == Id);
                     entity.Title = Title_Box;
                     entity.Cost = Cost_Box;

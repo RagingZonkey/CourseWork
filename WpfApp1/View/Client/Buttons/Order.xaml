@@ -44,45 +44,50 @@
                            Text="Наименование услуги" 
                            ></TextBlock>
 
-            <TextBox Text ="{Binding Title_Box, Mode=TwoWay}" x:Name="title_box" IsReadOnly="True" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+            <ComboBox x:Name="gender_code" 
+                      ItemsSource="{Binding Services}"
+                      SelectedItem="{Binding SelectedService}"
+                      DockPanel.Dock="Top" 
+                      FontFamily="Helvetica" 
+                      FontWeight="Light" 
+                      FontSize="20"
+                          Opacity="0.6">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" FontSize="9"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
 
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0" Text="Цена" ></TextBlock>
 
-
-            <TextBox Text ="{Binding Cost_Box, Mode=TwoWay}" x:Name="cost_box" IsReadOnly="True" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Время (в минутах)" 
-                           ></TextBlock>
-
-            <TextBox Text ="{Binding Time_Box, Mode=TwoWay}" IsReadOnly="True" x:Name="time_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Скидка" 
-                           ></TextBlock>
-
-
-            <TextBox Text ="{Binding Skidka_Box, Mode=TwoWay}" x:Name="skidka_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
-
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Итоговая стоимость" 
-                           ></TextBlock>
-            <TextBox Text ="{Binding ResultingCost_Box, Mode=TwoWay}" IsReadOnly="True" x:Name="topprice_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
-
+            
+            
+            
 
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Выберите дату" 
-                           ></TextBlock>
-            <Calendar SelectedDate ="{Binding Date_Box, Mode=TwoWay}" x:Name="calendar_date" Margin="0,0,0,-16">
+                           HorizontalAlignment="Center"></TextBlock>
+            <Calendar 
+                DockPanel.Dock="Top"
+                HorizontalAlignment="Center"
+                SelectedDate ="{Binding Date_Box, Mode=TwoWay}"
+                x:Name="calendar_date"
+                Margin="0,8,0,0">
 
             </Calendar>
 
-            <DockPanel Width="596">
-                <Button   Margin="15,0,0,0"
+            <DockPanel Width="800">
+                <Button  
+                         
+                         Margin="150,0,0,100"
                          Width="129" Height="40"
                          Content="Зарезервировать" Command="{Binding OrderService}" Background="Transparent"/>
                 <Button  DockPanel.Dock="Top" Height="40" Width="129" 
-                         Content="Назад" Command="{Binding Back}" Background="Transparent" Margin="47,0,261,0"/>
+                         Content="Назад" Command="{Binding Back}" Background="Transparent" Margin="-50,0,300,100"/>
             </DockPanel>
 
         </DockPanel>
+        
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,30 @@ namespace WpfApp1.ViewModels.Client
             resultingCost_box = init.CostEdit;
             Order = new RelayCommand(go_order);
             Back = new RelayCommand(go_back);
+        }
+
+        private ObservableCollection<Product> products;
+
+        public ObservableCollection<Product> Products
+        {
+            get { return products; }
+            set
+            {
+                products = value;
+                OnPropertyChanged("Products");
+            }
+        }
+
+        private Product selectedProduct;
+
+        public Product SelectedProduct
+        {
+            get { return selectedProduct; }
+            set
+            {
+                selectedProduct = value;
+                OnPropertyChanged("SelectedProduct");
+            }
         }
 
         private string title_box;
