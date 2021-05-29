@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Icon="/Assets/CLEANCUT_Нежелательный фон 2 2.png"
         WindowStartupLocation="CenterScreen"
-        Title="Регистрация" ResizeMode="NoResize" Height="660" Width="400">
+        Title="Регистрация" ResizeMode="NoResize" Height="620" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="33*"/>
@@ -51,42 +51,14 @@
                 </TextBox>
             </DockPanel>
 
-            <DockPanel Margin="0,13,0,0">
-                <TextBlock Margin="0,0,0,5" DockPanel.Dock="Top"
-                           Text="Отчество" 
-                           ></TextBlock>
-
-                <TextBox 
-                     HorizontalContentAlignment="Left"
-                      Style="{DynamicResource TextBoxBrush}"
-                     x:Name="patron_box" BorderBrush="Black">
-
-                </TextBox>
-            </DockPanel>
-
-            <DockPanel Margin="0,13,0,0">
-                <TextBlock Margin="0,0,0,5" DockPanel.Dock="Top"
-                           Text="Телефон"
-                           ></TextBlock>
-
-                <TextBox 
-                     HorizontalContentAlignment="Left"
-                  x:Name="phone_box"   Style="{DynamicResource TextBoxBrush}">
-
-                </TextBox>
-            </DockPanel>
-
 
             <DockPanel Margin="0,13,0,0">
                 <TextBlock DockPanel.Dock="Top"
                            Text="Дата рождения"
                           Margin="0,0,0,5"></TextBlock>
-
-                <TextBox 
-                     HorizontalContentAlignment="Left"
-                     x:Name="birthaday_box" Style="{DynamicResource TextBoxBrush}">
-
-                </TextBox>
+                <Calendar x:Name="calendar_record" HorizontalAlignment="Left"
+                      SelectedDate="{Binding Date_Box}"></Calendar>
+               
             </DockPanel>
 
 
@@ -100,18 +72,6 @@
                     x:Name="email_box"  Style="{DynamicResource TextBoxBrush}">
 
                 </TextBox>
-            </DockPanel>
-
-
-            <DockPanel Margin="0,13,0,0">
-                <TextBlock Margin="0,0,0,5" DockPanel.Dock="Top"
-                           Text="Выберите пол"
-                          ></TextBlock>
-                <ComboBox x:Name="gender_code" FontFamily="Helvetica" FontWeight="Light" FontSize="20"
-                          Opacity="0.6">
-                    <ComboBoxItem>Мужской</ComboBoxItem>
-                    <ComboBoxItem>Женский</ComboBoxItem>
-                </ComboBox>
             </DockPanel>
 
 

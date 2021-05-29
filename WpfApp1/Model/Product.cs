@@ -21,14 +21,6 @@ namespace WpfApp1.Model
 
         public string DescriptionEdit { get; set; }
 
-        public string MainImagePath { get; set; }
-
-        public string IsActive { get; set; }
-
-        public string ManufacturerID { get; set; }
-
-
-
-        
+        public string MainImagePath { get; set; }        
     }
 }

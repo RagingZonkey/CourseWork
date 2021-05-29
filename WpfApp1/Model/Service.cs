@@ -24,10 +24,6 @@ namespace WpfApp1.Model
 
         public string DurationInSecondsEdit { get; set; }
 
-        public string Description { get; set; }
-
-        public string DescriptionEdit { get; set; }
-
         public string Discount { get; set; }
 
         public string DiscountEdit { get; set; }

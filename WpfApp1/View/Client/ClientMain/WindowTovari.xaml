@@ -48,7 +48,7 @@
                        >Products</TextBlock>
         </StackPanel>
 
-        <Border Grid.Column="0" Grid.Row="1" BorderBrush="#b2b6c2" BorderThickness="2">
+        <Border Grid.Column="0" Grid.Row="1" >
             <DockPanel LastChildFill="False">
                 <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Main}">Аккаунт</Button>
                 <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Service}">Услуги</Button>
