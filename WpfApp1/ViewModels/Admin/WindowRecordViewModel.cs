@@ -63,9 +63,7 @@ namespace WpfApp1.ViewModels
                 Id = int.Parse(entity.Id.ToString()),
                 Title = entity.Title.ToString(),
                 Cost = "Итоговая стоимость - " + float.Parse(entity.Cost.ToString()).ToString() + " рублей",
-                DurationInSeconds = "Оплаченное время работы мастера - " + int.Parse(entity.DurationInSeconds.ToString()).ToString() + " мин",
-                Discount = "Скидка - " + float.Parse(entity.Discount.ToString()).ToString() + "%",
-                OrderDate = "Дата заказа - " + entity.OrderDate.ToString(),
+                DurationInMinutes = "Оплаченное время работы мастера - " + int.Parse(entity.DurationInMinutes.ToString()).ToString() + " мин",
                 MainImagePath = entity.MainImagePath.ToString()
             });
 

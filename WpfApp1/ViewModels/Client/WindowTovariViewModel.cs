@@ -26,6 +26,17 @@ namespace WpfApp1.ViewModels.Client
         Product p;
         public string logins;
 
+        public string Logins
+        {
+            get { return logins; }
+            set
+            {
+                logins = value;
+                OnPropertyChanged("Logins");
+            }
+
+        }
+
         private ObservableCollection<Product> products;
 
         public ObservableCollection<Product> Products

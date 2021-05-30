@@ -11,7 +11,6 @@ namespace WpfApp1.Model
         
         public int Id { get; set; }
 
-        public string Email { get; set; }
 
         public string Title { get; set; }
 
@@ -19,9 +18,6 @@ namespace WpfApp1.Model
 
 
         public string DurationInMinutes { get; set; }
-
-
-        public string Discount { get; set; }
 
         public string MainImagePath { get; set; }
 

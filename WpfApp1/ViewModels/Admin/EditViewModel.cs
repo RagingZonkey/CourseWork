@@ -26,9 +26,8 @@ namespace WpfApp1.ViewModels
         {
             this.Service = init;
             Title_Box= init.Title;
-            Cost_Box= init.Costedit;
-            Time_Box= init.DurationInSeconds;
-            Skidka_Box = init.DiscountEdit;
+            Cost_Box= init.Cost;
+            Time_Box= init.DurationInMinutes;
             Save_Service = new RelayCommand(go_save);
             GoBack_EditView = new RelayCommand(go_back);
             Select_Image = new RelayCommand(select_image);
@@ -104,7 +103,7 @@ namespace WpfApp1.ViewModels
                 {
                     var entity = App.db.Services.Where(x => x.Id == Id).SingleOrDefault();
                     entity.Cost = Cost_Box;
-                    entity.DurationInSeconds = Time_Box;
+                    entity.DurationInMinutes = Time_Box;
                     entity.Discount = Skidka_Box;
                     entity.MainImagePath = ImagePath;
                     entity.Id = Service.Id;

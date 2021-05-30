@@ -27,10 +27,8 @@ namespace WpfApp1.ViewModels
         {
             this.Service = init;
             Title_Box = init.Title;
-            Cost_Box = init.Costedit;
-            Time_Box = init.DurationInSecondsEdit;
-            Skidka_Box = init.DiscountEdit;
-            Order_Date = init.OrderDateEdit;
+            Cost_Box = init.Cost;
+            Time_Box = init.DurationInMinutes;
             Save_Service = new RelayCommand(record_save);
             GoBack_EditView = new RelayCommand(go_back);
             
@@ -96,18 +94,7 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private string skidka_box;
-        
 
-        public string Skidka_Box
-        {
-            get { return skidka_box; }
-            set
-            {
-                skidka_box = value;
-                OnPropertyChanged("Skidka_Box");
-            }
-        }
 
         private string imagepath;
         
@@ -118,14 +105,7 @@ namespace WpfApp1.ViewModels
             set { imagepath = value; }
         }
 
-        private string order_date;
-        //private DateTime selectedDate;
 
-        public string Order_Date
-        {
-            get { return order_date; }
-            set { order_date = value; }
-        }
 
         public int Id { get; private set; }
 

@@ -44,11 +44,9 @@ namespace WpfApp1.ViewModels
                     Id = int.Parse(entity.Id.ToString()),
                     Title = entity.Title.ToString(),
                     Cost = float.Parse(entity.Cost.ToString()).ToString() + " рублей за "
-                    + int.Parse(entity.DurationInSeconds) / 60 + " мин",
-                    Costedit = float.Parse(entity.Costedit.ToString()).ToString(),
-                    DurationInSeconds = int.Parse(entity.DurationInSeconds.ToString()).ToString(),
+                    + int.Parse(entity.DurationInMinutes) + " мин",
+                    DurationInMinutes = int.Parse(entity.DurationInMinutes.ToString()).ToString(),
                     Discount = float.Parse(entity.Discount.ToString()).ToString() + "% скидка",
-                    DiscountEdit = float.Parse(entity.DiscountEdit.ToString()).ToString(),
                     MainImagePath = entity.MainImagePath.ToString()
                 });
             }

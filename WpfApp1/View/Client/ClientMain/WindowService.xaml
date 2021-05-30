@@ -65,10 +65,10 @@
             <DockPanel Margin="3,4,5,0" Height="57" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Ellipse Width="40" Height="40" DockPanel.Dock="Top">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="/Assets/faun.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Assets/Client.png" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <TextBlock HorizontalAlignment="Center">User</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Logins}" /> 
             </DockPanel>
         </Border>
 

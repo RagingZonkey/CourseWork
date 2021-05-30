@@ -29,7 +29,7 @@ namespace WpfApp1.view.Admin.Buttons
             //this.Service = init;
             //title_box = init.Title;
             //cost_box = init.Costedit;
-            //time_box = init.DurationInSeconds;
+            //time_box = init.DurationInMinutes;
             //skidka_box = init.DiscountEdit;
             InitializeComponent();
             DataContext = new EditViewModel(init);

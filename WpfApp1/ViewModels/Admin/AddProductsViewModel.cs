@@ -179,11 +179,11 @@ namespace WpfApp1.ViewModels
         {
             String Title = title_box;
             String Cost = cost_box;
-            String DurationInSeconds = time_box;
+            String DurationInMinutes = time_box;
 
 
 
-            if (Title == String.Empty || Cost == String.Empty || DurationInSeconds == String.Empty)
+            if (Title == String.Empty || Cost == String.Empty || DurationInMinutes == String.Empty)
             {
                 return false;
             }

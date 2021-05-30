@@ -49,10 +49,16 @@
 
             <ComboBox x:Name="gender_code" DockPanel.Dock="Top" FontFamily="Helvetica" FontWeight="Light" FontSize="20"
                           Opacity="0.6">
-                <ComboBoxItem>Мужской</ComboBoxItem>
-                <ComboBoxItem>Женский</ComboBoxItem>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Title}" FontSize="9"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
 
+            
+            
+            
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Стоимость" 
                            ></TextBlock>
@@ -64,30 +70,26 @@
                            ></TextBlock>
 
             <TextBox Text ="{Binding Cost_Box, Mode=TwoWay}" IsReadOnly="True" x:Name="time_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Скидка" 
-                           ></TextBlock>
+            
 
-            <TextBox IsReadOnly="True" x:Name="skidka_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
-
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
+            <TextBlock 
+                           HorizontalAlignment="Center"                
+                           DockPanel.Dock="Top" 
+                           Margin="0,13,0,0"
                            Text="Дата заказа" 
                            ></TextBlock>
-
-            <TextBox IsReadOnly="True" Name="order_date" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Дата заказа" 
-                           ></TextBlock>
-            <Calendar x:Name="calendar_record"
+            <Calendar 
+                DockPanel.Dock="Top"
+                x:Name="calendar_record"
                       SelectedDate="{Binding Date_Box}"></Calendar>
          
 
-            <DockPanel Width="596">
-                <Button   Margin="15,0,0,0"
+            <DockPanel Width="800">
+                <Button   Margin="160,0,0,30"
                          Width="129" Height="40"
                           Content="Изменить" Command="{Binding Save_Service}" Background="Transparent"/>
                 <Button  DockPanel.Dock="Top" Height="40" Width="129" 
-                         Content="Назад" Command="{Binding GoBack_EditView}" Background="Transparent" Margin="47,0,261,0"/>
+                         Content="Назад" Command="{Binding GoBack_EditView}" Background="Transparent" Margin="-90,0,261,30"/>
             </DockPanel>
 
         </DockPanel>

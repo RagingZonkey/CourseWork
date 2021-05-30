@@ -68,7 +68,7 @@
             <DockPanel Margin="3,4,5,0" Height="57" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Ellipse Width="40" Height="40" DockPanel.Dock="Top">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="/Assets/faun.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Assets/Client.png" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <TextBlock HorizontalAlignment="Center" Text="{Binding Path= Logins}"/>
@@ -93,9 +93,9 @@
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Title}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="price"  Text="{Binding Path=DurationInMinutes}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="da" Text="{Binding Path=Description}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="das" Text="{Binding Path=TotalPrice}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Cost}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=DayReserv}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=DurationInMinutes}"></TextBlock>
                                 </DockPanel>
                             </Border>
                         </DataTemplate>

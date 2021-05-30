@@ -24,6 +24,18 @@ namespace WpfApp1.ViewModels.Client
         Service s;
 
         public string logins;
+       
+
+        public string Logins
+        {
+            get { return logins; }
+            set
+            {
+                logins = value;
+                OnPropertyChanged("Logins");
+            }
+
+        }
 
         private ObservableCollection<Service> services;
 
@@ -54,17 +66,16 @@ namespace WpfApp1.ViewModels.Client
         {
             logins = login;
             Console.WriteLine(logins);
-            var entity = App.db.Services.SingleOrDefault();
+            var entity_services = App.db.Services.SingleOrDefault();
+            Services = new ObservableCollection<Service>();
+
             Services.Add(new Service
             {
-                Id = int.Parse(entity.Id.ToString()),
-                Title = entity.Title.ToString(),
-                Cost = float.Parse(entity.Cost.ToString()).ToString() + " рублей за " + (int.Parse(entity.DurationInSeconds) / 60) + " мин",
-                Costedit = float.Parse(entity.Costedit.ToString()).ToString(),
-                DurationInSeconds = int.Parse(entity.DurationInSeconds.ToString()).ToString(),
-                Discount = float.Parse(entity.Discount.ToString()).ToString() + "% скидка",
-                DiscountEdit = float.Parse(entity.DiscountEdit.ToString()).ToString(),
-                MainImagePath = entity.MainImagePath.ToString()
+                Title = entity_services.Title.ToString(),
+                Cost = entity_services.Cost.ToString() + " BYN",
+                DurationInMinutes = "Продолжительность в минутах: " + entity_services.DurationInMinutes + " мин",
+                ReservDay = "Дата резервации: " + entity_services.ReservDay.ToString(),
+                MainImagePath = entity_services.MainImagePath.ToString()
             });
             Tovari = new RelayCommand(Click_Tovari);
             Order = new RelayCommand(go_order);

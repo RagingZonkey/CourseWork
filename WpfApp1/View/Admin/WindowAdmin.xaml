@@ -44,7 +44,7 @@
             <DockPanel Margin="3,4,5,0" Height="57" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Ellipse Width="40" Height="40" DockPanel.Dock="Top">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="/Assets/faun.png" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="/Assets/Admin.png" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <TextBlock HorizontalAlignment="Center">Admin</TextBlock>
@@ -61,11 +61,7 @@
 
         <Border Grid.Column="0" Grid.Row="1"  >
             <DockPanel LastChildFill="False">
-                <!--
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="Button_Click_1">Добавить</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_delete">Удалить</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Click="go_edit">Редактировать</Button>
-                -->
+                
                 <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Record}" Content="Управление записями" />
                 <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Service}" Content="Управление услугами" />
                 <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Products}" Content="Управление товарами" />
@@ -89,9 +85,10 @@
                             <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="603">
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
-                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Title}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="price"  Text="{Binding Path=Cost}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="block_skidka" Text="{Binding Path=Discount}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Title}" />
+                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Cost}" />
+                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=DurationInMinutes}" />
+                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=ReservDay}" />
                                 </DockPanel>
                             </Border>
                     

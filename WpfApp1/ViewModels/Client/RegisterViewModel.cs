@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using WpfApp1.Commands;
 using WpfApp1.ViewModels.Base;
+using WpfApp1.Model;
 
 namespace WpfApp1.ViewModels.Client
 {
@@ -287,7 +288,7 @@ namespace WpfApp1.ViewModels.Client
             string birthday = Date_Box.ToShortDateString();
             string email = Email_Box.Trim();
             string passwordag = FirstPasswordBox.Trim();
-            string passwordag2 = SecondPasswordBox.Trim()
+            string passwordag2 = SecondPasswordBox.Trim();
 
 
             
@@ -355,7 +356,7 @@ namespace WpfApp1.ViewModels.Client
                 }
 
 
-                App.db.Clients.Add(new Client { FirstName = name, LastName = lastname, Birthday = birthday, Email = email, Password = passwordag, Role =  });
+                App.db.Clients.Add(new Model.Client { FirstName = name, LastName = lastname, Birthday = birthday, Email = email, Password = passwordag, Role = 0  });
                 App.db.SaveChangesAsync().GetAwaiter();
             }
             catch
