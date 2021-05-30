@@ -9,6 +9,7 @@ using System.Windows.Input;
 using WpfApp1.Commands;
 using WpfApp1.Model;
 using WpfApp1.view;
+using WpfApp1.view.Client.Buy;
 using WpfApp1.ViewModels.Base;
 
 namespace WpfApp1.ViewModels.Client
@@ -19,6 +20,7 @@ namespace WpfApp1.ViewModels.Client
         public ICommand Service { get; private set; }
         public ICommand Change { get; private set; }
         public ICommand Close { get; private set; }
+
 
 
         public string logins;
@@ -92,6 +94,7 @@ namespace WpfApp1.ViewModels.Client
             Service = new RelayCommand(Click_Service);
             Change = new RelayCommand(Click_change);
             Close = new RelayCommand(go_close);
+
         }
 
         private void Click_Tovari(object sender)
@@ -106,6 +109,10 @@ namespace WpfApp1.ViewModels.Client
                 }
             }
         }
+
+      
+
+
 
         private void Click_Service(object sender)
         {

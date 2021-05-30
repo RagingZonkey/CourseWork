@@ -27,10 +27,10 @@ namespace WpfApp1.view.Client.Buttons
     public partial class OrderProducts : Window
     {
         
-        public OrderProducts(Product init, string login)
+        public OrderProducts(/*Product init,*/ string login)
         {
             InitializeComponent();
-            DataContext = new OrderProductsViewModel(init, login);
+            DataContext = new OrderProductsViewModel(/*init,*/ login);
 
         }
         

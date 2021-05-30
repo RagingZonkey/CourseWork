@@ -22,13 +22,16 @@ namespace WpfApp1.ViewModels
         public ICommand Save_Service { get; private set; }
         public ICommand GoBack_EditView { get; private set; }
 
-        Service Service;
-        public EditRecordViewModel(Service init)
+        OrderedService OrderedService;
+        public EditRecordViewModel(OrderedService init)
         {
-            this.Service = init;
+            this.OrderedService = init;
+            ID = init.Id;
             Title_Box = init.Title;
             Cost_Box = init.Cost;
             Time_Box = init.DurationInMinutes;
+            Date_Box = Convert.ToDateTime(init.DayReserv);
+
             Save_Service = new RelayCommand(record_save);
             GoBack_EditView = new RelayCommand(go_back);
             
@@ -45,18 +48,6 @@ namespace WpfApp1.ViewModels
             set { date_box = value; }
         }
 
-        private string desc_box;
-
-
-        public string Description_Box
-        {
-            get { return desc_box; }
-            set
-            {
-                desc_box = value;
-                OnPropertyChanged("Description_Box");
-            }
-        }
 
         private string title_box;
 
@@ -107,7 +98,7 @@ namespace WpfApp1.ViewModels
 
 
 
-        public int Id { get; private set; }
+        public int ID { get; private set; }
 
 
 
@@ -122,10 +113,11 @@ namespace WpfApp1.ViewModels
             {
                 try
                 {
-                    var entity = App.db.OrderedServices.FirstOrDefault(x => x.Id == Id);
-                    entity.DayReserv = Date_Box.Date.ToShortDateString();
-                    entity.Id = Service.Id;
-                    //App.db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                    var entity = App.db.OrderedServices.FirstOrDefault(x => x.Id == ID);
+                    entity.Title = Title_Box;
+                    entity.DayReserv = Date_Box.ToShortDateString();
+                    entity.MainImagePath = ImagePath;
+                    entity.DurationInMinutes = Time_Box;
                     App.db.SaveChangesAsync().GetAwaiter();
                 }
                 catch { MessageBox.Show("Выберите правильную дату!", "Error"); }

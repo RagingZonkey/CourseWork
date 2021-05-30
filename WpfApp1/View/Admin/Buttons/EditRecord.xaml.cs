@@ -7,7 +7,7 @@ namespace WpfApp1.view.Admin.Buttons
    
     public partial class EditRecord : Window
     {
-        public EditRecord(Service init)
+        public EditRecord(OrderedService init)
         {
             InitializeComponent();
             DataContext = new EditRecordViewModel(init);

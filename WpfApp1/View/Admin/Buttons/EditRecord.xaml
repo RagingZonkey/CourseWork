@@ -39,7 +39,10 @@
 
 
         <DockPanel Grid.Column="1" Grid.Row="1" LastChildFill="False">
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0" HorizontalAlignment="Center" FontSize="28"
+            <TextBlock DockPanel.Dock="Top" 
+                       Margin="0,13,0,0" 
+                       HorizontalAlignment="Center" 
+                       FontSize="28"
                            Text="Редактирование записи" 
                            ></TextBlock>
 
@@ -47,18 +50,8 @@
                            Text="Наименование услуги" 
                            ></TextBlock>
 
-            <ComboBox x:Name="gender_code" DockPanel.Dock="Top" FontFamily="Helvetica" FontWeight="Light" FontSize="20"
-                          Opacity="0.6">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Title}" FontSize="9"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <TextBox Text ="{Binding Title_Box, Mode=TwoWay}" IsReadOnly="True"  DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
 
-            
-            
-            
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Стоимость" 
                            ></TextBlock>

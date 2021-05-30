@@ -31,32 +31,7 @@ namespace WpfApp1.ViewModels
             Change = new RelayCommand(go_change);
         }
 
-        private Service selectedService;
-
-        public Service SelectedService
-        {
-            get { return selectedService; }
-            set
-            {
-                selectedService = value;
-                OnPropertyChanged("SelectedService");
-            }
-        }
-
-        private ObservableCollection<Service> services;
-
-        public ObservableCollection<Service> Services
-        {
-            get { return services; }
-            set
-            {
-                services = value;
-                OnPropertyChanged("Services");
-            }
-        }
-        
-
-        
+       
         private void go_record(object sender)
         {
             WindowRecord record = new WindowRecord();

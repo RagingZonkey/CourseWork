@@ -51,18 +51,7 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private string skidka_box;
-        
-
-        public string Skidka_Box
-        {
-            get { return skidka_box; }
-            set
-            {
-                skidka_box = value;
-                OnPropertyChanged("Skidka_Box");
-            }
-        }
+       
 
         private string imagepath;
 
@@ -86,7 +75,7 @@ namespace WpfApp1.ViewModels
         {
             try
             {
-                App.db.Services.Add(new Service { Title = Title_Box, Cost = Cost_Box, DurationInMinutes = Time_Box, Discount = Skidka_Box, MainImagePath = ImagePath });
+                App.db.Services.Add(new Service { Title = Title_Box, Cost = Cost_Box, DurationInMinutes = Time_Box,  MainImagePath = ImagePath });
                 App.db.SaveChangesAsync().GetAwaiter();
 
             }

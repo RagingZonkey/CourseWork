@@ -61,11 +61,9 @@ namespace WpfApp1.ViewModels
 
             products.Add(new Product
             {
-                Id = int.Parse(entity.Id.ToString()),
+
                 Title = entity.Title.ToString(),
                 Cost = "Цена - " + float.Parse(entity.Cost.ToString()).ToString() + " рублей",
-                Costedit = float.Parse(entity.CostEdit.ToString()).ToString(),
-                DescriptionEdit = entity.DescriptionEdit.ToString(),
                 Description = "Описание - " + entity.Description.ToString(),
                 MainImagePath = entity.MainImagePath.ToString()
             });

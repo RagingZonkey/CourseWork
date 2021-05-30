@@ -27,10 +27,10 @@ namespace WpfApp1.view.Client.Buy
     public partial class Order : Window
     {
         
-        public Order(Service init, string login)
+        public Order(/*Service init, */string login)
         {
             InitializeComponent();
-            DataContext = new OrderViewModel(init, login);
+            DataContext = new OrderViewModel(/*init,*/ login);
 
          
 

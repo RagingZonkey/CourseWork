@@ -24,12 +24,12 @@ namespace WpfApp1.ViewModels.Client
         Service Service;
         public string logins;
 
-        public OrderViewModel(Service init, string login)
+        public OrderViewModel(/*Service init,*/ string login)
         {
 
             logins = login;
-            this.Service = init;
-            title_box = init.Title;
+            //this.Service = init;
+            //title_box = init.Title;
 
             OrderService = new RelayCommand(go_order);
             Back = new RelayCommand(go_back);
@@ -47,6 +47,8 @@ namespace WpfApp1.ViewModels.Client
                 OnPropertyChanged("Products");
             }
         }
+
+       
 
         private Service selectedService;
 
@@ -97,12 +99,13 @@ namespace WpfApp1.ViewModels.Client
                     {
                         Title = SelectedService.Title,
                         Cost = SelectedService.Cost,
-                        DayReserv = SelectedService.ReservDay,
+                        DayReserv = Date_Box.ToShortDateString() ,
                         MainImagePath = SelectedService.MainImagePath,
                         Login = logins
+
                        
                     };
-                    var entity = App.db.OrderedServices.FirstOrDefault(x => x.Id == Id);
+                    App.db.OrderedServices.Add(orderedService);
                     App.db.SaveChangesAsync().GetAwaiter();
                 }
                 catch (Exception ex)

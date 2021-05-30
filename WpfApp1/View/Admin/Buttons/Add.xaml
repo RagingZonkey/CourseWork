@@ -60,12 +60,7 @@
                            ></TextBlock>
 
                 <TextBox  Text ="{Binding Time_Box, Mode=TwoWay}" x:Name="time_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}" ></TextBox>
-                <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Скидка" 
-                           ></TextBlock>
-
-                <TextBox   Text ="{Binding Skidka_Box, Mode=TwoWay}" x:Name="skidka_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}" ></TextBox>
-
+                
                 <DockPanel Width="596"  Margin="0,0,0,115">
                     <Button   Margin="35,0,35,0"
                          Width="150" Height="40"

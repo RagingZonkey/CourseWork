@@ -21,7 +21,7 @@ namespace WpfApp1.ViewModels.Client
         public ICommand Change { get; private set; }
         public ICommand Exit { get; private set; }
         public ICommand WinClient { get; private set; }
-        Service s;
+        //Service s;
 
         public string logins;
        
@@ -74,7 +74,6 @@ namespace WpfApp1.ViewModels.Client
                 Title = entity_services.Title.ToString(),
                 Cost = entity_services.Cost.ToString() + " BYN",
                 DurationInMinutes = "Продолжительность в минутах: " + entity_services.DurationInMinutes + " мин",
-                ReservDay = "Дата резервации: " + entity_services.ReservDay.ToString(),
                 MainImagePath = entity_services.MainImagePath.ToString()
             });
             Tovari = new RelayCommand(Click_Tovari);
@@ -100,10 +99,10 @@ namespace WpfApp1.ViewModels.Client
 
         private void go_order(object sender)
         {
-            s = SelectedService;
-            if (SelectedService != null)
-            {
-                Order order = new Order(SelectedService, logins);
+            //s = SelectedService;
+            //if (SelectedService != null)
+            //{
+                Order order = new Order(/*SelectedService,*/ logins);
                 foreach (Window win in Application.Current.Windows)
                 {
                     if (win is WindowService)
@@ -112,11 +111,11 @@ namespace WpfApp1.ViewModels.Client
                     }
                 }
                 order.Show();
-            }
-            else
-            {
-                MessageBox.Show("Выберите услугу!", "Error");
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Выберите услугу!", "Error");
+            //}
         }
 
         private void Click_Exit(object sender)

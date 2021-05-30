@@ -11,7 +11,6 @@ using WpfApp1.Model;
 using WpfApp1.view;
 using WpfApp1.view.Admin;
 using WpfApp1.view.Admin.Buttons;
-using WpfApp1.View.Admin.Buttons;
 using WpfApp1.ViewModels.Base;
 
 namespace WpfApp1.ViewModels
@@ -41,12 +40,10 @@ namespace WpfApp1.ViewModels
             {
                 Services.Add(new Service
                 {
-                    Id = int.Parse(entity.Id.ToString()),
                     Title = entity.Title.ToString(),
                     Cost = float.Parse(entity.Cost.ToString()).ToString() + " рублей за "
                     + int.Parse(entity.DurationInMinutes) + " мин",
                     DurationInMinutes = int.Parse(entity.DurationInMinutes.ToString()).ToString(),
-                    Discount = float.Parse(entity.Discount.ToString()).ToString() + "% скидка",
                     MainImagePath = entity.MainImagePath.ToString()
                 });
             }
@@ -89,7 +86,7 @@ namespace WpfApp1.ViewModels
         {
             if (SelectedService != null) // Магия / не трогать
             {
-                EditWindow ed = new EditWindow(SelectedService);
+                Edit ed = new Edit(SelectedService);
                 ed.Show();
                 foreach (Window win in Application.Current.Windows)
                 {

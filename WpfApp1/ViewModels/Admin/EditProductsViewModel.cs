@@ -26,9 +26,8 @@ namespace WpfApp1.ViewModels
         public EditProductsViewModel(Product init)
         {
             this.Product = init;
+            ID = init.Id;
             Title_Box = init.Title;
-            Cost_Box = init.Costedit;
-            Description_Box = init.DescriptionEdit;
             Save_Service = new RelayCommand(go_save);
             GoBack_EditView = new RelayCommand(go_back);
             Select_Image = new RelayCommand(select_image);
@@ -84,18 +83,7 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private string skidka_box;
 
-
-        public string Skidka_Box
-        {
-            get { return skidka_box; }
-            set
-            {
-                skidka_box = value;
-                OnPropertyChanged("Skidka_Box");
-            }
-        }
 
         private string imagepath;
 
@@ -105,7 +93,7 @@ namespace WpfApp1.ViewModels
             set { imagepath = value; }
         }
 
-        public int Id { get; private set; }
+        public int ID { get; private set; }
 
         #endregion
 
@@ -115,13 +103,11 @@ namespace WpfApp1.ViewModels
 
                 try
                 {
-                    var entity = App.db.Products.Where(x => x.Id == Id).SingleOrDefault();
+                    var entity = App.db.Products.Where(x => x.Id == ID).SingleOrDefault();
                     entity.Title = Title_Box;
                     entity.Description = Description_Box;
                     entity.Cost = Cost_Box;
                     entity.MainImagePath = ImagePath;
-                    entity.Id = Product.Id;
-                    //App.db.Entry(entity).State = System.Data.Entity.EntityState.Modified;
                     App.db.SaveChangesAsync().GetAwaiter();
 
                 }

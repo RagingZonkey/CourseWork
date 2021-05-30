@@ -21,15 +21,13 @@ namespace WpfApp1.ViewModels.Client
         public ICommand Back { get; private set; }
         Product product;
         public string logins;
-        public OrderProductsViewModel(Product init, string login)
+        
+        public OrderProductsViewModel(/*Product init,*/ string login)
         {
             
             logins = login;
-            this.product = init;
-            title_box = init.Title;
-            desc_box = init.DescriptionEdit;
-            cost_box = init.CostEdit;
-            resultingCost_box = init.CostEdit;
+            //this.product = init;
+            //title_box = init.Title;
             Order = new RelayCommand(go_order);
             Back = new RelayCommand(go_back);
         }
@@ -46,6 +44,8 @@ namespace WpfApp1.ViewModels.Client
             }
         }
 
+        
+
         private Product selectedProduct;
 
         public Product SelectedProduct
@@ -58,78 +58,32 @@ namespace WpfApp1.ViewModels.Client
             }
         }
 
+        private int quantity_box;
+
+        public int Quantity_Box
+        {
+            get { return quantity_box; }
+            set
+            {
+                quantity_box = value;
+                OnPropertyChanged("Quantity_Box");
+            }
+        }
+
         private string title_box;
 
         public string Title_Box
         {
             get { return title_box; }
-            set
-            {
-                title_box = value;
-                OnPropertyChanged("Title_Box");
-            }
+            set { title_box = value; }
         }
 
-        private string resultingCost_box;
-
-        public string ResultingCost_Box
-        {
-            get { return resultingCost_box; }
-            set
-            {
-                resultingCost_box = value;
-                OnPropertyChanged("ResultingCost_Box");
-            }
-        }
-
-        private string cost_box;
-
-        public string Cost_Box
-        {
-            get { return cost_box; }
-            set
-            {
-                cost_box = value;
-                OnPropertyChanged("Cost_Box");
-            }
-        }
-
-        private string time_box;
-
-        public string Time_Box
-        {
-            get { return time_box; }
-            set
-            {
-                time_box = value;
-                OnPropertyChanged("Time_Box");
-            }
-        }
-
-        private string desc_box;
 
 
-        public string Description_Box
-        {
-            get { return desc_box; }
-            set
-            {
-                desc_box = value;
-                OnPropertyChanged("Description_Box");
-            }
-        }
 
-        private string imagepath;
 
-        public string ImagePath
-        {
-            get { return imagepath; }
-            set
-            {
-                imagepath = value;
 
-            }
-        }
+
 
         public int Id { get; private set; }
 
@@ -137,13 +91,18 @@ namespace WpfApp1.ViewModels.Client
         {
             try
             {
-                var entity = App.db.OrderedProducts.FirstOrDefault(x => x.Id == Id);
-                entity.Title = Title_Box;
-                entity.Cost = Cost_Box;
-                entity.TotalPrice = ResultingCost_Box;
-                entity.Description = Description_Box;
-                entity.Login = logins;
-                entity.MainImagePath = product.MainImagePath;
+                Products = new ObservableCollection<Product>(App.db.Products);
+                OrderedProduct orderedProduct = new OrderedProduct
+                {
+                    Title = SelectedProduct.Title,
+                    Cost = SelectedProduct.Cost,
+                    Quantity = Quantity_Box,
+                    TotalPrice = (Quantity_Box * int.Parse(SelectedProduct.Cost)).ToString() ,
+                    MainImagePath = SelectedProduct.MainImagePath,
+                    Login = logins
+
+                };
+                App.db.OrderedProducts.Add(orderedProduct);
                 App.db.SaveChangesAsync().GetAwaiter();
             }
             catch(Exception ex) 

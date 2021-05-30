@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using WpfApp1.Context;
 using WpfApp1.view.Admin;
-using WpfApp1.View.Admin.Buttons;
+
 
 namespace WpfApp1
 {

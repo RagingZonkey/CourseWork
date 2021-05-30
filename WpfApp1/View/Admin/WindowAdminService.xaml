@@ -86,8 +86,8 @@
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Title}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="price"  Text="{Binding Path=Cost}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="block_skidka" Text="{Binding Path=Discount}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="{Binding Path=Cost}"></TextBlock>
+
                                 </DockPanel>
                             </Border>
 

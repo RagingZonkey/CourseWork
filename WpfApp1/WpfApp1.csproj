@@ -169,9 +169,6 @@
     <Compile Include="view\Admin\Buttons\EditRecord.xaml.cs">
       <DependentUpon>EditRecord.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\Admin\Buttons\EditWindow.xaml.cs">
-      <DependentUpon>EditWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="view\Admin\WindowProducts.xaml.cs">
       <DependentUpon>WindowProducts.xaml</DependentUpon>
     </Compile>
@@ -267,10 +264,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="view\Admin\Buttons\EditRecord.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="view\Admin\Buttons\EditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -73,8 +73,6 @@ namespace WpfApp1.ViewModels.Client
                 Id = int.Parse(entity.Id.ToString()),
                 Title = entity.Title.ToString(),
                 Cost = "Цена - " + float.Parse(entity.Cost.ToString()).ToString() + " рублей",
-                CostEdit = float.Parse(entity.CostEdit.ToString()).ToString(),
-                DescriptionEdit = entity.DescriptionEdit.ToString(),
                 Description = "Описание - " + entity.Description.ToString(),
                 MainImagePath = entity.MainImagePath.ToString(),
             });
@@ -142,10 +140,10 @@ namespace WpfApp1.ViewModels.Client
 
         private void go_order(object sender)
         {
-            p = SelectedProduct;
-            if (SelectedProduct != null)
-            {
-                OrderProducts order = new OrderProducts(SelectedProduct, logins);
+            //p = SelectedProduct;
+            //if (SelectedProduct != null)
+            //{
+                OrderProducts order = new OrderProducts(/*SelectedProduct, */ logins);
                 foreach (Window win in Application.Current.Windows)
                 {
                     if (win is WindowTovari)
@@ -154,11 +152,11 @@ namespace WpfApp1.ViewModels.Client
                     }
                 }
                 order.Show();
-            }
-            else
-            {
-                MessageBox.Show("Выберите продукт!", "Error");
-            }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Выберите продукт!", "Error");
+            //}
         }
     }
 }

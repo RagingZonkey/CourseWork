@@ -23,10 +23,10 @@ namespace WpfApp1.ViewModels
         public ICommand Exit { get; private set; }
         public ICommand Change { get; private set; }
 
-        Service s;
-        private Service selectedService;
+        OrderedService s;
+        private OrderedService selectedService;
 
-        public Service SelectedService
+        public OrderedService SelectedService
         {
             get { return selectedService; }
             set
@@ -109,7 +109,7 @@ namespace WpfApp1.ViewModels
                 //db.openConnection();
                 try 
                 {
-                    App.db.Services.Remove(s);
+                    App.db.OrderedServices.Remove(s);
                     App.db.SaveChangesAsync().GetAwaiter();
                 }
                 catch(Exception ex)

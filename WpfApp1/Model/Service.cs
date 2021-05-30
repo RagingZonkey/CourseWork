@@ -20,10 +20,6 @@ namespace WpfApp1.Model
         public string DurationInMinutes { get; set; }
 
         public string MainImagePath { get; set; }
-
-
-        public string ReservDay { get; set; }
-
-       
+ 
     }
 }
