@@ -13,9 +13,9 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="163*"/>
-            <ColumnDefinition Width="439*"/>
-            <ColumnDefinition Width="190*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="350*"/>
+            <ColumnDefinition Width="350*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -55,7 +55,7 @@
             <DockPanel LastChildFill="False">
                 <Button DockPanel.Dock="Top"  Height="50" Background="Transparent"  Command="{Binding Tovari}">Товары</Button>
                 <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Service}">Услуги</Button>
-                <Button DockPanel.Dock="Top"  Height="50" Background="Transparent" Command="{Binding Change}">Сменить пользователя</Button>
+                <Button DockPanel.Dock="Top"  Height="70" Background="Transparent" Command="{Binding Change}" Content="    Сменить &#xa;Пользователя"/> 
                 <Button DockPanel.Dock="Top"  Height="50" Background="Transparent"  Command="{Binding Close}">Выход</Button>
 
             </DockPanel>
@@ -71,28 +71,63 @@
                         <ImageBrush ImageSource="/Assets/faun.png" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <TextBlock HorizontalAlignment="Center">User</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding Path= Logins}"/>
             </DockPanel>
         </Border>
 
 
 
-        <ScrollViewer Name="scroll" CanContentScroll="True"  Grid.Column="1"
-                      Grid.Row="1" Grid.ColumnSpan="2">
+        <ScrollViewer Name="Scroll1" CanContentScroll="True"  Grid.Column="1"
+                      Grid.Row="1">
 
             <DockPanel Grid.Column="1" Grid.Row="1"  >
-                <ListBox x:Name="client_ak"  DockPanel.Dock="Top">
+                <TextBlock HorizontalAlignment="Center"
+                    DockPanel.Dock="Top"
+                    Text="Заказанные услуги" />
+                <ListBox x:Name="client_services" 
+                         ItemsSource="{Binding Services}"
+                         DockPanel.Dock="Top">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-
-                            <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="603">
+                            <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="301">
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Title}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="price"  Text="{Binding Path=DurationInSecondsEdit}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="da" Text="{Binding Path=OrderDate}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="das" Text="{Binding Path=Discount}"></TextBlock>
-                                  
+                                    <TextBlock DockPanel.Dock="Top" x:Name="price"  Text="{Binding Path=DurationInMinutes}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top" x:Name="da" Text="{Binding Path=Description}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top" x:Name="das" Text="{Binding Path=TotalPrice}"></TextBlock>
+                                </DockPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+            </DockPanel>
+
+        </ScrollViewer>
+
+        <ScrollViewer Name="Scroll2" CanContentScroll="True"  Grid.Column="2"
+                      Grid.Row="1">
+
+            <DockPanel Grid.Column="2" Grid.Row="1"  >
+                <TextBlock HorizontalAlignment="Center"
+                    DockPanel.Dock="Top"
+                    Text="Зарезервированные товары" />
+                <ListBox x:Name="client_products"  
+                         ItemsSource="{Binding Products}"
+                         DockPanel.Dock="Top">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+
+                            <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="301">
+                                <DockPanel>
+                                    <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
+                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Title}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Title}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Description}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=TotalPrice}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Quantity}"></TextBlock>
                                 </DockPanel>
                             </Border>
 

@@ -335,6 +335,9 @@
   <ItemGroup>
     <Resource Include="Assets\CLEANCUT_Нежелательный фон 2 2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Admin.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

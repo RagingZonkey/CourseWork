@@ -14,6 +14,7 @@ namespace WpfApp1.Model
         public string TotalPrice { get; set; }
         public string Description { get; set; }
         public string MainImagePath { get; set; }
+        public int Quantity { get; set; }
         public string Login { get; set; }
     }
 }

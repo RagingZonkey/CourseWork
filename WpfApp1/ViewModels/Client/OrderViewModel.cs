@@ -97,19 +97,12 @@ namespace WpfApp1.ViewModels.Client
                     {
                         Title = SelectedService.Title,
                         Cost = SelectedService.Cost,
-                        DayReserv = SelectedService.
-                        
-                    }
+                        DayReserv = SelectedService.ReservDay,
+                        MainImagePath = SelectedService.MainImagePath,
+                        Login = logins
+                       
+                    };
                     var entity = App.db.OrderedServices.FirstOrDefault(x => x.Id == Id);
-                    entity.Title = Title_Box;
-                    entity.Cost = Cost_Box;
-                    entity.TotalPrice = ResultingCost_Box;
-                    entity.Description = Description_Box;
-                    entity.Discount = Service.DiscountEdit;
-                    entity.OrderDate = curDate.ToShortDateString();
-                    entity.DayReserv = Date_Box.Date.ToShortDateString();
-                    entity.MainImagePath = Service.MainImagePath;
-                    entity.Login = logins;
                     App.db.SaveChangesAsync().GetAwaiter();
                 }
                 catch (Exception ex)

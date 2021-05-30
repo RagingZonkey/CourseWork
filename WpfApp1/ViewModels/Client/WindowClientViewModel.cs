@@ -23,14 +23,37 @@ namespace WpfApp1.ViewModels.Client
 
         public string logins;
 
-        private ObservableCollection<Service> services;
-
-        public ObservableCollection<Service> Services
+        public string Logins 
         {
-            get { return services; }
+            get { return logins; }
             set
             {
-                services = value;
+                logins = value;
+                OnPropertyChanged("Logins");
+            }
+
+        }
+
+        private ObservableCollection<OrderedService> orderedServices;
+
+        public ObservableCollection<OrderedService> OrderedServices
+        {
+            get { return orderedServices; }
+            set
+            {
+                orderedServices = value;
+                OnPropertyChanged("OrderedServices");
+            }
+        }
+
+        private ObservableCollection<OrderedProduct> orderedProducts;
+
+        public ObservableCollection<OrderedProduct> OrderedProducts
+        {
+            get { return orderedProducts; }
+            set
+            {
+                orderedProducts = value;
                 OnPropertyChanged("Services");
             }
         }
@@ -38,18 +61,31 @@ namespace WpfApp1.ViewModels.Client
         public WindowClientViewModel(string login)
         {
             logins = login;
-            var entity = App.db.OrderedServices.Where(x => x.Login == logins).SingleOrDefault();
-            entity.Login = logins;
-            App.db.SaveChangesAsync().GetAwaiter();
+            var entity_services = App.db.OrderedServices.Where(x => x.Login == logins).SingleOrDefault();
+            var entity_products = App.db.OrderedProducts.Where(y => y.Login == logins).SingleOrDefault();
+            //App.db.SaveChangesAsync().GetAwaiter();
 
-            Services.Add(new Service
+            OrderedProducts = new ObservableCollection<OrderedProduct>();
+
+            OrderedProducts.Add(new OrderedProduct
             {
-                Id = int.Parse(entity.Id.ToString()),
-                Title = entity.Title.ToString(),
-                DurationInSecondsEdit = "Время работы мастера " + int.Parse(entity.DurationInSeconds)/60 + " мин",
-                OrderDate = "Дата записи: " + entity.OrderDate.ToString(),
-                Discount = "Цена с учетом скидок: " + float.Parse(entity.Discount.ToString()).ToString() + " руб",
-                MainImagePath = entity.MainImagePath.ToString()
+                Title = entity_products.Title.ToString(),
+                Cost = "Стоимость товара" +entity_products.Cost.ToString() + " BYN",
+                TotalPrice = "Итого: "+ (decimal.Parse(entity_products.Cost) * entity_products.Quantity).ToString() + " BYN",
+                Description = "Описание товара: " + entity_products.Description,
+                Quantity = entity_products.Quantity,
+                MainImagePath = entity_products.MainImagePath.ToString()
+            });
+
+            OrderedServices = new ObservableCollection<OrderedService>();
+
+            OrderedServices.Add(new OrderedService 
+            {
+                Title = entity_services.Title.ToString(),
+                Cost = entity_services.Cost.ToString() + " BYN",
+                DurationInMinutes = "Продолжительность в минутах: " + entity_services.DurationInMinutes + " мин",
+                DayReserv = "Дата резервации: " + entity_services.DayReserv.ToString(),
+                MainImagePath = entity_services.MainImagePath.ToString()
             });
 
             Tovari = new RelayCommand(Click_Tovari);
