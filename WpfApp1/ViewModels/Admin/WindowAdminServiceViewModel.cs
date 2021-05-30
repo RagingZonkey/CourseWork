@@ -41,8 +41,7 @@ namespace WpfApp1.ViewModels
                 Services.Add(new Service
                 {
                     Title = entity.Title.ToString(),
-                    Cost = float.Parse(entity.Cost.ToString()).ToString() + " рублей за "
-                    + int.Parse(entity.DurationInMinutes) + " мин",
+                    Cost = float.Parse(entity.Cost.ToString()).ToString() + " BYN",
                     DurationInMinutes = int.Parse(entity.DurationInMinutes.ToString()).ToString(),
                     MainImagePath = entity.MainImagePath.ToString()
                 });

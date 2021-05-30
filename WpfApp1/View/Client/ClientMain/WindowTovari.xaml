@@ -86,11 +86,11 @@
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Title}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="price"  Text="{Binding Path=Cost}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="Skidka" Text="{Binding Path=Description}"></TextBlock>
-                                    <Button DockPanel.Dock="Left"
-                                    Background="Transparent"
-                                    Margin="36,17,-250,4" Width="120" Command="{Binding Order}" >Заказать</Button>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="{Binding Path=Cost}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Description}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                 </DockPanel>
                             </Border>
                         </DataTemplate>

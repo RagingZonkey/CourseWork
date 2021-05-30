@@ -60,11 +60,11 @@ namespace WpfApp1.ViewModels
             
             OrderedServices.Add(new OrderedService
             {
-                Id = int.Parse(entity.Id.ToString()),
                 Title = entity.Title.ToString(),
-                Cost = "Итоговая стоимость - " + float.Parse(entity.Cost.ToString()).ToString() + " рублей",
-                DurationInMinutes = "Оплаченное время работы мастера - " + int.Parse(entity.DurationInMinutes.ToString()).ToString() + " мин",
-                MainImagePath = entity.MainImagePath.ToString()
+                Cost = "Итоговая стоимость - " + float.Parse(entity.Cost.ToString()).ToString() + " BYN",
+                DurationInMinutes = "Оплаченное время работы мастера - " + entity.DurationInMinutes.ToString() + " мин",
+                MainImagePath = entity.MainImagePath.ToString(),
+                DayReserv = "Дата записи: " + entity.DayReserv
             });
 
             

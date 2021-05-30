@@ -85,7 +85,7 @@ namespace WpfApp1.ViewModels.Client
 
 
 
-        public int Id { get; private set; }
+        
 
         private void go_order(object sender)
         {

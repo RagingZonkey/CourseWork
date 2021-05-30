@@ -84,7 +84,7 @@ namespace WpfApp1.ViewModels.Client
             set { date_box = value; }
         }
 
-        public int Id { get; private set; }
+      
 
         private void go_order(object sender)
         {

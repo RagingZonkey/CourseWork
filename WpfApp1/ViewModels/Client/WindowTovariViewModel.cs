@@ -72,7 +72,7 @@ namespace WpfApp1.ViewModels.Client
             {
                 Id = int.Parse(entity.Id.ToString()),
                 Title = entity.Title.ToString(),
-                Cost = "Цена - " + float.Parse(entity.Cost.ToString()).ToString() + " рублей",
+                Cost = "Цена - " + float.Parse(entity.Cost.ToString()).ToString() + " BYN",
                 Description = "Описание - " + entity.Description.ToString(),
                 MainImagePath = entity.MainImagePath.ToString(),
             });

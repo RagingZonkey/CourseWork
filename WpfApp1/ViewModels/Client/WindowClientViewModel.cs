@@ -73,7 +73,7 @@ namespace WpfApp1.ViewModels.Client
             {
                 Title = entity_products.Title.ToString(),
                 Cost = "Стоимость товара" +entity_products.Cost.ToString() + " BYN",
-                TotalPrice = "Итого: "+ (decimal.Parse(entity_products.Cost) * entity_products.Quantity).ToString() + " BYN",
+                TotalPrice = "Итого: "+ entity_products.TotalPrice + " BYN за " + entity_products.Quantity.ToString() + " шт" ,
                 Description = "Описание товара: " + entity_products.Description,
                 Quantity = entity_products.Quantity,
                 MainImagePath = entity_products.MainImagePath.ToString()

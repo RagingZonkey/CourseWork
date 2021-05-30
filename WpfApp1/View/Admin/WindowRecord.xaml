@@ -85,11 +85,13 @@
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Title}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Cost}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=DurationInMinutes}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Discount}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=OrderDate}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=ReservDay}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=DayReserv}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                 </DockPanel>
                             </Border>
 

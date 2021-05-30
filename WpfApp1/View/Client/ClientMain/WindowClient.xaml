@@ -93,9 +93,13 @@
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Title}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Cost}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=DayReserv}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=DurationInMinutes}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                 </DockPanel>
                             </Border>
                         </DataTemplate>
@@ -124,10 +128,13 @@
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Title}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                     <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Title}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                     <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Description}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                     <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=TotalPrice}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Quantity}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                 </DockPanel>
                             </Border>
 

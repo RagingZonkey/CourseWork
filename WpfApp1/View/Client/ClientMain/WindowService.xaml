@@ -88,12 +88,14 @@
                     <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Title}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="price"  Text="{Binding Path=Cost}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top" x:Name="Skidka" Text="{Binding Path=Discount}"></TextBlock>
-                                    <!--<Button DockPanel.Dock="Right" 
-                                    Background="Transparent"
-                                    Margin="36,17,0,4" Width="185" Command="{Binding Order}">Заказать</Button>-->
-                            </DockPanel>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="{Binding Path=Cost}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="{Binding Path=DurationInMinutes}"></TextBlock>
+                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
+
+
+                                </DockPanel>
                     </Border>
                     </DataTemplate>
                     </ListBox.ItemTemplate>
