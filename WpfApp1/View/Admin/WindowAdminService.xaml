@@ -76,7 +76,7 @@
 
             <DockPanel Grid.Column="1" Grid.Row="1"  >
                 <ListBox x:Name="servicelist"
-                         ItemsSource="{Binding Path=Services}"
+                         ItemsSource="{Binding Path=Services, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          SelectedItem="{Binding Path=SelectedService}"
                          DockPanel.Dock="Top" >
                     <ListBox.ItemTemplate>
@@ -84,16 +84,16 @@
 
                             <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="603">
                                 <DockPanel>
-                                    <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
+                                    <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock  Margin="10 0 0 0" Text="{Binding Path=Title}"></TextBlock>
+                                        <TextBlock  Margin="10 0 0 0" Text="{Binding Path=Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                         <TextBlock  Margin="10 0 0 0" Text="Стоимость: "></TextBlock>
                                         <TextBlock  Margin="10 0 0 0" Text="Продолжительность:      "></TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock  Text=" "></TextBlock>
-                                        <TextBlock  Text="{Binding Path=Cost}"></TextBlock>
-                                        <TextBlock  Text="{Binding Path=DurationInMinutes}"></TextBlock>
+                                        <TextBlock  Text="{Binding Path=Cost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                                        <TextBlock  Text="{Binding Path=DurationInMinutes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock  Text=" "></TextBlock>

@@ -63,33 +63,35 @@ namespace WpfApp1.ViewModels.Client
         public WindowClientViewModel(string login)
         {
             logins = login;
-            var entity_services = App.db.OrderedServices.Where(x => x.Login == logins).SingleOrDefault();
-            var entity_products = App.db.OrderedProducts.Where(y => y.Login == logins).SingleOrDefault();
-            //App.db.SaveChangesAsync().GetAwaiter();
-
-            OrderedProducts = new ObservableCollection<OrderedProduct>();
+            var entity_services = App.db.OrderedServices.Where(x => x.Login == logins);
+            var entity_products = App.db.OrderedProducts.Where(y => y.Login == logins);
 
 
-            OrderedProducts.Add(new OrderedProduct
-            {
-                Title = entity_products.Title.ToString(),
-                Cost = "Стоимость товара" +entity_products.Cost.ToString() + " BYN",
-                TotalPrice = "Итого: "+ entity_products.TotalPrice + " BYN за " + entity_products.Quantity.ToString() + " шт" ,
-                Description = "Описание товара: " + entity_products.Description,
-                Quantity = entity_products.Quantity,
-                MainImagePath = entity_products.MainImagePath.ToString()
-            });
+            OrderedProducts = new ObservableCollection<OrderedProduct>(entity_products);
+            OrderedServices = new ObservableCollection<OrderedService>(entity_services);
+            //OrderedProducts = new ObservableCollection<OrderedProduct>();
 
-            OrderedServices = new ObservableCollection<OrderedService>();
 
-            OrderedServices.Add(new OrderedService 
-            {
-                Title = entity_services.Title.ToString(),
-                Cost = entity_services.Cost.ToString() + " BYN",
-                DurationInMinutes = "Продолжительность в минутах: " + entity_services.DurationInMinutes + " мин",
-                DayReserv = "Дата резервации: " + entity_services.DayReserv.ToString(),
-                MainImagePath = entity_services.MainImagePath.ToString()
-            });
+            //OrderedProducts.Add(new OrderedProduct
+            //{
+            //    Title = entity_products.Title.ToString(),
+            //    Cost = "Стоимость товара" +entity_products.Cost.ToString() + " BYN",
+            //    TotalPrice = "Итого: "+ entity_products.TotalPrice + " BYN за " + entity_products.Quantity.ToString() + " шт" ,
+            //    Description = "Описание товара: " + entity_products.Description,
+            //    Quantity = entity_products.Quantity,
+            //    MainImagePath = entity_products.MainImagePath.ToString()
+            //});
+
+            //OrderedServices = new ObservableCollection<OrderedService>();
+
+            //OrderedServices.Add(new OrderedService 
+            //{
+            //    Title = entity_services.Title.ToString(),
+            //    Cost = entity_services.Cost.ToString() + " BYN",
+            //    DurationInMinutes = "Продолжительность в минутах: " + entity_services.DurationInMinutes + " мин",
+            //    DayReserv = "Дата резервации: " + entity_services.DayReserv.ToString(),
+            //    MainImagePath = entity_services.MainImagePath.ToString()
+            //});
 
             Tovari = new RelayCommand(Click_Tovari);
             Service = new RelayCommand(Click_Service);

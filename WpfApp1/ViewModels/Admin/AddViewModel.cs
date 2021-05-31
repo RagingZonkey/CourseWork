@@ -75,8 +75,9 @@ namespace WpfApp1.ViewModels
         {
             try
             {
+
                 App.db.Services.Add(new Service { Title = Title_Box, Cost = Cost_Box, DurationInMinutes = Time_Box,  MainImagePath = ImagePath });
-                App.db.SaveChangesAsync().GetAwaiter();
+                App.db.SaveChanges();
 
             }
             catch (Exception ex)

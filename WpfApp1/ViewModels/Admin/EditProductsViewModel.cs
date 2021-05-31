@@ -108,7 +108,7 @@ namespace WpfApp1.ViewModels
                     entity.Description = Description_Box;
                     entity.Cost = Cost_Box;
                     entity.MainImagePath = ImagePath;
-                    App.db.SaveChangesAsync().GetAwaiter();
+                    App.db.SaveChanges();
 
                 }
                 catch (Exception ex)

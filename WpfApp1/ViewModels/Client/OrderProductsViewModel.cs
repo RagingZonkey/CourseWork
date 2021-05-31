@@ -103,7 +103,7 @@ namespace WpfApp1.ViewModels.Client
 
                 };
                 App.db.OrderedProducts.Add(orderedProduct);
-                App.db.SaveChangesAsync().GetAwaiter();
+                App.db.SaveChanges();
             }
             catch(Exception ex) 
             {

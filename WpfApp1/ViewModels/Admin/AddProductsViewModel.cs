@@ -138,7 +138,7 @@ namespace WpfApp1.ViewModels
                 try
                 {
                     App.db.Products.Add(new Product { Title = Title_Box, Cost = Cost_Box, Description = Description_Box, MainImagePath = ImagePath });
-                    App.db.SaveChangesAsync().GetAwaiter();
+                    App.db.SaveChanges();
 
                 }
                 catch (Exception ex)

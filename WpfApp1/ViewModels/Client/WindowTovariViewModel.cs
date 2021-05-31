@@ -66,16 +66,9 @@ namespace WpfApp1.ViewModels.Client
         {
             logins = login;
             var entity = App.db.Products.SingleOrDefault();
-            
 
-            products.Add(new Product
-            {
-                Id = int.Parse(entity.Id.ToString()),
-                Title = entity.Title.ToString(),
-                Cost = "Цена - " + float.Parse(entity.Cost.ToString()).ToString() + " BYN",
-                Description = "Описание - " + entity.Description.ToString(),
-                MainImagePath = entity.MainImagePath.ToString(),
-            });
+
+            Products = new ObservableCollection<Product>(App.db.Products);
 
             Service = new RelayCommand(go_service);
             Order = new RelayCommand(go_order);

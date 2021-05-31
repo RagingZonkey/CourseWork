@@ -118,7 +118,7 @@ namespace WpfApp1.ViewModels
                     entity.DayReserv = Date_Box.ToShortDateString();
                     entity.MainImagePath = ImagePath;
                     entity.DurationInMinutes = Time_Box;
-                    App.db.SaveChangesAsync().GetAwaiter();
+                    App.db.SaveChanges();
                 }
                 catch { MessageBox.Show("Выберите правильную дату!", "Error"); }
                 finally

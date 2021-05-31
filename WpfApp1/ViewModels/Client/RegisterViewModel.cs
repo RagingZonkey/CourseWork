@@ -370,7 +370,7 @@ namespace WpfApp1.ViewModels.Client
 
 
                 App.db.Clients.Add(new Model.Client { FirstName = name, LastName = lastname, Birthday = birthday, Email = email, Password = passwordag, Role = 0  });
-                App.db.SaveChangesAsync().GetAwaiter();
+                App.db.SaveChanges();
             }
             catch
             {

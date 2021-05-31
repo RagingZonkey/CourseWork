@@ -57,17 +57,9 @@ namespace WpfApp1.ViewModels
             Change = new RelayCommand(go_change);
             Main = new RelayCommand(go_main);
 
-            var entity = App.db.Products.SingleOrDefault();
 
-            products.Add(new Product
-            {
+            Products = new ObservableCollection<Product>(App.db.Products);
 
-                Title = entity.Title.ToString(),
-                Cost = "Цена - " + float.Parse(entity.Cost.ToString()).ToString() + " BYN",
-                Description = "Описание - " + entity.Description.ToString(),
-                MainImagePath = entity.MainImagePath.ToString()
-                
-            });
 
         }
 
@@ -102,7 +94,7 @@ namespace WpfApp1.ViewModels
                 try 
                 {
                     App.db.Products.Remove(p);
-                    App.db.SaveChangesAsync().GetAwaiter();
+                    App.db.SaveChanges();
                 }
                 catch(Exception ex)
                 {
@@ -110,16 +102,19 @@ namespace WpfApp1.ViewModels
                 }
                 finally
                 {
-                    MessageBox.Show("Продукт успешно удален!", "Ok");
-                    WindowProducts adm = new WindowProducts();
-                    foreach (Window win in Application.Current.Windows)
+                    if (p == null)
                     {
-                        if (win is WindowProducts)
+                        MessageBox.Show("Продукт успешно удален!", "Ok");
+                        WindowAdmin adm = new WindowAdmin();
+                        foreach (Window win in Application.Current.Windows)
                         {
-                            win.Close();
+                            if (win is WindowProducts)
+                            {
+                                win.Close();
+                            }
                         }
+                        adm.Show();
                     }
-                    adm.Show();
                 }
                 
             }

@@ -55,19 +55,10 @@ namespace WpfApp1.ViewModels
             Exit = new RelayCommand(go_exit);
             Change = new RelayCommand(go_change);
 
-            
-            var entity = App.db.OrderedServices.SingleOrDefault();
-            
-            OrderedServices.Add(new OrderedService
-            {
-                Title = entity.Title.ToString(),
-                Cost = "Итоговая стоимость - " + float.Parse(entity.Cost.ToString()).ToString() + " BYN",
-                DurationInMinutes = "Оплаченное время работы мастера - " + entity.DurationInMinutes.ToString() + " мин",
-                MainImagePath = entity.MainImagePath.ToString(),
-                DayReserv = "Дата записи: " + entity.DayReserv
-            });
 
-            
+            OrderedServices = new ObservableCollection<OrderedService>(App.db.OrderedServices);
+
+
         }
 
        
@@ -103,14 +94,11 @@ namespace WpfApp1.ViewModels
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную запись?", "Delete", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
-                //DB db = new DB();
-                //SqlCommand command = new SqlCommand("DELETE FROM OrderService WHERE ID = @id", db.getConnection());
-                //command.Parameters.AddWithValue("@id", s.ID);
-                //db.openConnection();
+               
                 try 
                 {
                     App.db.OrderedServices.Remove(s);
-                    App.db.SaveChangesAsync().GetAwaiter();
+                    App.db.SaveChanges();
                 }
                 catch(Exception ex)
                 {
@@ -119,7 +107,7 @@ namespace WpfApp1.ViewModels
                 finally
                 {
                     MessageBox.Show("Услуга успешно удалена!", "Ok");
-                    WindowRecord record = new WindowRecord();
+                    WindowAdmin adm = new WindowAdmin();
                     foreach (Window win in Application.Current.Windows)
                     {
                         if (win is WindowRecord)
@@ -127,7 +115,7 @@ namespace WpfApp1.ViewModels
                             win.Close();
                         }
                     }
-                    record.Show();
+                    adm.Show();
                 }
                
             }

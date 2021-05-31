@@ -66,16 +66,12 @@ namespace WpfApp1.ViewModels.Client
         {
             logins = login;
             Console.WriteLine(logins);
-            var entity_services = App.db.Services.SingleOrDefault();
-            Services = new ObservableCollection<Service>();
 
-            Services.Add(new Service
-            {
-                Title = entity_services.Title.ToString(),
-                Cost = entity_services.Cost.ToString() + " BYN",
-                DurationInMinutes = "Продолжительность в минутах: " + entity_services.DurationInMinutes + " мин",
-                MainImagePath = entity_services.MainImagePath.ToString()
-            });
+
+            Services = new ObservableCollection<Service>(App.db.Services);
+
+
+
             Tovari = new RelayCommand(Click_Tovari);
             Order = new RelayCommand(go_order);
             Change = new RelayCommand(Click_change);

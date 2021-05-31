@@ -106,7 +106,7 @@ namespace WpfApp1.ViewModels.Client
                        
                     };
                     App.db.OrderedServices.Add(orderedService);
-                    App.db.SaveChangesAsync().GetAwaiter();
+                    App.db.SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -115,7 +115,7 @@ namespace WpfApp1.ViewModels.Client
                 finally
                 {
                     WindowClient winadm = new WindowClient(logins);
-                    MessageBox.Show("Товар успешно зарезервирована!");
+                    MessageBox.Show("Товар успешно зарезервирован!");
                     foreach (Window win in Application.Current.Windows)
                     {
                         if (win is Order)

@@ -102,25 +102,35 @@ namespace WpfApp1.ViewModels
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную услугу?", "Delete", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
-                WindowAdminService admin = new WindowAdminService();
-                foreach (Window win in Application.Current.Windows)
+                try
                 {
-                    if (win is WindowAdminService)
-                    {
-                        win.Close();
-                    }
-                }
+
                     App.db.Services.Remove(s);
                     App.db.SaveChanges();
-
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show(ex.Message);
+                }
+                finally
+                {
 
                     if (s == null)
                     {
                         MessageBox.Show("Услуга успешно удалена!", "Ok");
-                        
+                        WindowAdmin adm = new WindowAdmin();
+                        foreach (Window win in Application.Current.Windows)
+                        {
+                            if (win is WindowAdminService)
+                            {
+                                win.Close();
+                            }
+                        }
+                        adm.Show();
                     }
+                }
 
-                    admin.Show();
+
             }
             else
             {
@@ -148,7 +158,7 @@ namespace WpfApp1.ViewModels
             rec.Show();
             foreach (Window win in Application.Current.Windows)
             {
-                if (win is Add)
+                if (win is WindowAdminService)
                 {
                     win.Close();
                 }
