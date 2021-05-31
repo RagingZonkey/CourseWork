@@ -66,15 +66,16 @@
             </DockPanel>
 
 
-            <DockPanel  Margin="0,20,20,0" Width="500">
-                <Button Foreground="Black" FontFamily="Helvetica"
+            <DockPanel  Margin="-10,20,-10,0" >
+                <Button Foreground="Black" HorizontalAlignment="Left" FontFamily="Helvetica"
                     Background="Transparent" DockPanel.Dock="Left"
-                    BorderThickness="2" Margin="30,0,0,0" Width="80" Height="40"
-                    Content="Login" Command="{Binding Login}" ></Button>
+                    BorderThickness="2"  Width="130" Height="40"
+                    Content="Войти" Command="{Binding Login}" ></Button>
+                
                 <Button Foreground="Black" FontFamily="Helvetica"
                     Background="Transparent" DockPanel.Dock="Right" 
-                    BorderThickness="2" Margin="-250,0,0,0" Width="80" Height="40"
-                    Content="Register" Command="{Binding Register}"></Button>
+                    BorderThickness="2" HorizontalAlignment="Right" Width="130" Height="40"
+                    Content="Зарегистрироваться" Command="{Binding Register}"></Button>
             </DockPanel>
         </StackPanel>
     </Grid>

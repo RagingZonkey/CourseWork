@@ -96,7 +96,7 @@ namespace WpfApp1.ViewModels
                     entity.DurationInMinutes = Time_Box;
                     entity.MainImagePath = ImagePath;
                     entity.Title = Title_Box;
-                    App.db.SaveChangesAsync().GetAwaiter();
+                    App.db.SaveChanges();
 
                 }
                 catch(Exception ex)

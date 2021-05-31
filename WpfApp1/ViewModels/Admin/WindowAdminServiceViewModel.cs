@@ -37,21 +37,10 @@ namespace WpfApp1.ViewModels
             //try
             //{
 
-                var entity = App.db.Services.SingleOrDefault();
 
 
-                Services = new ObservableCollection<Service> { };
+                Services = new ObservableCollection<Service>(App.db.Services);
 
-            
-                Services.Add(new Service
-                {
-                    Title = entity.Title.ToString(),
-                    Cost = "Стоимость: " + entity.Cost + " BYN",
-                    DurationInMinutes = "Время выполнения: " + entity.DurationInMinutes + " мин",
-                    MainImagePath = entity.MainImagePath.ToString()
-                });
-            
-            //}
 
         }
         private Service selectedService;
@@ -97,7 +86,7 @@ namespace WpfApp1.ViewModels
                 {
                     if (win is WindowAdminService)
                     {
-                        win.Hide();
+                        win.Close();
                     }
                 }
             }
@@ -113,23 +102,25 @@ namespace WpfApp1.ViewModels
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную услугу?", "Delete", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
-                try
+                WindowAdminService admin = new WindowAdminService();
+                foreach (Window win in Application.Current.Windows)
                 {
+                    if (win is WindowAdminService)
+                    {
+                        win.Close();
+                    }
+                }
                     App.db.Services.Remove(s);
-                    App.db.SaveChangesAsync().GetAwaiter();
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    MessageBox.Show("Услуга успешно удалена!", "Ok");
-                    WindowAdminService adm = new WindowAdminService();
-                    
-                    adm.Show();
-                }
+                    App.db.SaveChanges();
 
+
+                    if (s == null)
+                    {
+                        MessageBox.Show("Услуга успешно удалена!", "Ok");
+                        
+                    }
+
+                    admin.Show();
             }
             else
             {
