@@ -76,8 +76,8 @@
 
             <DockPanel Grid.Column="1" Grid.Row="1"  >
                 <ListBox x:Name="servicelist"
-                         ItemsSource="{Binding Services}"
-                         SelectedItem="{Binding SelectedService}"
+                         ItemsSource="{Binding Path=Services}"
+                         SelectedItem="{Binding Path=SelectedService}"
                          DockPanel.Dock="Top" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -86,11 +86,9 @@
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Title}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                     <TextBlock DockPanel.Dock="Top"   Text="{Binding Path=Cost}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
                                     <TextBlock DockPanel.Dock="Top"   Text="{Binding Path=DurationInMinutes}"></TextBlock>
-                                    <TextBlock DockPanel.Dock="Top"   Text="-----------------------------------------------"></TextBlock>
+                                    
 
                                 </DockPanel>
                             </Border>

@@ -34,18 +34,24 @@ namespace WpfApp1.ViewModels
             Exit = new RelayCommand(go_exit);
             Change = new RelayCommand(go_change);
 
-            var entity = App.db.Services.SingleOrDefault();
+            //try
+            //{
 
-            if (entity != null)
-            {
+                var entity = App.db.Services.SingleOrDefault();
+
+
+                Services = new ObservableCollection<Service> { };
+
+            
                 Services.Add(new Service
                 {
                     Title = entity.Title.ToString(),
-                    Cost = float.Parse(entity.Cost.ToString()).ToString() + " BYN",
-                    DurationInMinutes = int.Parse(entity.DurationInMinutes.ToString()).ToString(),
+                    Cost = "Стоимость: " + entity.Cost + " BYN",
+                    DurationInMinutes = "Время выполнения: " + entity.DurationInMinutes + " мин",
                     MainImagePath = entity.MainImagePath.ToString()
                 });
-            }
+            
+            //}
 
         }
         private Service selectedService;

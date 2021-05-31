@@ -31,11 +31,12 @@
                            Text="Имя"
                            ></TextBlock>
 
-                <TextBox 
-                     HorizontalContentAlignment="Left"
-                    x:Name="name_box"  Style="{DynamicResource TextBoxBrush}">
+                <TextBox HorizontalContentAlignment="Left"
+                         x:Name="name_box"  
+                         Style="{DynamicResource TextBoxBrush}"
+                         Text="{Binding Name_Box, Mode=TwoWay}"/>
 
-                </TextBox>
+
             </DockPanel>
 
             <DockPanel Margin="0,13,0,0">
@@ -44,11 +45,13 @@
                            ></TextBlock>
 
                 <TextBox Background="#ffffff"
-                     HorizontalContentAlignment="Left"
-                      Style="{DynamicResource TextBoxBrush}"
-                     x:Name="family_box" BorderBrush="Black">
+                         HorizontalContentAlignment="Left"
+                         Style="{DynamicResource TextBoxBrush}"
+                         x:Name="family_box" 
+                         BorderBrush="Black"
+                         Text="{Binding Surname_Box, Mode=TwoWay}"/>
 
-                </TextBox>
+
             </DockPanel>
 
 
@@ -67,11 +70,15 @@
                            Text="Email"
                           ></TextBlock>
 
-                <TextBox 
-                     HorizontalContentAlignment="Left"
-                    x:Name="email_box"  Style="{DynamicResource TextBoxBrush}">
+                <TextBox
+                    
+                    HorizontalContentAlignment="Left"
+                    x:Name="email_box"  
+                    Style="{DynamicResource TextBoxBrush}"
+                    Text="{Binding Email_Box, Mode=TwoWay}"
+                    />
 
-                </TextBox>
+
             </DockPanel>
 
 
@@ -87,6 +94,7 @@
                      FontWeight="Light"
                      FontSize="20" 
                      BorderThickness="0"
+                     PasswordChanged="passwordbox_one_PasswordChanged"
                      Opacity="0.7" x:Name="passwordbox_one">
                 </PasswordBox>
             </DockPanel>
@@ -98,17 +106,17 @@
                     Margin="0,0,0,5"
                    ></TextBlock>
 
-                <PasswordBox 
+                <PasswordBox
                      HorizontalAlignment="Stretch" 
-                     
+                     PasswordChanged="passwordbox_two_PasswordChanged"
                      Height="25"
                      FontFamily="Helvetica"
                      FontWeight="Light"
                      FontSize="20" 
                      BorderThickness="0"
-                     Opacity="0.7"  x:Name="passwordbox_two">
+                     Opacity="0.7"  x:Name="passwordbox_two"/>
 
-                </PasswordBox>
+
             </DockPanel>
 
 
@@ -117,11 +125,11 @@
                 <Button Margin="20,0,0,0" 
                         DockPanel.Dock="Left" 
                         Width="100" Height="40"
-                        Content="REGISTER" Background="Transparent" x:Name="Click_Regiter" />
+                        Content="REGISTER" Background="Transparent" x:Name="Click_Regiter" Command="{Binding RegisterButton}" />
 
                 <Button  DockPanel.Dock="Right" 
                          Width="100" Height="40"
-                         Content="LOGIN"  Background="Transparent"/>
+                         Content="LOGIN"  Background="Transparent" Command="{Binding LoginButton}"/>
             </DockPanel>
 
         </StackPanel>

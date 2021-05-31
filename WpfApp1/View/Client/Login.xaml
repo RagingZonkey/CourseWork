@@ -45,7 +45,7 @@
                      FontWeight="Light"
                      FontSize="20" 
                       BorderThickness="0"
-                     Opacity="0.5"  x:Name="Email_box"></TextBox>
+                     Opacity="0.5"  Text="{Binding Email_Box, Mode=TwoWay}"></TextBox>
             </DockPanel>
 
 
@@ -57,23 +57,24 @@
                        Margin="0,20,0,0">Пароль</TextBlock>
                 <PasswordBox DockPanel.Dock="Top"
                              PasswordChanged="password_box_PasswordChanged"
+                             x:Name="password_box"
                      FontFamily="Helvetica"
                      FontWeight="Light"
                      FontSize="20" 
                      BorderThickness="0"
-                     Opacity="0.5"  x:Name="password_box"></PasswordBox>
+                     Opacity="0.5" ></PasswordBox>
             </DockPanel>
 
 
-            <DockPanel  Margin="0,20,20,0">
+            <DockPanel  Margin="0,20,20,0" Width="500">
                 <Button Foreground="Black" FontFamily="Helvetica"
                     Background="Transparent" DockPanel.Dock="Left"
-                    BorderThickness="2" Margin="20,0,0,0" Width="100" Height="40"
-                    Content="Login"  ></Button>
+                    BorderThickness="2" Margin="30,0,0,0" Width="80" Height="40"
+                    Content="Login" Command="{Binding Login}" ></Button>
                 <Button Foreground="Black" FontFamily="Helvetica"
                     Background="Transparent" DockPanel.Dock="Right" 
-                    BorderThickness="2" Margin="20,0,0,0" Width="100" Height="40"
-                    Content="Register" ></Button>
+                    BorderThickness="2" Margin="-250,0,0,0" Width="80" Height="40"
+                    Content="Register" Command="{Binding Register}"></Button>
             </DockPanel>
         </StackPanel>
     </Grid>

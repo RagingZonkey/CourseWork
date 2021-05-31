@@ -24,10 +24,22 @@ namespace WpfApp1
     /// </summary>
     public partial class Register : Window
     {
+        RegisterViewModel vm;
         public Register()
         {
             InitializeComponent();
-            DataContext = new RegisterViewModel();
+            vm = new RegisterViewModel();
+            DataContext = vm;
+        }
+
+        private void passwordbox_one_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            vm.FirstPasswordBox = passwordbox_one.Password;
+        }
+
+        private void passwordbox_two_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            vm.SecondPasswordBox = passwordbox_two.Password;
         }
     }
 }

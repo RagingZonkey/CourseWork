@@ -69,6 +69,7 @@ namespace WpfApp1.ViewModels.Client
 
             OrderedProducts = new ObservableCollection<OrderedProduct>();
 
+
             OrderedProducts.Add(new OrderedProduct
             {
                 Title = entity_products.Title.ToString(),

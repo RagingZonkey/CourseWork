@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WpfApp1.Commands;
 using WpfApp1.view;
 using WpfApp1.ViewModels.Base;
 
@@ -35,7 +36,8 @@ namespace WpfApp1.ViewModels.Client
 
         public LoginViewModel()
         {
-
+            Login = new RelayCommand(Button_Click);
+            Register = new RelayCommand(Button_Click_1);
         }
 
         private void Button_Click(object sender)
@@ -45,99 +47,87 @@ namespace WpfApp1.ViewModels.Client
 
             try
             {
-                //DB db = new DB();
-                //DataTable table = new DataTable();
-                //SqlDataAdapter adapter = new SqlDataAdapter();
-                //SqlCommand command = new SqlCommand("SELECT * FROM Client WHERE Email= @uL AND Password = @uP", db.getConnection());
-                //db.openConnection();
-                var entity = App.db.Clients.Where(x => x.Email == login && x.Password == password).SingleOrDefault();
+                //Model.Client entity = null;
+                var entity = App.db.Clients.Where(x => x.Email == login && x.Password == password || x.Email == login).SingleOrDefault();
 
-                //command.Parameters.Add("@uL", SqlDbType.VarChar).Value = login;
-                //command.Parameters.Add("@uP", SqlDbType.VarChar).Value = password;
+                if (entity != null)
+                {
+                    if (entity.Password == password)
+                    {
+                        
 
-                //adapter.Fill(table);
+                        if (entity.Role == 0)
+                        {
+
+                            WindowClient client = new WindowClient(login);
+                            foreach (Window win in Application.Current.Windows)
+                            {
+                                if (win is Login)
+                                {
+                                    win.Close();
+                                }
+                            }
+                            client.Show();
+                        }
 
 
+                        else
+                        {
+                            //Model.Client adminentity = null;
 
+                            WindowAdmin windowCompany = new WindowAdmin();
+                            foreach (Window win in Application.Current.Windows)
+                            {
+                                if (win is Login)
+                                {
+                                    win.Close();
+                                }
+                            }
+                            windowCompany.Show();
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Проверьте правильность введенного пароля!");
+                    }
+                    
+                    
+                }
+                else
+                {
+                    MessageBox.Show($"Пользователя с логином \"{login}\" не существует!") ;
+                }
             }
+
+
+
+
             catch (SqlException)
             {
                 MessageBox.Show("Отсутствует подключение с базой данных");
             }
-            finally
+
+        }
+    
+
+        private void Button_Click_1(object sender)
+        {
+            Register reg = new Register();
+            reg.Show();
+            foreach (Window win in Application.Current.Windows)
             {
-                //if (/*CheckRole()*/)
-                //{
-
-                //    WindowAdmin windowCompany = new WindowAdmin();
-                //    foreach (Window win in Application.Current.Windows)
-                //    {
-                //        if (win is Login)
-                //        {
-                //            win.Close();
-                //        }
-                //    }
-                //    windowCompany.Show();
-                //}
-                //else
-                //{
-
-                //    WindowClient client = new WindowClient(login);
-                //    foreach (Window win in Application.Current.Windows)
-                //    {
-                //        if (win is Login)
-                //        {
-                //            win.Close();
-                //        }
-                //    }
-
-                //    client.Show();
-
-                //}
-
-
-
+                if (win is Login)
+                {
+                    win.Close();
+                }
             }
         }
 
-
-        //private bool CheckRole()
-        //{
-            /*DB db = new DB();
-
-            String loginUser = Email_box;
-
-            DataTable table = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            SqlCommand command = new SqlCommand("SELECT * FROM Client WHERE Email = @email and Role = 1", db.getConnection());
-            command.Parameters.Add("@email", SqlDbType.VarChar).Value = loginUser;
-            adapter.SelectCommand = command;
-            adapter.Fill(table);*/
-
-
-            //if (App.db.Client)
-            //{
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
     }
 
-        //private void Button_Click_1(object sender)
-        //{
-        //    Register reg = new Register();
-        //    reg.Show();
-        //    foreach (Window win in Application.Current.Windows)
-        //    {
-        //        if (win is Login)
-        //        {
-        //            win.Close();
-        //        }
-        //    }
-        //}
+    
 
 
-    //}
+
 }

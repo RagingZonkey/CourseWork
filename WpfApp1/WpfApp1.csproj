@@ -184,9 +184,6 @@
     <Compile Include="view\Client\Buttons\OrderProducts.xaml.cs">
       <DependentUpon>OrderProducts.xaml</DependentUpon>
     </Compile>
-    <Compile Include="view\Error.xaml.cs">
-      <DependentUpon>Error.xaml</DependentUpon>
-    </Compile>
     <Compile Include="view\Client\ClientMain\WindowClient.xaml.cs">
       <DependentUpon>WindowClient.xaml</DependentUpon>
     </Compile>
@@ -201,6 +198,9 @@
     </Compile>
     <Compile Include="view\Client\ClientMain\WindowTovari.xaml.cs">
       <DependentUpon>WindowTovari.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\Error.xaml.cs">
+      <DependentUpon>Error.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -287,10 +287,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="view\Error.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="view\Client\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -315,15 +311,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\faun.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\beauty_logo.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\beauty_logo.png" />
+    <Page Include="view\Error.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\CLEANCUT_Нежелательный фон 2 2.png" />

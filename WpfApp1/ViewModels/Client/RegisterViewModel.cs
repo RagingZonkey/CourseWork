@@ -28,7 +28,9 @@ namespace WpfApp1.ViewModels.Client
         public DateTime Date_Box
         {
             get { return date_box; }
-            set { date_box = value; }
+            set { date_box = value;
+                OnPropertyChanged("Date_Box");
+            }
         }
 
         //    public SecureString firstPassword = new SecureString();
@@ -115,7 +117,10 @@ namespace WpfApp1.ViewModels.Client
         public string Name_Box
         {
             get { return name_box; }
-            set { name_box = value; }
+            set { name_box = value;
+                OnPropertyChanged("Name_Box");
+            }
+
         }
 
         private string surname_box;
@@ -123,7 +128,9 @@ namespace WpfApp1.ViewModels.Client
         public string Surname_Box
         {
             get { return surname_box; }
-            set { surname_box = value; }
+            set { surname_box = value;
+                OnPropertyChanged("Surname_Box");
+            }
         }
 
         private string email_box;
@@ -131,7 +138,9 @@ namespace WpfApp1.ViewModels.Client
         public string Email_Box
         {
             get { return email_box; }
-            set { email_box = value; }
+            set { email_box = value;
+                OnPropertyChanged("Email_Box");
+            }
         }
 
         private string firstPasswordBox;
@@ -139,7 +148,9 @@ namespace WpfApp1.ViewModels.Client
         public string FirstPasswordBox
         {
             get { return firstPasswordBox; }
-            set { firstPasswordBox = value; }
+            set { firstPasswordBox = value;
+                OnPropertyChanged("FirstPassword_Box");
+            }
         }
 
         private string secondPasswordBox;
@@ -147,7 +158,9 @@ namespace WpfApp1.ViewModels.Client
         public string SecondPasswordBox
         {
             get { return secondPasswordBox; }
-            set { secondPasswordBox = value; }
+            set { secondPasswordBox = value;
+                OnPropertyChanged("SecondPassword_Box");
+            }
         }
 
 
