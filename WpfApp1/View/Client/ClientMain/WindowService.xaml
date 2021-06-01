@@ -12,7 +12,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="163*"/>
+            <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="439*"/>
             <ColumnDefinition Width="190*"/>
         </Grid.ColumnDefinitions>
@@ -69,7 +69,7 @@
                         <ImageBrush ImageSource="/Assets/Client.png" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Logins}" /> 
+                <TextBlock HorizontalAlignment="Center" FontSize="10" Text="{Binding Path=Logins}" /> 
             </DockPanel>
         </Border>
 

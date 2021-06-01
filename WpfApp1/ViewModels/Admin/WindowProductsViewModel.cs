@@ -86,42 +86,48 @@ namespace WpfApp1.ViewModels
         private void go_delete(object sender)
         {
             p = SelectedProduct;
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данный товар?", "Delete", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
+            if (p != null)
             {
-                
-
-                try 
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данный товар?", "Delete", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
                 {
+                    WindowAdmin adm = new WindowAdmin();
+                    foreach (Window win in Application.Current.Windows)
+                    {
+                        if (win is WindowProducts)
+                        {
+                            win.Close();
+                        }
+                    }
+
+
+                    adm.Show();
+
                     App.db.Products.Remove(p);
                     App.db.SaveChanges();
-                }
-                catch(Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.Message);
-                }
-                finally
-                {
+
+
                     if (p == null)
                     {
-                        MessageBox.Show("Продукт успешно удален!", "Ok");
-                        WindowAdmin adm = new WindowAdmin();
-                        foreach (Window win in Application.Current.Windows)
-                        {
-                            if (win is WindowProducts)
-                            {
-                                win.Close();
-                            }
-                        }
-                        adm.Show();
+                        MessageBox.Show("Товар успешно удален!", "Ok");
+
                     }
+
+
+
                 }
-                
+                else
+                {
+
+                }
             }
             else
             {
-
+                MessageBox.Show("В базе данных нет ни одного товара,\n для начала выполните добавление!");
             }
+            
+            
+            
         }
 
         private void go_add(object sender)

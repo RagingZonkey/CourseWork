@@ -91,37 +91,44 @@ namespace WpfApp1.ViewModels
         private void go_delete(object sender)
         {
             s = SelectedService;
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную запись?", "Delete", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
+            if (s != null)
             {
-               
-                try 
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную запись?", "Delete", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
                 {
-                    App.db.OrderedServices.Remove(s);
-                    App.db.SaveChanges();
-                }
-                catch(Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    MessageBox.Show("Услуга успешно удалена!", "Ok");
-                    WindowAdmin adm = new WindowAdmin();
-                    foreach (Window win in Application.Current.Windows)
+
+                    try
                     {
-                        if (win is WindowRecord)
-                        {
-                            win.Close();
-                        }
+                        App.db.OrderedServices.Remove(s);
+                        App.db.SaveChanges();
                     }
-                    adm.Show();
+                    catch (Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        MessageBox.Show("Заказ успешно отменен!", "Ok");
+                        WindowAdmin adm = new WindowAdmin();
+                        foreach (Window win in Application.Current.Windows)
+                        {
+                            if (win is WindowRecord)
+                            {
+                                win.Close();
+                            }
+                        }
+                        adm.Show();
+                    }
+
                 }
-               
+                else
+                {
+
+                }
             }
             else
             {
-
+                MessageBox.Show("В базе данных нет ни одной заказа\n для начала выполните добавление!");
             }
         }
 

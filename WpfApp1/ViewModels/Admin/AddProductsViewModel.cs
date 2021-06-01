@@ -133,7 +133,14 @@ namespace WpfApp1.ViewModels
 
         private void go_add(object obj)
         {
-            if (imagepath != null)
+            if (ImagePath == null || Title_Box == null || Cost_Box == null || Time_Box == null)
+            {
+
+                MessageBox.Show("Выберите изображение и заполните пустые поля!");
+
+
+            }
+            else
             {
                 try
                 {
@@ -147,10 +154,8 @@ namespace WpfApp1.ViewModels
                 }
                 finally
                 {
-                    if (imagepath.ToString() != "")
-                    {
-                        if (ProductsCheckTextBoxes())
-                        {
+                    
+                        
                             MessageBox.Show("Продукт успешно добавлен!");
                             WindowAdminService winadm = new WindowAdminService();
                             foreach (Window win in Application.Current.Windows)
@@ -161,34 +166,13 @@ namespace WpfApp1.ViewModels
                                 }
                             }
                             winadm.Show();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Заполните пустые поля");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Выберите изображение");
-                    }
+                        
+                    
 
                 }
             }
         }
-        private Boolean ProductsCheckTextBoxes()
-        {
-            String Title = title_box;
-            String Cost = cost_box;
-            String DurationInMinutes = time_box;
-
-
-
-            if (Title == String.Empty || Cost == String.Empty || DurationInMinutes == String.Empty)
-            {
-                return false;
-            }
-            return true;
-        }
+        
     }
 
 

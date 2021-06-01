@@ -73,65 +73,50 @@ namespace WpfApp1.ViewModels
 
         private void go_add(object obj)
         {
-            try
+            if (ImagePath == null || Title_Box == null || Cost_Box ==null || Time_Box == null)
             {
 
-                App.db.Services.Add(new Service { Title = Title_Box, Cost = Cost_Box, DurationInMinutes = Time_Box,  MainImagePath = ImagePath });
-                App.db.SaveChanges();
+                MessageBox.Show("Выберите изображение или заполните пустые поля!");
+
 
             }
-            catch (Exception ex)
+        
+            else 
             {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-            finally 
-            {
-                if (imagepath.ToString() != "")
+                try
                 {
-                    if (CheckTextBoxes())
-                    {
-                        MessageBox.Show("Услуга успешно добавлена!");
-                        WindowAdminService winadm = new WindowAdminService();
-                        foreach (Window win in Application.Current.Windows)
-                        {
-                            if (win is Add)
-                            {
-                                win.Close();
-                            }
-                        }
-                        winadm.Show();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Заполните пустые поля");
-                    }
+
+                    App.db.Services.Add(new Service { Title = Title_Box, Cost = Cost_Box, DurationInMinutes = Time_Box, MainImagePath = ImagePath});
+                    App.db.SaveChanges();
+
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Выберите изображение");
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+
+                    
+                    MessageBox.Show("Услуга успешно добавлена!");
+                    WindowAdminService winadm = new WindowAdminService();
+                    foreach (Window win in Application.Current.Windows)
+                    {
+                        if (win is Add)
+                        {
+                            win.Close();
+                        }
+                    }
+                    winadm.Show();
                 }
                 
+
+
             }
            
         }
 
-        public Boolean CheckTextBoxes()
-        {
-            String Title = title_box;
-            String Cost = cost_box;
-            String DurationInMinutes = time_box;
-            
-
-
-            if (Title == String.Empty || Cost == String.Empty || DurationInMinutes == String.Empty)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+        
 
 
 

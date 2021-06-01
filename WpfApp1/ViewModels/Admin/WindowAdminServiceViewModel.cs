@@ -78,63 +78,73 @@ namespace WpfApp1.ViewModels
 
         private void go_edit(object sender)
         {
-            if (SelectedService != null) // Магия / не трогать
+            if (Services != null)
             {
-                Edit ed = new Edit(SelectedService);
-                ed.Show();
-                foreach (Window win in Application.Current.Windows)
+                if (SelectedService != null) // Магия / не трогать
                 {
-                    if (win is WindowAdminService)
+                    Edit ed = new Edit(SelectedService);
+                    ed.Show();
+                    foreach (Window win in Application.Current.Windows)
                     {
-                        win.Close();
+                        if (win is WindowAdminService)
+                        {
+                            win.Close();
+                        }
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Выберите услугу!");
                 }
             }
             else
             {
-                MessageBox.Show("Выберите услугу!", "Error");
+                MessageBox.Show("В базе данных нет ни одной услуги\n для начала выполните добавление!");
             }
         }
 
         private void go_delete(object sender)
         {
             s = SelectedService;
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную услугу?", "Delete", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
+            
+            if (s != null)
             {
-                try
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную услугу?", "Delete", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
                 {
+                    WindowAdmin adm = new WindowAdmin();
+                    foreach (Window win in Application.Current.Windows)
+                    {
+                        if (win is WindowAdminService)
+                        {
+                            win.Close();
+                        }
+                    }
+
+
+                    adm.Show();
 
                     App.db.Services.Remove(s);
                     App.db.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.Message);
-                }
-                finally
-                {
+
 
                     if (s == null)
                     {
                         MessageBox.Show("Услуга успешно удалена!", "Ok");
-                        WindowAdmin adm = new WindowAdmin();
-                        foreach (Window win in Application.Current.Windows)
-                        {
-                            if (win is WindowAdminService)
-                            {
-                                win.Close();
-                            }
-                        }
-                        adm.Show();
+
                     }
+
+
+
                 }
-
-
+                else
+                {
+                    
+                }
             }
-            else
+            else 
             {
-
+                MessageBox.Show("В базе данных нет ни одной услуги\n для начала выполните добавление!");
             }
         }
 
