@@ -30,6 +30,7 @@ namespace WpfApp1.ViewModels.Client
             logins = login;
             //this.Service = init;
             //title_box = init.Title;
+            Services = new ObservableCollection<Service>(App.db.Services);
 
             OrderService = new RelayCommand(go_order);
             Back = new RelayCommand(go_back);
@@ -84,8 +85,6 @@ namespace WpfApp1.ViewModels.Client
             set { date_box = value; }
         }
 
-      
-
         private void go_order(object sender)
         {
             DateTime curDate = DateTime.Now;
@@ -94,7 +93,6 @@ namespace WpfApp1.ViewModels.Client
             {
                 try
                 {
-                    Services = new ObservableCollection<Service>(App.db.Services);
                     OrderedService orderedService = new OrderedService
                     {
                         Title = SelectedService.Title,

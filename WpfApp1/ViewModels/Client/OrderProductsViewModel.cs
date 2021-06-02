@@ -28,6 +28,7 @@ namespace WpfApp1.ViewModels.Client
             logins = login;
             //this.product = init;
             //title_box = init.Title;
+            Products = new ObservableCollection<Product>(App.db.Products);
             Order = new RelayCommand(go_order);
             Back = new RelayCommand(go_back);
         }
@@ -91,7 +92,7 @@ namespace WpfApp1.ViewModels.Client
         {
             try
             {
-                Products = new ObservableCollection<Product>(App.db.Products);
+                
                 OrderedProduct orderedProduct = new OrderedProduct
                 {
                     Title = SelectedProduct.Title,
