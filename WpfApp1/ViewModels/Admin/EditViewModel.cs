@@ -92,8 +92,8 @@ namespace WpfApp1.ViewModels
                 try
                 {
                     var entity = App.db.Services.Where(x => x.Id == ID).SingleOrDefault();
-                    /*entity.Cost = Cost_Box;
-                    entity.DurationInMinutes = Time_Box;*/
+                    entity.Cost = Cost_Box;
+                    entity.DurationInMinutes = Time_Box;
                     entity.MainImagePath = ImagePath;
                     entity.Title = Title_Box;
                     App.db.SaveChanges();

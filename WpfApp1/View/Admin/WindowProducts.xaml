@@ -82,21 +82,13 @@
                         <DataTemplate>
 
                             <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="603">
-                                <!--<DockPanel>
-                                    <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
-                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Title}"></TextBlock>
-                                    
-                                    <TextBlock DockPanel.Dock="Top"   Text="{Binding Path=Cost}"></TextBlock>
-                                    
-                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Description}"></TextBlock>
-                                    
-                                </DockPanel>-->
+                                
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock  Margin="10 0 0 0" Text="{Binding Path=Title}"></TextBlock>
                                         <TextBlock  Margin="10 0 0 0" Text="Стоимость: "></TextBlock>
-                                        <TextBlock  Margin="10 0 0 0" Text="Описание товара:      "></TextBlock>
+                                        <TextBlock  Margin="10 0 0 0" Text="Описание товара: "></TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock  Text=" "></TextBlock>
@@ -105,7 +97,7 @@
                                             <TextBlock  Text=" BYN"></TextBlock>
                                         </StackPanel>
                                         
-                                        <TextBlock  Text="{Binding Path=Description}"></TextBlock>
+                                        <TextBlock  Text="{Binding Path=Description}" HorizontalAlignment="Left" TextWrapping="Wrap" Width="380"></TextBlock>
                                     </StackPanel>
                                     
                                 </DockPanel>

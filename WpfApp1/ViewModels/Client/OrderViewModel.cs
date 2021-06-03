@@ -102,14 +102,16 @@ namespace WpfApp1.ViewModels.Client
 
         private void go_order(object sender)
         {
-            //DateTime endTime = new DateTime(0,0,0,20,0,0);
-            //DateTime startTime = new DateTime(0,0,0,8,0,0);
+            DateTime oldDate = Date_Box;
+            DateTime endTime = new DateTime(1, 1, 1, 20, 0, 0);
+            DateTime startTime = new DateTime(1, 1, 1, 8, 0, 0);
 
-            
+
             Regex timeValidation = new Regex("^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$");
             if (!timeValidation.IsMatch(SelectedTime))
             {
                 System.Windows.Forms.MessageBox.Show("Дурак, цифры научись вводить");
+                Date_Box = oldDate;
                 return;
             }
             DateTime curDate = DateTime.Now;
@@ -127,9 +129,14 @@ namespace WpfApp1.ViewModels.Client
             else flag = false;
             //dateTime = Date_Box.AddMinutes(duration);
             dateTime = dateTime.AddMinutes(duration);
-
-            //if (Date_Box.Hour > startTime.Hour && dateTime.Hour < endTime.Hour)
-            //{
+            endTime = endTime.AddYears(Date_Box.Year - 1);
+            endTime = endTime.AddMonths(Date_Box.Month -1);
+            endTime = endTime.AddDays(Date_Box.Day - 1);
+            startTime = startTime.AddYears(Date_Box.Year - 1);
+            startTime = startTime.AddMonths(Date_Box.Month - 1);
+            startTime = startTime.AddDays(Date_Box.Day - 1);
+            if ((Date_Box - startTime).TotalMinutes >= 0 && (dateTime - endTime).TotalMinutes <= 0)
+            {
                 foreach (var service in App.db.OrderedServices)
                 {
 
@@ -142,15 +149,20 @@ namespace WpfApp1.ViewModels.Client
                     else
                     {
                         flag = false;
+                        Date_Box = oldDate;
+
                         break;
                     }
                 }
                 //DateTime? selectedDate = Date_Box.SelectedDate;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("В выбранное вами время парикмахерская не работает!\nВыберите другое время!");
-            //}
+            }
+            else
+            {
+                MessageBox.Show("В выбранное вами время парикмахерская не работает!\nВыберите другое время!");
+                Date_Box = oldDate;
+
+                return;
+            }
             if (Date_Box > DateTime.Now && flag)
             {
                 try
@@ -172,8 +184,10 @@ namespace WpfApp1.ViewModels.Client
                 }
                 finally
                 {
+                    Date_Box = oldDate;
+
                     WindowClient winadm = new WindowClient(logins);
-                    MessageBox.Show("Товар успешно зарезервирован!");
+                    MessageBox.Show("Запись проведена успешно!!");
                     foreach (Window win in Application.Current.Windows)
                     {
                         if (win is Order)
@@ -187,8 +201,6 @@ namespace WpfApp1.ViewModels.Client
             else
             {
                 MessageBox.Show("Выберите правильную дату!", "Error");
-                Date_Box = Date_Box.AddMinutes(-int.Parse(date[1]));
-                Date_Box = Date_Box.AddHours(-int.Parse(date[0]));
             }
 
 

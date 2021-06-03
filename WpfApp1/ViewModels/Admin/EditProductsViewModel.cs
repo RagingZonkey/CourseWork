@@ -9,6 +9,7 @@ using System.Windows.Input;
 using WpfApp1.Commands;
 using WpfApp1.Context;
 using WpfApp1.Model;
+using WpfApp1.view;
 using WpfApp1.view.Admin;
 using WpfApp1.view.Admin.Buttons;
 using WpfApp1.ViewModels.Base;
@@ -96,8 +97,12 @@ namespace WpfApp1.ViewModels
                     var entity = App.db.Products.Where(x => x.Id == ID).SingleOrDefault();
                     entity.Title = Title_Box;
                     entity.Description = Description_Box;
-                    //entity.Cost = Cost_Box;
+                    entity.Cost = Cost_Box;
                     entity.MainImagePath = ImagePath;
+                foreach (OrderedProduct op in App.db.OrderedProducts.Where(x => x.ProductId == ID))
+                {
+                    op.TotalPrice = entity.Cost * op.Quantity;
+                }
                     App.db.SaveChanges();
 
                 }
@@ -107,7 +112,7 @@ namespace WpfApp1.ViewModels
                 }
                 finally
                 {
-                    WindowAdminService winadm = new WindowAdminService();
+                    WindowAdmin winadm = new WindowAdmin();
                     MessageBox.Show("Продукт успешно отредактирован!");
                     foreach (Window win in Application.Current.Windows)
                     {

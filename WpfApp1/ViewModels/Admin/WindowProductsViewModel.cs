@@ -86,6 +86,7 @@ namespace WpfApp1.ViewModels
         private void go_delete(object sender)
         {
             p = SelectedProduct;
+            var orderedProductToDelete = App.db.OrderedProducts.Where(y => y.ProductId == SelectedProduct.Id);
             if (p != null)
             {
                 MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данный товар?", "Delete", MessageBoxButton.YesNo);
@@ -103,6 +104,7 @@ namespace WpfApp1.ViewModels
 
                     adm.Show();
 
+                    App.db.OrderedProducts.RemoveRange(orderedProductToDelete);
                     App.db.Products.Remove(p);
                     App.db.SaveChanges();
 

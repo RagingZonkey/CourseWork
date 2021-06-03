@@ -175,7 +175,10 @@
                 <TextBlock 
                     VerticalAlignment="Center"
                     Foreground="DarkRed"
-                    Text="{Binding }"/>
+                    Text="{Binding Path=ResultingPrice}"/>
+                <TextBlock VerticalAlignment="Center"
+                           Text=" BYN"
+                           />
             </StackPanel>
         </DockPanel>
         <DockPanel Grid.Column="2" Grid.Row="2">
@@ -187,7 +190,10 @@
                 <TextBlock 
                     VerticalAlignment="Center"
                     Foreground="DarkRed"
-                    Text="{Binding }"/>
+                    Text="{Binding ProductsResultingPrice}"/>
+                <TextBlock VerticalAlignment="Center"
+                           Text=" BYN"
+                           />
             </StackPanel>
         </DockPanel>
     </Grid>

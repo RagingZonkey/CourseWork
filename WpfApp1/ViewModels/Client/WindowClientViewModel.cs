@@ -29,7 +29,19 @@ namespace WpfApp1.ViewModels.Client
             set
             {
                 resultingPrice = value;
-                OnPropertyChanged("Logins");
+                OnPropertyChanged("ResultingPrice");
+            }
+
+        }
+
+        public decimal productsResultingPrice;
+        public decimal ProductsResultingPrice
+        {
+            get { return productsResultingPrice; }
+            set
+            {
+                productsResultingPrice = value;
+                OnPropertyChanged("ProductsResultingPrice");
             }
 
         }
@@ -74,6 +86,8 @@ namespace WpfApp1.ViewModels.Client
 
         public WindowClientViewModel(string login)
         {
+            
+            
             logins = login;
             var entity_services = App.db.OrderedServices.Where(x => x.Login == logins);
             var entity_products = App.db.OrderedProducts.Where(y => y.Login == logins);
@@ -88,6 +102,7 @@ namespace WpfApp1.ViewModels.Client
                 service.Cost = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).Cost;
                 service.MainImagePath = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).MainImagePath;
                 service.Title = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).Title;
+                ResultingPrice += service.Cost;
             }
             //OrderedProducts = new ObservableCollection<OrderedProduct>();
 
@@ -96,7 +111,8 @@ namespace WpfApp1.ViewModels.Client
                 product.Cost = App.db.Products.FirstOrDefault(n => n.Id == product.ProductId).Cost;
                 product.Description = App.db.Products.FirstOrDefault(n => n.Id == product.ProductId).Description;
                 product.Title = App.db.Products.FirstOrDefault(n => n.Id == product.ProductId).Title;
-                product.MainImagePath = App.db.Services.FirstOrDefault(n => n.Id == product.ProductId).MainImagePath;
+                product.MainImagePath = App.db.Products.FirstOrDefault(n => n.Id == product.ProductId).MainImagePath;
+                ProductsResultingPrice += product.TotalPrice;
             }
 
             

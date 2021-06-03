@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WpfApp1"
+             ShutdownMode="OnLastWindowClose"
              StartupUri="/view/Client/Login.xaml">
     <Application.Resources>
         <ResourceDictionary>
