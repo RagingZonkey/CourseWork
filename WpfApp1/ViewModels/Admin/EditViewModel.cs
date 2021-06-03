@@ -27,8 +27,8 @@ namespace WpfApp1.ViewModels
             this.Service = init;
             ID = init.Id;
             Title_Box= init.Title;
-            Cost_Box= init.Cost;
-            Time_Box= init.DurationInMinutes;
+            /*Cost_Box= init.Cost;
+            Time_Box= init.DurationInMinutes;*/
 
             Save_Service = new RelayCommand(go_save);
             GoBack_EditView = new RelayCommand(go_back);
@@ -48,9 +48,9 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private string cost_box;
+        private decimal cost_box;
 
-        public string Cost_Box
+        public decimal Cost_Box
         {
             get { return cost_box; }
             set
@@ -60,9 +60,9 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private string time_box;
+        private int time_box;
 
-        public string Time_Box
+        public int Time_Box
         {
             get { return time_box; }
             set
@@ -92,8 +92,8 @@ namespace WpfApp1.ViewModels
                 try
                 {
                     var entity = App.db.Services.Where(x => x.Id == ID).SingleOrDefault();
-                    entity.Cost = Cost_Box;
-                    entity.DurationInMinutes = Time_Box;
+                    /*entity.Cost = Cost_Box;
+                    entity.DurationInMinutes = Time_Box;*/
                     entity.MainImagePath = ImagePath;
                     entity.Title = Title_Box;
                     App.db.SaveChanges();

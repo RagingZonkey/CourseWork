@@ -25,6 +25,7 @@ namespace WpfApp1.ViewModels
         public ICommand Change { get; private set; }
 
         Service s;
+        
         public WindowAdminServiceViewModel()
         {
             Edit = new RelayCommand(go_edit);
@@ -106,7 +107,7 @@ namespace WpfApp1.ViewModels
         private void go_delete(object sender)
         {
             s = SelectedService;
-            
+            var orderedServiceToDelete = App.db.OrderedServices.Where(y => y.ServiceId == SelectedService.Id);
             if (s != null)
             {
                 MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную услугу?", "Delete", MessageBoxButton.YesNo);
@@ -123,7 +124,7 @@ namespace WpfApp1.ViewModels
 
 
                     adm.Show();
-
+                    App.db.OrderedServices.RemoveRange(orderedServiceToDelete);
                     App.db.Services.Remove(s);
                     App.db.SaveChanges();
 

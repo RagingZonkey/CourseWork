@@ -14,10 +14,10 @@ namespace WpfApp1.Model
 
         public string Title { get; set; }
 
-        public string Cost { get; set; }
+        public decimal Cost { get; set; }
 
 
-        public string DurationInMinutes { get; set; }
+        public int DurationInMinutes { get; set; }
 
         public string MainImagePath { get; set; }
  

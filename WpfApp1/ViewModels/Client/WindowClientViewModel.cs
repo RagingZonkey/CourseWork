@@ -22,6 +22,18 @@ namespace WpfApp1.ViewModels.Client
         public ICommand Close { get; private set; }
 
 
+        public decimal resultingPrice;
+        public decimal ResultingPrice
+        {
+            get { return resultingPrice; }
+            set
+            {
+                resultingPrice = value;
+                OnPropertyChanged("Logins");
+            }
+
+        }
+
 
         public string logins;
 
@@ -69,29 +81,25 @@ namespace WpfApp1.ViewModels.Client
 
             OrderedProducts = new ObservableCollection<OrderedProduct>(entity_products);
             OrderedServices = new ObservableCollection<OrderedService>(entity_services);
+            foreach(var service in OrderedServices)
+            {
+                //service.Cost = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).Cost;
+                service.DurationInMinutes = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).DurationInMinutes;
+                service.Cost = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).Cost;
+                service.MainImagePath = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).MainImagePath;
+                service.Title = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).Title;
+            }
             //OrderedProducts = new ObservableCollection<OrderedProduct>();
 
+            foreach (var product in OrderedProducts)
+            {
+                product.Cost = App.db.Products.FirstOrDefault(n => n.Id == product.ProductId).Cost;
+                product.Description = App.db.Products.FirstOrDefault(n => n.Id == product.ProductId).Description;
+                product.Title = App.db.Products.FirstOrDefault(n => n.Id == product.ProductId).Title;
+                product.MainImagePath = App.db.Services.FirstOrDefault(n => n.Id == product.ProductId).MainImagePath;
+            }
 
-            //OrderedProducts.Add(new OrderedProduct
-            //{
-            //    Title = entity_products.Title.ToString(),
-            //    Cost = "Стоимость товара" +entity_products.Cost.ToString() + " BYN",
-            //    TotalPrice = "Итого: "+ entity_products.TotalPrice + " BYN за " + entity_products.Quantity.ToString() + " шт" ,
-            //    Description = "Описание товара: " + entity_products.Description,
-            //    Quantity = entity_products.Quantity,
-            //    MainImagePath = entity_products.MainImagePath.ToString()
-            //});
-
-            //OrderedServices = new ObservableCollection<OrderedService>();
-
-            //OrderedServices.Add(new OrderedService 
-            //{
-            //    Title = entity_services.Title.ToString(),
-            //    Cost = entity_services.Cost.ToString() + " BYN",
-            //    DurationInMinutes = "Продолжительность в минутах: " + entity_services.DurationInMinutes + " мин",
-            //    DayReserv = "Дата резервации: " + entity_services.DayReserv.ToString(),
-            //    MainImagePath = entity_services.MainImagePath.ToString()
-            //});
+            
 
             Tovari = new RelayCommand(Click_Tovari);
             Service = new RelayCommand(Click_Service);

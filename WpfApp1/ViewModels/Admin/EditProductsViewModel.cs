@@ -59,9 +59,9 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private string cost_box;
+        private decimal cost_box;
 
-        public string Cost_Box
+        public decimal Cost_Box
         {
             get { return cost_box; }
             set
@@ -71,17 +71,7 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private string time_box;
 
-        public string Time_Box
-        {
-            get { return time_box; }
-            set
-            {
-                time_box = value;
-                OnPropertyChanged("Time_Box");
-            }
-        }
 
 
 
@@ -106,7 +96,7 @@ namespace WpfApp1.ViewModels
                     var entity = App.db.Products.Where(x => x.Id == ID).SingleOrDefault();
                     entity.Title = Title_Box;
                     entity.Description = Description_Box;
-                    entity.Cost = Cost_Box;
+                    //entity.Cost = Cost_Box;
                     entity.MainImagePath = ImagePath;
                     App.db.SaveChanges();
 

@@ -19,7 +19,7 @@ namespace WpfApp1.ViewModels.Client
 
         public ICommand Order { get; private set; }
         public ICommand Back { get; private set; }
-        Product product;
+        //Product product;
         public string logins;
         
         public OrderProductsViewModel(/*Product init,*/ string login)
@@ -94,12 +94,10 @@ namespace WpfApp1.ViewModels.Client
             {
                 
                 OrderedProduct orderedProduct = new OrderedProduct
-                {
-                    Title = SelectedProduct.Title,
-                    Cost = SelectedProduct.Cost,
+                { 
+                    ProductId = SelectedProduct.Id,
                     Quantity = Quantity_Box,
-                    TotalPrice = (Quantity_Box * int.Parse(SelectedProduct.Cost)).ToString() ,
-                    MainImagePath = SelectedProduct.MainImagePath,
+                    TotalPrice = (Quantity_Box * SelectedProduct.Cost) ,
                     Login = logins
 
                 };

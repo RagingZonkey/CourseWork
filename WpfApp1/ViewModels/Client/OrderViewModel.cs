@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -21,8 +22,22 @@ namespace WpfApp1.ViewModels.Client
         public ICommand OrderService { get; private set; }
         public ICommand Back { get; private set; }
 
-        Service Service;
+        private string selectedTime;
+        DateTime origin;
+
+        public string SelectedTime
+        {
+            get { return selectedTime; }
+            set 
+            {
+                selectedTime = value;
+                OnPropertyChanged("SelectedTime");
+            }
+        }
+
+        //Service Service;
         public string logins;
+        OrderedService orderedService;
 
         public OrderViewModel(/*Service init,*/ string login)
         {
@@ -87,21 +102,66 @@ namespace WpfApp1.ViewModels.Client
 
         private void go_order(object sender)
         {
+            //DateTime endTime = new DateTime(0,0,0,20,0,0);
+            //DateTime startTime = new DateTime(0,0,0,8,0,0);
+
+            
+            Regex timeValidation = new Regex("^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$");
+            if (!timeValidation.IsMatch(SelectedTime))
+            {
+                System.Windows.Forms.MessageBox.Show("Дурак, цифры научись вводить");
+                return;
+            }
             DateTime curDate = DateTime.Now;
-            //DateTime? selectedDate = Date_Box.SelectedDate;
-            if(Date_Box > DateTime.Now)
+            bool flag = true;
+            string[] date = SelectedTime.Split(':');
+            Date_Box = Date_Box.AddHours(int.Parse(date[0]));
+            Date_Box = Date_Box.AddMinutes(int.Parse(date[1]));
+            DateTime dateTime = Date_Box;
+            DateTime dateTimeFromService;
+            int duration = 0;
+            if (SelectedService != null)
+            {
+                duration = SelectedService.DurationInMinutes;
+            }
+            else flag = false;
+            //dateTime = Date_Box.AddMinutes(duration);
+            dateTime = dateTime.AddMinutes(duration);
+
+            //if (Date_Box.Hour > startTime.Hour && dateTime.Hour < endTime.Hour)
+            //{
+                foreach (var service in App.db.OrderedServices)
+                {
+
+                    dateTimeFromService = service.DayReserv;
+                    dateTimeFromService = dateTimeFromService.AddMinutes(SelectedService.DurationInMinutes);
+                    if ((Date_Box > service.DayReserv && Date_Box >= dateTimeFromService) ||
+                        (dateTime <= service.DayReserv && dateTime < dateTimeFromService))
+                    {
+                    }
+                    else
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+                //DateTime? selectedDate = Date_Box.SelectedDate;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("В выбранное вами время парикмахерская не работает!\nВыберите другое время!");
+            //}
+            if (Date_Box > DateTime.Now && flag)
             {
                 try
                 {
                     OrderedService orderedService = new OrderedService
                     {
-                        Title = SelectedService.Title,
-                        Cost = SelectedService.Cost,
-                        DayReserv = Date_Box.ToShortDateString() ,
-                        MainImagePath = SelectedService.MainImagePath,
-                        Login = logins
+                        DayReserv = Date_Box,
+                        Login = logins,
+                        ServiceId = SelectedService.Id
 
-                       
+                    
                     };
                     App.db.OrderedServices.Add(orderedService);
                     App.db.SaveChanges();
@@ -127,6 +187,8 @@ namespace WpfApp1.ViewModels.Client
             else
             {
                 MessageBox.Show("Выберите правильную дату!", "Error");
+                Date_Box = Date_Box.AddMinutes(-int.Parse(date[1]));
+                Date_Box = Date_Box.AddHours(-int.Parse(date[0]));
             }
 
 

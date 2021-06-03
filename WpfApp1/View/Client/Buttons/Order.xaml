@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1.view.Client.Buy"
+        xmlns:local="clr-namespace:WpfApp1.view.Client.Buy" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d" Icon="/Assets/CLEANCUT_Нежелательный фон 2 2.png"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
         Title="Заказ" Height="590" Width="800">
@@ -39,8 +39,16 @@
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0" HorizontalAlignment="Center" FontSize="28"
                            Text="Зарезервировать" 
                            ></TextBlock>
+            <TextBlock DockPanel.Dock="Top" 
+                       Margin="0,5,0,0" 
+                       HorizontalAlignment="Center" 
+                       FontSize="16" 
+                       FontWeight="Bold"
+                       Foreground="DarkRed"
+                       Text="Внимание! Время работы парикмахерской: Ежедневно 8:00-20:00" 
+                           ></TextBlock>
 
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
+            <TextBlock DockPanel.Dock="Top" Margin="0,5,0,0"
                            Text="Наименование услуги" 
                            ></TextBlock>
 
@@ -68,16 +76,20 @@
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
                            Text="Выберите дату" 
                            HorizontalAlignment="Center"></TextBlock>
-            <Calendar 
-                DockPanel.Dock="Top"
-                HorizontalAlignment="Center"
-                SelectedDate ="{Binding Date_Box, Mode=TwoWay}"
-                x:Name="calendar_date"
-                Margin="0,8,0,0">
+            <StackPanel DockPanel.Dock="Top"
+                HorizontalAlignment="Center">
+                <Calendar 
+                                 SelectedDate="{Binding Date_Box, Mode=TwoWay}"
+                            Margin="0,8,0,0">
 
-            </Calendar>
-
-            <DockPanel Width="800">
+                </Calendar>
+                <TextBlock Text="Выберите время"
+                           HorizontalAlignment="Center"/>
+                <xctk:MaskedTextBox Text="{Binding SelectedTime}"
+                                    HorizontalAlignment="Center"
+                                Mask="00:00" />
+            </StackPanel>
+            <DockPanel Width="800" Height="200">
                 <Button  
                          
                          Margin="150,0,0,100"

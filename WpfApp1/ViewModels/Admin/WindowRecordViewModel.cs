@@ -57,6 +57,14 @@ namespace WpfApp1.ViewModels
 
 
             OrderedServices = new ObservableCollection<OrderedService>(App.db.OrderedServices);
+            foreach (var service in OrderedServices)
+            {
+                service.DurationInMinutes = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).DurationInMinutes;
+                service.Cost = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).Cost;
+                service.MainImagePath = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).MainImagePath;
+                service.Title = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).Title;
+                
+            }
 
 
         }

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1.view.Admin.Buttons"
+        xmlns:local="clr-namespace:WpfApp1.view.Admin.Buttons" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d" ResizeMode="NoResize" Icon="/Assets/CLEANCUT_Нежелательный фон 2 2.png"
         WindowStartupLocation="CenterScreen"
         Title="Редактирование записи" Height="600" Width="800">
@@ -38,7 +38,7 @@
         </Border>
 
 
-        <DockPanel Grid.Column="1" Grid.Row="1" LastChildFill="False">
+        <DockPanel Grid.Column="1" Grid.Row="1" LastChildFill="False" >
             <TextBlock DockPanel.Dock="Top" 
                        Margin="0,13,0,0" 
                        HorizontalAlignment="Center" 
@@ -46,24 +46,39 @@
                            Text="Редактирование записи" 
                            ></TextBlock>
 
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Наименование услуги" 
+            <StackPanel Margin="0,13,0,0"
+                HorizontalAlignment="Center"                
+                           DockPanel.Dock="Top" 
+                        Orientation="Horizontal"
+                        >
+                <TextBlock 
+                           Text="Клиент: " 
                            ></TextBlock>
 
-            <TextBox Text ="{Binding Title_Box, Mode=TwoWay}" IsReadOnly="True"  DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
+                <TextBlock Text="{Binding Path=Login}"
+                           Foreground="DarkRed"
+                           />
+            </StackPanel>
 
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Стоимость" 
+            <StackPanel Margin="0,13,0,0"
+                HorizontalAlignment="Center"                
+                           DockPanel.Dock="Top" 
+                        Orientation="Horizontal"
+                        >
+                <TextBlock 
+                           Text="Услуга: " 
                            ></TextBlock>
 
+                <TextBlock Text="{Binding Path=Title}"
+                           Foreground="DarkRed"
+                           />
+            </StackPanel>
 
-            <TextBox Text ="{Binding Cost_Box, Mode=TwoWay}" IsReadOnly="True" x:Name="cost_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
-            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Оплаченное время мастера" 
-                           ></TextBlock>
 
-            <TextBox Text ="{Binding Cost_Box, Mode=TwoWay}" IsReadOnly="True" x:Name="time_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
-            
+
+
+
+
 
             <TextBlock 
                            HorizontalAlignment="Center"                
@@ -71,18 +86,27 @@
                            Margin="0,13,0,0"
                            Text="Дата заказа" 
                            ></TextBlock>
-            <Calendar 
-                DockPanel.Dock="Top"
-                x:Name="calendar_record"
-                      SelectedDate="{Binding Date_Box}"></Calendar>
+            <StackPanel DockPanel.Dock="Top"
+                HorizontalAlignment="Center">
+                <Calendar 
+                                 SelectedDate="{Binding Date_Box, Mode=TwoWay}"
+                            Margin="0,8,0,0">
+
+                </Calendar>
+                <TextBlock Margin="0 10" Text="Выберите время"
+                           HorizontalAlignment="Center"/>
+                <xctk:MaskedTextBox Text="{Binding SelectedTime}"
+                                    HorizontalAlignment="Center"
+                                Mask="00:00" />
+            </StackPanel>
          
 
-            <DockPanel Width="800">
-                <Button   Margin="160,0,0,30"
+            <DockPanel Width="800" HorizontalAlignment="Center" >
+                <Button   Margin="265,-60,0,30"
                          Width="129" Height="40"
                           Content="Изменить" Command="{Binding Save_Service}" Background="Transparent"/>
                 <Button  DockPanel.Dock="Top" Height="40" Width="129" 
-                         Content="Назад" Command="{Binding GoBack_EditView}" Background="Transparent" Margin="-90,0,261,30"/>
+                         Content="Назад" Command="{Binding GoBack_EditView}" Background="Transparent" Margin="0,-60,261,30"/>
             </DockPanel>
 
         </DockPanel>

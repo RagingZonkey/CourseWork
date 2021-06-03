@@ -12,7 +12,7 @@ using WpfApp1.view.Admin.Buttons;
 using WpfApp1.ViewModels.Base;
 using Microsoft.Win32;
 using WpfApp1.Commands;
-
+using System.Text.RegularExpressions;
 
 namespace WpfApp1.ViewModels
 {
@@ -27,11 +27,9 @@ namespace WpfApp1.ViewModels
         {
             this.OrderedService = init;
             ID = init.Id;
-            Title_Box = init.Title;
-            Cost_Box = init.Cost;
-            Time_Box = init.DurationInMinutes;
-            Date_Box = Convert.ToDateTime(init.DayReserv);
-
+            Login = init.Login;
+            Title = init.Title;
+            
             Save_Service = new RelayCommand(record_save);
             GoBack_EditView = new RelayCommand(go_back);
             
@@ -49,52 +47,37 @@ namespace WpfApp1.ViewModels
         }
 
 
-        private string title_box;
+        private string login;
 
-        public string Title_Box
+        public string Login
         {
-            get { return title_box; }
-            set
-            {
-                title_box = value;
-                OnPropertyChanged("Title_Box");
-            }
+            get { return login; }
+            set { login = value; }
         }
 
-        private string cost_box;
+        private string title;
 
-        public string Cost_Box
+        public string Title
         {
-            get { return cost_box; }
-            set
-            {
-                cost_box = value;
-                OnPropertyChanged("Cost_Box");
-            }
+            get { return title; }
+            set { title = value; }
         }
 
-        private string time_box;
 
-        public string Time_Box
+        private string selectedTime;
+       
+
+        public string SelectedTime
         {
-            get { return time_box; }
+            get { return selectedTime; }
             set
             {
-                time_box = value;
-                OnPropertyChanged("Time_Box");
+                selectedTime = value;
+                OnPropertyChanged("SelectedTime");
             }
         }
 
 
-
-        private string imagepath;
-        
-
-        public string ImagePath
-        {
-            get { return imagepath; }
-            set { imagepath = value; }
-        }
 
 
 
@@ -107,17 +90,57 @@ namespace WpfApp1.ViewModels
 
         private void record_save(object obj)
         {
+            Regex timeValidation = new Regex("^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$");
+            if (!timeValidation.IsMatch(SelectedTime))
+            {
+                System.Windows.Forms.MessageBox.Show("Дурак, цифры научись вводить");
+                return;
+            }
+            DateTime curDate = DateTime.Now;
+            bool flag = true;
+            string[] date = SelectedTime.Split(':');
+            Date_Box = Date_Box.AddHours(int.Parse(date[0]));
+            Date_Box = Date_Box.AddMinutes(int.Parse(date[1]));
+            DateTime dateTime = Date_Box;
+            DateTime dateTimeFromService;
+            int duration = 0;
+            if (OrderedService != null)
+            {
+                duration = OrderedService.DurationInMinutes;
+            }
+            else flag = false;
+            //dateTime = Date_Box.AddMinutes(duration);
+            dateTime = dateTime.AddMinutes(duration);
 
-            
-            if (Date_Box > DateTime.Now)
+            //if (Date_Box.Hour > startTime.Hour && dateTime.Hour < endTime.Hour)
+            //{
+            foreach (var service in App.db.OrderedServices)
+            {
+
+                dateTimeFromService = service.DayReserv;
+                dateTimeFromService = dateTimeFromService.AddMinutes(OrderedService.DurationInMinutes);
+                if ((Date_Box > service.DayReserv && Date_Box >= dateTimeFromService) ||
+                    (dateTime <= service.DayReserv && dateTime < dateTimeFromService))
+                {
+                }
+                else
+                {
+                    flag = false;
+                    break;
+                }
+            }
+            //DateTime? selectedDate = Date_Box.SelectedDate;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("В выбранное вами время парикмахерская не работает!\nВыберите другое время!");
+            //}
+            if (Date_Box > DateTime.Now && flag)
             {
                 try
                 {
                     var entity = App.db.OrderedServices.FirstOrDefault(x => x.Id == ID);
-                    entity.Title = Title_Box;
-                    entity.DayReserv = Date_Box.ToShortDateString();
-                    entity.MainImagePath = ImagePath;
-                    entity.DurationInMinutes = Time_Box;
+                    entity.DayReserv = Date_Box;
                     App.db.SaveChanges();
                 }
                 catch { MessageBox.Show("Выберите правильную дату!", "Error"); }
@@ -135,6 +158,14 @@ namespace WpfApp1.ViewModels
                     winadm.Show();
                 }
             }
+            else
+            {
+                MessageBox.Show("Выберите правильную дату!", "Error");
+                Date_Box = Date_Box.AddMinutes(-int.Parse(date[1]));
+                Date_Box = Date_Box.AddHours(-int.Parse(date[0]));
+            }
+
+            
         }
 
 

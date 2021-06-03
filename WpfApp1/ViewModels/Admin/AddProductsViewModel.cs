@@ -33,9 +33,9 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private string cost_box;
+        private decimal cost_box;
 
-        public string Cost_Box
+        public decimal Cost_Box
         {
             get { return cost_box; }
             set
@@ -45,17 +45,7 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private string time_box;
-
-        public string Time_Box
-        {
-            get { return time_box; }
-            set
-            {
-                time_box = value;
-                OnPropertyChanged("Time_Box");
-            }
-        }
+ 
 
         private string desc_box;
 
@@ -117,7 +107,7 @@ namespace WpfApp1.ViewModels
                 WindowAdminService winadm = new WindowAdminService();
                 foreach (Window win in Application.Current.Windows)
                 {
-                    if (win is Add)
+                    if (win is AddProducts)
                     {
                         win.Close();
                     }
@@ -133,7 +123,7 @@ namespace WpfApp1.ViewModels
 
         private void go_add(object obj)
         {
-            if (ImagePath == null || Title_Box == null || Cost_Box == null || Time_Box == null)
+            if (ImagePath == null || Title_Box == null || Cost_Box.ToString() == null)
             {
 
                 MessageBox.Show("Выберите изображение и заполните пустые поля!");
@@ -160,7 +150,7 @@ namespace WpfApp1.ViewModels
                             WindowAdminService winadm = new WindowAdminService();
                             foreach (Window win in Application.Current.Windows)
                             {
-                                if (win is Add)
+                                if (win is AddProducts)
                                 {
                                     win.Close();
                                 }

@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         Icon="/Assets/CLEANCUT_Нежелательный фон 2 2.png"
         xmlns:hamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
-        Title="Личный кабинет" Height="450" Width="800"
+        Title="Личный кабинет" Height="700" Width="1000"
          MinHeight="400" MinWidth="700">
     <Grid>
 
@@ -22,6 +22,7 @@
             <RowDefinition Height="71*"/>
             <RowDefinition Height="324*"/>
             <RowDefinition Height="24*"/>
+
         </Grid.RowDefinitions>
 
 
@@ -89,18 +90,7 @@
                          DockPanel.Dock="Top">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="301">
-                                <!--<DockPanel>
-                                    <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
-                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Title}"></TextBlock>
-                                    
-                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=Cost}"></TextBlock>
-                                    
-                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=DayReserv}"></TextBlock>
-                                    
-                                    <TextBlock DockPanel.Dock="Top" Text="{Binding Path=DurationInMinutes}"></TextBlock>
-                                    
-                                </DockPanel>-->
+                            <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="380">
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <StackPanel Orientation="Vertical">
@@ -111,22 +101,24 @@
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock  Text=" "></TextBlock>
-                                        <TextBlock  Text="{Binding Path=Cost}"></TextBlock>
-                                        <TextBlock  Text="{Binding Path=DurationInMinutes}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock  Text="{Binding Path=Cost}"></TextBlock>
+                                            <TextBlock  Text=" BYN"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock  Text="{Binding Path=DurationInMinutes}"></TextBlock>
+                                            <TextBlock  Text=" мин"></TextBlock>
+                                        </StackPanel>
                                         <TextBlock  Text="{Binding Path=DayReserv}"></TextBlock>
                                     </StackPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock  Text=" "></TextBlock>
-                                        <TextBlock  Text=" BYN"></TextBlock>
-                                        <TextBlock  Text=" мин"></TextBlock>
-                                    </StackPanel>
+                                    
                                 </DockPanel>
                             </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
 
                 </ListBox>
-
+                
             </DockPanel>
 
         </ScrollViewer>
@@ -145,41 +137,25 @@
                         <DataTemplate>
 
                             <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="301">
-                                <!--<DockPanel>
-                                    <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
-                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Title}"></TextBlock>
-                                    
-                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Title}"></TextBlock>
-                                    
-                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=Description}"></TextBlock>
-                                    
-                                    <TextBlock DockPanel.Dock="Top"  Text="{Binding Path=TotalPrice}"></TextBlock>
-                                    
-                                </DockPanel>-->
-
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock  Margin="10 0 0 0" Text="{Binding Path=Title}"></TextBlock>
                                         <TextBlock  Margin="10 0 0 0" Text="Стоимость: "></TextBlock>
-                                        <TextBlock  Margin="10 0 0 0" Text="Количество:      "></TextBlock>
-                                        <TextBlock  Margin="10 0 0 0" Text="Итоговая стоимость:      "></TextBlock>
                                         <TextBlock  Margin="10 0 0 0" Text="Описание:      "></TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock  Text=" "></TextBlock>
-                                        <TextBlock  Text="{Binding Path=Cost}"></TextBlock>
-                                        <TextBlock  Text="{Binding Path=Quantity}"></TextBlock>
-                                        <TextBlock  Text="{Binding Path=TotalPrice}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock  Text="{Binding Path=Cost}"></TextBlock>
+                                            <TextBlock  Text=" BYN"></TextBlock>
+                                        </StackPanel>
                                         <TextBlock  Text="{Binding Path=Description}"></TextBlock>
                                     </StackPanel>
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock  Text=" "></TextBlock>
-                                        <TextBlock  Text=" BYN"></TextBlock>
-                                        <TextBlock  Text=" шт"></TextBlock>
- 
-                                    </StackPanel>
+
                                 </DockPanel>
+
+
                             </Border>
 
                         </DataTemplate>
@@ -190,5 +166,29 @@
             </DockPanel>
 
         </ScrollViewer>
+        <DockPanel Grid.Column="1" Grid.Row="2">
+            <StackPanel DockPanel.Dock="Top"
+                        Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center"
+                           FontWeight="Bold"
+                           Text="Итоговая стоимость услуг: "/>
+                <TextBlock 
+                    VerticalAlignment="Center"
+                    Foreground="DarkRed"
+                    Text="{Binding }"/>
+            </StackPanel>
+        </DockPanel>
+        <DockPanel Grid.Column="2" Grid.Row="2">
+            <StackPanel DockPanel.Dock="Top"
+                        Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center"
+                           FontWeight="Bold"
+                           Text="Итоговая стоимость товаров: "/>
+                <TextBlock 
+                    VerticalAlignment="Center"
+                    Foreground="DarkRed"
+                    Text="{Binding }"/>
+            </StackPanel>
+        </DockPanel>
     </Grid>
 </Window>
