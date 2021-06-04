@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterScreen"
         Icon="/Assets/CLEANCUT_Нежелательный фон 2 2.png"
         xmlns:hamburgerMenu="clr-namespace:HamburgerMenu;assembly=HamburgerMenu"
-        Title="Личный кабинет" Height="700" Width="1000"
+        Title="Личный кабинет" Height="580" Width="1000"
          MinHeight="400" MinWidth="700">
     <Grid>
 
@@ -84,10 +84,11 @@
             <DockPanel Grid.Column="1" Grid.Row="1"  >
                 <TextBlock HorizontalAlignment="Center"
                     DockPanel.Dock="Top"
+                       
                     Text="Заказанные услуги" />
                 <ListBox x:Name="client_services" 
                          ItemsSource="{Binding OrderedServices}"
-                       
+                       SelectedItem="{Binding SelectedService}"
                          DockPanel.Dock="Top">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -186,6 +187,8 @@
                 <TextBlock VerticalAlignment="Center"
                            Text=" BYN"
                            />
+                <Button VerticalAlignment='Center' DockPanel.Dock="Right"    Content= "Отменить заказ" Command="{Binding CleanUp_OS}" Margin="60 0 0 0"/>
+
             </StackPanel>
         </DockPanel>
         <DockPanel Grid.Column="2" Grid.Row="2">
@@ -201,7 +204,7 @@
                 <TextBlock VerticalAlignment="Center"
                            Text=" BYN"
                            />
-                <Button VerticalAlignment='Center' DockPanel.Dock="Right"    Content= "Отменить" Command="{Binding CleanUp}" Margin="110 0 0 0"/>
+                <Button VerticalAlignment='Center' DockPanel.Dock="Right"    Content= "Отменить резервацию" Command="{Binding CleanUp}" Margin="30 0 0 0"/>
             </StackPanel>
         </DockPanel>
     </Grid>

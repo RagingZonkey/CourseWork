@@ -152,7 +152,6 @@
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Client.cs" />
-    <Compile Include="PasswordHashing\SaltedHash.cs" />
     <Compile Include="ViewModels\Admin\AddProductsViewModel.cs" />
     <Compile Include="ViewModels\Admin\AddViewModel.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
@@ -245,6 +244,7 @@
     <Resource Include="Font\GTA.ttf" />
     <Resource Include="Font\19138.ttf" />
     <Resource Include="Font\OpenSans-Bold.ttf" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="CleanCut_ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

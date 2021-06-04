@@ -99,7 +99,7 @@ namespace WpfApp1.ViewModels
             Regex timeValidation = new Regex("^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$");
             if (!timeValidation.IsMatch(SelectedTime))
             {
-                System.Windows.Forms.MessageBox.Show("Дурак, цифры научись вводить");
+                System.Windows.Forms.MessageBox.Show("Вы вышли за пределы формата времени!");
                 Date_Box = oldDate;
                 return;
             }
@@ -177,7 +177,7 @@ namespace WpfApp1.ViewModels
             }
             else
             {
-                MessageBox.Show("Выберите правильную дату!", "Error");
+                MessageBox.Show("Данное время недоступно для записи! Выберите другой вариант! ");
             }
 
             

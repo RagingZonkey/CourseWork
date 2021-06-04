@@ -73,14 +73,28 @@ namespace WpfApp1.ViewModels.Client
 
         private void on_register(object sender)
         {
+            //bool flag = true;
             Regex complexPassword = new Regex("(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}");
-
+            Regex complexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            
             /// <summary>
             /// Свойства, в которые передаются значения для полей из окна
             /// </summary>
             Email_Box = Email_Box.Trim();
             FirstPasswordBox = FirstPasswordBox.Trim();
             SecondPasswordBox = SecondPasswordBox.Trim();
+            if (!complexPassword.IsMatch(FirstPasswordBox))
+            {
+                MessageBox.Show("Пароль должен быть в длину более 6 символов, содержать цифры, спец символы, латинские буквы в верхнем и нижнем регистре");
+                FirstPasswordBox = null;
+                return;
+            }
+            if (!complexEmail.IsMatch(Email_Box))
+            {
+                MessageBox.Show("Введите настоящий E-mail адрес!");
+                Email_Box = null;
+                return;
+            }
 
 
             if (Email_Box == null || FirstPasswordBox == null || SecondPasswordBox == null)

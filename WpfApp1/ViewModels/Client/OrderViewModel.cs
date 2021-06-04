@@ -23,7 +23,7 @@ namespace WpfApp1.ViewModels.Client
         public ICommand Back { get; private set; }
 
         private string selectedTime;
-        //DateTime origin;
+
 
         public string SelectedTime
         {
@@ -35,16 +35,13 @@ namespace WpfApp1.ViewModels.Client
             }
         }
 
-        //Service Service;
+
         public string logins;
-        //OrderedService orderedService;
 
         public OrderViewModel(/*Service init,*/ string login)
         {
 
             logins = login;
-            //this.Service = init;
-            //title_box = init.Title;
             Services = new ObservableCollection<Service>(App.db.Services);
 
             OrderService = new RelayCommand(go_order);
@@ -110,7 +107,7 @@ namespace WpfApp1.ViewModels.Client
             Regex timeValidation = new Regex("^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$");
             if (!timeValidation.IsMatch(SelectedTime))
             {
-                System.Windows.Forms.MessageBox.Show("Дурак, цифры научись вводить");
+                System.Windows.Forms.MessageBox.Show("Вы вышли за пределы формата времени!");
                 Date_Box = oldDate;
                 return;
             }

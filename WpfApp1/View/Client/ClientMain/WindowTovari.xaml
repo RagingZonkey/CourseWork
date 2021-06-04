@@ -82,7 +82,7 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
 
-                            <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="Auto">
+                            <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="700">
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <StackPanel Orientation="Vertical">

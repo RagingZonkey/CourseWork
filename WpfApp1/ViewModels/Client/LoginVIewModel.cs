@@ -42,70 +42,77 @@ namespace WpfApp1.ViewModels.Client
 
         private void Button_Click(object sender)
         {
-            string login = Email_Box.Trim();
-            string password = Password_Box.Trim();
-
-            try
+            
+            if (Email_Box != null && Password_Box != null)
             {
-                //Model.Client entity = null;
-                var entity = App.db.Clients.Where(x => x.Email == login && x.Password == password || x.Email == login).SingleOrDefault();
-
-                if (entity != null)
+                string login = Email_Box.Trim();
+                string password = Password_Box.Trim();
+                try
                 {
-                    if (entity.Password == password)
-                    {
-                        
+                    //Model.Client entity = null;
+                    var entity = App.db.Clients.Where(x => x.Email == login && x.Password == password || x.Email == login).SingleOrDefault();
 
-                        if (entity.Role == 0)
+                    if (entity != null)
+                    {
+                        if (entity.Password == password)
                         {
 
-                            WindowService client = new WindowService(login);
-                            foreach (Window win in Application.Current.Windows)
+
+                            if (entity.Role == 0)
                             {
-                                if (win is Login)
+
+                                WindowService client = new WindowService(login);
+                                foreach (Window win in Application.Current.Windows)
                                 {
-                                    win.Close();
+                                    if (win is Login)
+                                    {
+                                        win.Close();
+                                    }
                                 }
+                                client.Show();
                             }
-                            client.Show();
+
+
+                            else
+                            {
+                                //Model.Client adminentity = null;
+
+                                WindowAdmin windowCompany = new WindowAdmin();
+                                foreach (Window win in Application.Current.Windows)
+                                {
+                                    if (win is Login)
+                                    {
+                                        win.Close();
+                                    }
+                                }
+                                windowCompany.Show();
+
+                            }
                         }
-
-
                         else
                         {
-                            //Model.Client adminentity = null;
-
-                            WindowAdmin windowCompany = new WindowAdmin();
-                            foreach (Window win in Application.Current.Windows)
-                            {
-                                if (win is Login)
-                                {
-                                    win.Close();
-                                }
-                            }
-                            windowCompany.Show();
-
+                            MessageBox.Show("Проверьте правильность введенного пароля!");
                         }
+
+
                     }
                     else
                     {
-                        MessageBox.Show("Проверьте правильность введенного пароля!");
+                        MessageBox.Show($"Пользователя с логином \"{login}\" не существует!");
                     }
-                    
-                    
                 }
-                else
+
+
+
+
+                catch (SqlException)
                 {
-                    MessageBox.Show($"Пользователя с логином \"{login}\" не существует!") ;
+                    MessageBox.Show("Отсутствует подключение с базой данных");
                 }
             }
-
-
-
-
-            catch (SqlException)
+            else
             {
-                MessageBox.Show("Отсутствует подключение с базой данных");
+                MessageBox.Show("Для начала заполните поля!");
             }
 
         }

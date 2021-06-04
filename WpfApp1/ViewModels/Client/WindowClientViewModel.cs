@@ -16,13 +16,6 @@ namespace WpfApp1.ViewModels.Client
 {
     public class WindowClientViewModel : BaseViewModel
     {
-        public ICommand Tovari { get; private set; }
-        public ICommand Service { get; private set; }
-        public ICommand Change { get; private set; }
-        public ICommand Close { get; private set; }
-        public ICommand CleanUp { get; private set; }
-
-        OrderedProduct p;
         public decimal resultingPrice;
         public decimal ResultingPrice
         {
@@ -34,6 +27,20 @@ namespace WpfApp1.ViewModels.Client
             }
 
         }
+
+
+
+
+
+        public ICommand Tovari { get; private set; }
+        public ICommand Service { get; private set; }
+        public ICommand Change { get; private set; }
+        public ICommand Close { get; private set; }
+        public ICommand CleanUp { get; private set; }
+        public ICommand CleanUp_OS { get; private set; }
+
+        OrderedProduct p;
+        OrderedService s;
 
         public decimal productsResultingPrice;
         public decimal ProductsResultingPrice
@@ -68,6 +75,17 @@ namespace WpfApp1.ViewModels.Client
             set
             {
                 selectedProduct = value;
+                OnPropertyChanged("SelectedProduct");
+            }
+        }
+        private OrderedService selectedService;
+
+        public OrderedService SelectedService
+        {
+            get { return selectedService; }
+            set
+            {
+                selectedService = value;
                 OnPropertyChanged("SelectedProduct");
             }
         }
@@ -134,6 +152,7 @@ namespace WpfApp1.ViewModels.Client
             Change = new RelayCommand(Click_change);
             Close = new RelayCommand(go_close);
             CleanUp = new RelayCommand(go_cleanup);
+            CleanUp_OS = new RelayCommand(go_cleanup_os);
 
         }
 
@@ -209,11 +228,44 @@ namespace WpfApp1.ViewModels.Client
             p = SelectedProduct;
             if (p != null)
             {
-                var orderedProductToDelete = App.db.OrderedProducts.Where(y => y.Id == p.Id);
-                App.db.OrderedProducts.RemoveRange(orderedProductToDelete);
+                var orderedProductToDelete = App.db.OrderedProducts.FirstOrDefault(y => y.Id == p.Id);
+                App.db.OrderedProducts.Remove(orderedProductToDelete);
                 App.db.SaveChanges();
             }
             adm.Show();
+
+
+        }
+
+        private void go_cleanup_os(object sender)
+        {
+            try {
+                WindowService adm = new WindowService(logins);
+                foreach (Window win in Application.Current.Windows)
+                {
+                    if (win is WindowClient)
+                    {
+                        win.Close();
+                    }
+                }
+                s = SelectedService;
+                if (s != null)
+                {
+                    var orderedServiceToDelete = App.db.OrderedServices.FirstOrDefault(y => y.Id == s.Id);
+                    App.db.OrderedServices.Remove(orderedServiceToDelete);
+                    App.db.SaveChanges();
+                }
+                adm.Show();
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+            
+
+
+
+            
 
 
         }
