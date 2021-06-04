@@ -123,42 +123,50 @@ namespace WpfApp1.ViewModels
 
         private void go_add(object obj)
         {
-            if (ImagePath == null || Title_Box == null || Cost_Box.ToString() == null)
+            if (ImagePath == null || Title_Box == null || Cost_Box.ToString() == null || Description_Box == null)
             {
 
                 MessageBox.Show("Выберите изображение и заполните пустые поля!");
-
+                
 
             }
             else
+
             {
-                try
+                if (Cost_Box == 0)
                 {
-                    App.db.Products.Add(new Product { Title = Title_Box, Cost = Cost_Box, Description = Description_Box, MainImagePath = ImagePath });
-                    App.db.SaveChanges();
+                    MessageBox.Show("Проверьте правильность введенных данных о цене товара!");
+                }
+                else
+                {
+                    try
+                    {
+                        App.db.Products.Add(new Product { Title = Title_Box, Cost = Cost_Box, Description = Description_Box, MainImagePath = ImagePath });
+                        App.db.SaveChanges();
 
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    
-                        
-                            MessageBox.Show("Продукт успешно добавлен!");
-                            WindowAdminService winadm = new WindowAdminService();
-                            foreach (Window win in Application.Current.Windows)
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+
+
+                        MessageBox.Show("Продукт успешно добавлен!");
+                        WindowAdminService winadm = new WindowAdminService();
+                        foreach (Window win in Application.Current.Windows)
+                        {
+                            if (win is AddProducts)
                             {
-                                if (win is AddProducts)
-                                {
-                                    win.Close();
-                                }
+                                win.Close();
                             }
-                            winadm.Show();
-                        
-                    
+                        }
+                        winadm.Show();
 
+
+
+                    }
                 }
             }
         }

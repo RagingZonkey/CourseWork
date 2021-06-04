@@ -59,7 +59,7 @@ namespace WpfApp1.ViewModels.Client
                         if (entity.Role == 0)
                         {
 
-                            WindowClient client = new WindowClient(login);
+                            WindowService client = new WindowService(login);
                             foreach (Window win in Application.Current.Windows)
                             {
                                 if (win is Login)

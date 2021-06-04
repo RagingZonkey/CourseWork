@@ -29,6 +29,8 @@ namespace WpfApp1.ViewModels
             this.Product = init;
             ID = init.Id;
             Title_Box = init.Title;
+            Description_Box = init.Description;
+            Cost_Box = init.Cost;
             Save_Service = new RelayCommand(go_save);
             GoBack_EditView = new RelayCommand(go_back);
             Select_Image = new RelayCommand(select_image);
@@ -90,41 +92,56 @@ namespace WpfApp1.ViewModels
 
         private void go_save(object obj)
         {
-            
+            if (ImagePath == null || Title_Box == null || Cost_Box.ToString() == null || Description_Box == null)
+            {
 
-                try
-                {
-                    var entity = App.db.Products.Where(x => x.Id == ID).SingleOrDefault();
-                    entity.Title = Title_Box;
-                    entity.Description = Description_Box;
-                    entity.Cost = Cost_Box;
-                    entity.MainImagePath = ImagePath;
-                foreach (OrderedProduct op in App.db.OrderedProducts.Where(x => x.ProductId == ID))
-                {
-                    op.TotalPrice = entity.Cost * op.Quantity;
-                }
-                    App.db.SaveChanges();
+                MessageBox.Show("Выберите изображение и заполните пустые поля!");
+                
 
-                }
-                catch (Exception ex)
+            }
+            else
+            {
+                if (Cost_Box == 0)
                 {
-                    System.Windows.Forms.MessageBox.Show(ex.Message);
+                    MessageBox.Show("Проверьте правильность введенных данных о цене товара!");
                 }
-                finally
+                else
                 {
-                    WindowAdmin winadm = new WindowAdmin();
-                    MessageBox.Show("Продукт успешно отредактирован!");
-                    foreach (Window win in Application.Current.Windows)
+
+                    try
                     {
-                        if (win is EditProducts)
+                        var entity = App.db.Products.Where(x => x.Id == ID).SingleOrDefault();
+                        entity.Title = Title_Box;
+                        entity.Description = Description_Box;
+                        entity.Cost = Cost_Box;
+                        entity.MainImagePath = ImagePath;
+                        foreach (OrderedProduct op in App.db.OrderedProducts.Where(x => x.ProductId == ID))
                         {
-                            win.Close();
+                            op.TotalPrice = entity.Cost * op.Quantity;
                         }
+                        App.db.SaveChanges();
+
                     }
-                    winadm.Show();
+                    catch (Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        WindowAdmin winadm = new WindowAdmin();
+                        MessageBox.Show("Продукт успешно отредактирован!");
+                        foreach (Window win in Application.Current.Windows)
+                        {
+                            if (win is EditProducts)
+                            {
+                                win.Close();
+                            }
+                        }
+                        winadm.Show();
+                    }
+
                 }
-
-
+            }
             
         }
 

@@ -75,42 +75,48 @@ namespace WpfApp1.ViewModels
         {
             if (ImagePath == null || Title_Box == null || Cost_Box.ToString() ==null || Time_Box.ToString() == null)
             {
-
                 MessageBox.Show("Выберите изображение или заполните пустые поля!");
-
+                
 
             }
         
             else 
             {
-                try
+
+                if (Cost_Box == 0 || Time_Box == 0)
                 {
-
-                    App.db.Services.Add(new Service { Title = Title_Box, Cost = Cost_Box, DurationInMinutes = Time_Box, MainImagePath = ImagePath});
-                    App.db.SaveChanges();
-
+                    MessageBox.Show("Проверьте правильность введенных данных о цене и времени!");
                 }
-                catch (Exception ex)
+                else
                 {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-
-                    
-                    MessageBox.Show("Услуга успешно добавлена!");
-                    WindowAdminService winadm = new WindowAdminService();
-                    foreach (Window win in Application.Current.Windows)
+                    try
                     {
-                        if (win is Add)
-                        {
-                            win.Close();
-                        }
-                    }
-                    winadm.Show();
-                }
-                
 
+                        App.db.Services.Add(new Service { Title = Title_Box, Cost = Cost_Box, DurationInMinutes = Time_Box, MainImagePath = ImagePath });
+                        App.db.SaveChanges();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+
+
+                        MessageBox.Show("Услуга успешно добавлена!");
+                        WindowAdminService winadm = new WindowAdminService();
+                        foreach (Window win in Application.Current.Windows)
+                        {
+                            if (win is Add)
+                            {
+                                win.Close();
+                            }
+                        }
+                        winadm.Show();
+                    }
+
+                }
 
             }
            

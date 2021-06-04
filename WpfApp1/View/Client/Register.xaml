@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Icon="/Assets/CLEANCUT_Нежелательный фон 2 2.png"
         WindowStartupLocation="CenterScreen"
-        Title="Регистрация" ResizeMode="NoResize" Height="620" Width="400">
+        Title="Регистрация" ResizeMode="NoResize" Height="300" Width="400">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="33*"/>
@@ -26,43 +26,7 @@
 
         <StackPanel Grid.Row="1" Grid.Column="1">
 
-            <DockPanel Margin="0,13,0,0">
-                <TextBlock Margin="0,0,0,5" DockPanel.Dock="Top"
-                           Text="Имя"
-                           ></TextBlock>
-
-                <TextBox HorizontalContentAlignment="Left"
-                         x:Name="name_box"  
-                         Style="{DynamicResource TextBoxBrush}"
-                         Text="{Binding Name_Box, Mode=TwoWay}"/>
-
-
-            </DockPanel>
-
-            <DockPanel Margin="0,13,0,0">
-                <TextBlock Margin="0,0,0,5" DockPanel.Dock="Top"
-                           Text="Фамилия" 
-                           ></TextBlock>
-
-                <TextBox Background="#ffffff"
-                         HorizontalContentAlignment="Left"
-                         Style="{DynamicResource TextBoxBrush}"
-                         x:Name="family_box" 
-                         BorderBrush="Black"
-                         Text="{Binding Surname_Box, Mode=TwoWay}"/>
-
-
-            </DockPanel>
-
-
-            <DockPanel Margin="0,13,0,0">
-                <TextBlock DockPanel.Dock="Top"
-                           Text="Дата рождения"
-                          Margin="0,0,0,5"></TextBlock>
-                <Calendar x:Name="calendar_record" HorizontalAlignment="Left"
-                      SelectedDate="{Binding Date_Box}"></Calendar>
-               
-            </DockPanel>
+            
 
 
             <DockPanel Margin="0,13,0,0">

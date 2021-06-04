@@ -27,8 +27,8 @@ namespace WpfApp1.ViewModels
             this.Service = init;
             ID = init.Id;
             Title_Box= init.Title;
-            /*Cost_Box= init.Cost;
-            Time_Box= init.DurationInMinutes;*/
+            Cost_Box = init.Cost;
+            Time_Box = init.DurationInMinutes;
 
             Save_Service = new RelayCommand(go_save);
             GoBack_EditView = new RelayCommand(go_back);
@@ -87,38 +87,52 @@ namespace WpfApp1.ViewModels
 
         private void go_save(object obj)
         {
-            
+            if (ImagePath == null || Title_Box == null || Cost_Box.ToString() == null || Time_Box.ToString() == null)
+            {
+                MessageBox.Show("Выберите изображение или заполните пустые поля!");
+                
 
-                try
-                {
-                    var entity = App.db.Services.Where(x => x.Id == ID).SingleOrDefault();
-                    entity.Cost = Cost_Box;
-                    entity.DurationInMinutes = Time_Box;
-                    entity.MainImagePath = ImagePath;
-                    entity.Title = Title_Box;
-                    App.db.SaveChanges();
+            }
 
-                }
-                catch(Exception ex)
+            else
+            {
+                if (Cost_Box == 0 || Time_Box == 0)
                 {
-                    System.Windows.Forms.MessageBox.Show(ex.Message);
+                    MessageBox.Show("Проверьте правильность введенных данных о цене и времени\n(время должно быть записано целым числом)");
                 }
-                finally
+                else
                 {
-                    WindowAdminService winadm = new WindowAdminService();
-                    MessageBox.Show("Услуга успешно отредактирована!");
-                    foreach (Window win in Application.Current.Windows)
+
+                    try
                     {
-                        if (win is Edit)
-                        {
-                            win.Close();
-                        }
+                        var entity = App.db.Services.Where(x => x.Id == ID).SingleOrDefault();
+                        entity.Cost = Cost_Box;
+                        entity.DurationInMinutes = Time_Box;
+                        entity.MainImagePath = ImagePath;
+                        entity.Title = Title_Box;
+                        App.db.SaveChanges();
+
                     }
-                    winadm.Show();
+                    catch (Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        WindowAdminService winadm = new WindowAdminService();
+                        MessageBox.Show("Услуга успешно отредактирована!");
+                        foreach (Window win in Application.Current.Windows)
+                        {
+                            if (win is Edit)
+                            {
+                                win.Close();
+                            }
+                        }
+                        winadm.Show();
+                    }
                 }
 
-               
-            
+            }
         }
 
         private void select_image(object sender)

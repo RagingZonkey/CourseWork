@@ -23,7 +23,7 @@ namespace WpfApp1.ViewModels.Client
         public ICommand Back { get; private set; }
 
         private string selectedTime;
-        DateTime origin;
+        //DateTime origin;
 
         public string SelectedTime
         {
@@ -37,7 +37,7 @@ namespace WpfApp1.ViewModels.Client
 
         //Service Service;
         public string logins;
-        OrderedService orderedService;
+        //OrderedService orderedService;
 
         public OrderViewModel(/*Service init,*/ string login)
         {
@@ -200,7 +200,7 @@ namespace WpfApp1.ViewModels.Client
             }
             else
             {
-                MessageBox.Show("Выберите правильную дату!", "Error");
+                MessageBox.Show("На это время уже забронировано место!\nВыберите другой вариант!");
             }
 
 

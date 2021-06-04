@@ -87,10 +87,11 @@
                     Text="Заказанные услуги" />
                 <ListBox x:Name="client_services" 
                          ItemsSource="{Binding OrderedServices}"
+                       
                          DockPanel.Dock="Top">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="380">
+                            <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="Auto">
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <StackPanel Orientation="Vertical">
@@ -132,16 +133,18 @@
                     Text="Зарезервированные товары" />
                 <ListBox x:Name="client_products"  
                          ItemsSource="{Binding OrderedProducts}"
-                         DockPanel.Dock="Top">
+                           SelectedItem="{Binding SelectedProduct}"
+                         DockPanel.Dock="Top" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
 
-                            <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="301">
+                            <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="Auto">
                                 <DockPanel>
                                     <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock  Margin="10 0 0 0" Text="{Binding Path=Title}"></TextBlock>
                                         <TextBlock  Margin="10 0 0 0" Text="Стоимость: "></TextBlock>
+                                        <TextBlock  Margin="10 0 0 0" Text="Количество: "></TextBlock>
                                         <TextBlock  Margin="10 0 0 0" Text="Описание:      "></TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
@@ -150,9 +153,13 @@
                                             <TextBlock  Text="{Binding Path=Cost}"></TextBlock>
                                             <TextBlock  Text=" BYN"></TextBlock>
                                         </StackPanel>
-                                        <TextBlock  Text="{Binding Path=Description}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock  Text="{Binding Path=Quantity}"></TextBlock>
+                                            <TextBlock  Text=" шт"></TextBlock>
+                                        </StackPanel>
+                                        <TextBlock  Text="{Binding Path=Description}" TextWrapping="Wrap"></TextBlock>
                                     </StackPanel>
-
+                                    
                                 </DockPanel>
 
 
@@ -194,6 +201,7 @@
                 <TextBlock VerticalAlignment="Center"
                            Text=" BYN"
                            />
+                <Button VerticalAlignment='Center' DockPanel.Dock="Right"    Content= "Отменить" Command="{Binding CleanUp}" Margin="110 0 0 0"/>
             </StackPanel>
         </DockPanel>
     </Grid>

@@ -90,6 +90,7 @@ namespace WpfApp1.ViewModels
 
         private void record_save(object obj)
         {
+
             DateTime oldDate = Date_Box;
             DateTime endTime = new DateTime(1, 1, 1, 20, 0, 0);
             DateTime startTime = new DateTime(1, 1, 1, 8, 0, 0);
@@ -159,7 +160,7 @@ namespace WpfApp1.ViewModels
                     entity.DayReserv = Date_Box;
                     App.db.SaveChanges();
                 }
-                catch { MessageBox.Show("Выберите правильную дату!", "Error"); }
+                catch { MessageBox.Show("На это время уже забронировано место!\nВыберите другой вариант!"); }
                 finally
                 {
                     WindowRecord winadm = new WindowRecord();

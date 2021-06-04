@@ -20,8 +20,9 @@ namespace WpfApp1.ViewModels.Client
         public ICommand Service { get; private set; }
         public ICommand Change { get; private set; }
         public ICommand Close { get; private set; }
+        public ICommand CleanUp { get; private set; }
 
-
+        OrderedProduct p;
         public decimal resultingPrice;
         public decimal ResultingPrice
         {
@@ -58,6 +59,17 @@ namespace WpfApp1.ViewModels.Client
                 OnPropertyChanged("Logins");
             }
 
+        }
+        private OrderedProduct selectedProduct;
+
+        public OrderedProduct SelectedProduct
+        {
+            get { return selectedProduct; }
+            set
+            {
+                selectedProduct = value;
+                OnPropertyChanged("SelectedProduct");
+            }
         }
 
         private ObservableCollection<OrderedService> orderedServices;
@@ -121,6 +133,7 @@ namespace WpfApp1.ViewModels.Client
             Service = new RelayCommand(Click_Service);
             Change = new RelayCommand(Click_change);
             Close = new RelayCommand(go_close);
+            CleanUp = new RelayCommand(go_cleanup);
 
         }
 
@@ -180,6 +193,29 @@ namespace WpfApp1.ViewModels.Client
            
         }
 
+        private void go_cleanup(object sender)
+        {
+            WindowService adm = new WindowService(logins);
+            foreach (Window win in Application.Current.Windows)
+            {
+                if (win is WindowClient)
+                {
+                    win.Close();
+                }
+            }
 
+
+            
+            p = SelectedProduct;
+            if (p != null)
+            {
+                var orderedProductToDelete = App.db.OrderedProducts.Where(y => y.Id == p.Id);
+                App.db.OrderedProducts.RemoveRange(orderedProductToDelete);
+                App.db.SaveChanges();
+            }
+            adm.Show();
+
+
+        }
     }
 }

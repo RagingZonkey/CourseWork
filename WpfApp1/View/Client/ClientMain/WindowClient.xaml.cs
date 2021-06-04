@@ -31,8 +31,6 @@ namespace WpfApp1.view
             DataContext = new WindowClientViewModel(login);
         }
 
-       
-
-       
+        
     }
 }
