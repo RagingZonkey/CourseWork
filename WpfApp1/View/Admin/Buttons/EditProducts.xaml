@@ -17,7 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="375*"/>
-            <RowDefinition Height="24*"/>
+            
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="-10,10,10,-10" RenderTransformOrigin="0.5,0.5">
             <Border.RenderTransform>
@@ -49,7 +49,7 @@
             <TextBox  Text ="{Binding Title_Box, Mode=TwoWay}" x:Name="title_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
 
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Стоимость" 
+                           Text="Стоимость (BYN)" 
                            ></TextBlock>
 
 
@@ -60,8 +60,13 @@
 
             <TextBox Text ="{Binding Description_Box, Mode=TwoWay}" x:Name="desc_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
 
+            <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
+                           Text="Поставлено на склад (шт)" />
 
-            <DockPanel Width="596">
+            <TextBox Text ="{Binding Amount_Box, Mode=TwoWay}"  DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}" />
+
+
+            <DockPanel Width="596" Margin="0 30 0 0">
                 <Button   Margin="35,0,35,0"
                          Width="150" Height="40"
                          Content="Select image" Command="{Binding Select_Image}" Background="Transparent"/>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +17,7 @@ using WpfApp1.ViewModels.Base;
 
 namespace WpfApp1.ViewModels
 {
-    public class WindowAdminServiceViewModel : BaseViewModel
+    public class WindowAdminServiceViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public ICommand Edit { get; private set; }
         public ICommand Delete { get; private set; }
@@ -41,8 +43,7 @@ namespace WpfApp1.ViewModels
 
 
                 Services = new ObservableCollection<Service>(App.db.Services);
-
-
+                
         }
         private Service selectedService;
 
@@ -56,7 +57,7 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        private ObservableCollection<Service> services;
+        public ObservableCollection<Service> services;
 
         public ObservableCollection<Service> Services
         {
@@ -68,14 +69,10 @@ namespace WpfApp1.ViewModels
             }
         }
 
-
-
-        
+       
 
 
 
-        
-        
 
         private void go_edit(object sender)
         {
@@ -113,21 +110,22 @@ namespace WpfApp1.ViewModels
                 MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную услугу?", "Delete", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    WindowAdmin adm = new WindowAdmin();
-                    foreach (Window win in Application.Current.Windows)
-                    {
-                        if (win is WindowAdminService)
-                        {
-                            win.Close();
-                        }
-                    }
+                    //WindowAdmin adm = new WindowAdmin();
+                    //foreach (Window win in Application.Current.Windows)
+                    //{
+                    //    if (win is WindowAdminService)
+                    //    {
+                    //        win.Close();
+                    //    }
+                    //}
 
 
-                    adm.Show();
+                    //adm.Show();
                     App.db.OrderedServices.RemoveRange(orderedServiceToDelete);
                     App.db.Services.Remove(s);
+                    Services.Remove(s);
                     App.db.SaveChanges();
-
+                    
 
                     if (s == null)
                     {

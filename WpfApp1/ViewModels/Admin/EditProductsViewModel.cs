@@ -31,6 +31,7 @@ namespace WpfApp1.ViewModels
             Title_Box = init.Title;
             Description_Box = init.Description;
             Cost_Box = init.Cost;
+            Amount_Box = init.Amount;
             Save_Service = new RelayCommand(go_save);
             GoBack_EditView = new RelayCommand(go_back);
             Select_Image = new RelayCommand(select_image);
@@ -49,6 +50,19 @@ namespace WpfApp1.ViewModels
                 OnPropertyChanged("Description_Box");
             }
         }
+
+        private int amount_box;
+
+        public int Amount_Box
+        {
+            get { return amount_box; }
+            set
+            {
+                amount_box = value;
+                OnPropertyChanged("Amount_Box");
+            }
+        }
+
 
         private string title_box;
 
@@ -92,7 +106,7 @@ namespace WpfApp1.ViewModels
 
         private void go_save(object obj)
         {
-            if (ImagePath == null || Title_Box == null || Cost_Box.ToString() == null || Description_Box == null)
+            if (ImagePath == null || Title_Box == null || Cost_Box.ToString() == null || Description_Box == null || Amount_Box.ToString() == null)
             {
 
                 MessageBox.Show("Выберите изображение и заполните пустые поля!");
@@ -101,9 +115,9 @@ namespace WpfApp1.ViewModels
             }
             else
             {
-                if (Cost_Box == 0)
+                if (Cost_Box == 0 || Amount_Box == 0)
                 {
-                    MessageBox.Show("Проверьте правильность введенных данных о цене товара!");
+                    MessageBox.Show("Проверьте правильность введенных данных о и количестве цене товара!");
                 }
                 else
                 {
@@ -115,6 +129,7 @@ namespace WpfApp1.ViewModels
                         entity.Description = Description_Box;
                         entity.Cost = Cost_Box;
                         entity.MainImagePath = ImagePath;
+                        entity.Amount = Amount_Box;
                         foreach (OrderedProduct op in App.db.OrderedProducts.Where(x => x.ProductId == ID))
                         {
                             op.TotalPrice = entity.Cost * op.Quantity;

@@ -51,7 +51,8 @@ namespace WpfApp1.ViewModels
             }
         }
 
-       
+        
+
 
         private string imagepath;
 

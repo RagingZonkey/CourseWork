@@ -49,7 +49,7 @@
             <TextBox Text ="{Binding Title_Box, Mode=TwoWay}" x:Name="title_box" DockPanel.Dock="Top" Style="{DynamicResource TextBoxBrush}"></TextBox>
 
             <TextBlock DockPanel.Dock="Top" Margin="0,13,0,0"
-                           Text="Стоимость" 
+                           Text="Стоимость (BYN)" 
                            ></TextBlock>
 
 

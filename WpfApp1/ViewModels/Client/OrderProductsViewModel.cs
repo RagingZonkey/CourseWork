@@ -59,6 +59,8 @@ namespace WpfApp1.ViewModels.Client
             }
         }
 
+
+
         private int quantity_box;
 
         public int Quantity_Box
@@ -94,36 +96,54 @@ namespace WpfApp1.ViewModels.Client
             {
                 if (Quantity_Box != 0)
                 {
-                    try
+                    if (SelectedProduct.Amount > 0)
                     {
-
-                        OrderedProduct orderedProduct = new OrderedProduct
+                        if ((SelectedProduct.Amount - Quantity_Box) == 0 || (SelectedProduct.Amount - Quantity_Box) > 0 )
                         {
-                            ProductId = SelectedProduct.Id,
-                            Quantity = Quantity_Box,
-                            TotalPrice = (Quantity_Box * SelectedProduct.Cost),
-                            Login = logins
 
-                        };
-                        App.db.OrderedProducts.Add(orderedProduct);
-                        App.db.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Windows.Forms.MessageBox.Show(ex.Message);
-                    }
-                    finally
-                    {
-                        WindowClient winadm = new WindowClient(logins);
-                        MessageBox.Show("Товар успешно зарезервирован!");
-                        foreach (Window win in Application.Current.Windows)
-                        {
-                            if (win is OrderProducts)
+                            try
                             {
-                                win.Close();
+
+                                OrderedProduct orderedProduct = new OrderedProduct
+                                {
+                                    ProductId = SelectedProduct.Id,
+                                    Quantity = Quantity_Box,
+                                    TotalPrice = (Quantity_Box * SelectedProduct.Cost),
+                                    Login = logins
+
+                                };
+                                App.db.OrderedProducts.Add(orderedProduct);
+                                App.db.SaveChanges();
                             }
+                            catch (Exception ex)
+                            {
+                                System.Windows.Forms.MessageBox.Show(ex.Message);
+                            }
+                            finally
+                            {
+                                WindowTovari winadm = new WindowTovari(logins);
+                                MessageBox.Show("Товар успешно зарезервирован!");
+                                foreach (Window win in Application.Current.Windows)
+                                {
+                                    if (win is OrderProducts)
+                                    {
+                                        win.Close();
+                                    }
+                                }
+                                SelectedProduct.Amount -= Quantity_Box;
+                                winadm.Show();
+
+                            }
+
                         }
-                        winadm.Show();
+                        else
+                        {
+                            MessageBox.Show("Количество заказанных товаров не может привышать количество имеющееся на складе!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Товары данного вида закончились!");
                     }
                 }
                 else

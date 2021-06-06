@@ -73,6 +73,7 @@ namespace WpfApp1.ViewModels.Client
 
         private void on_register(object sender)
         {
+            
             //bool flag = true;
             Regex complexPassword = new Regex("(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}");
             Regex complexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
@@ -80,21 +81,8 @@ namespace WpfApp1.ViewModels.Client
             /// <summary>
             /// Свойства, в которые передаются значения для полей из окна
             /// </summary>
-            Email_Box = Email_Box.Trim();
-            FirstPasswordBox = FirstPasswordBox.Trim();
-            SecondPasswordBox = SecondPasswordBox.Trim();
-            if (!complexPassword.IsMatch(FirstPasswordBox))
-            {
-                MessageBox.Show("Пароль должен быть в длину более 6 символов, содержать цифры, спец символы, латинские буквы в верхнем и нижнем регистре");
-                FirstPasswordBox = null;
-                return;
-            }
-            if (!complexEmail.IsMatch(Email_Box))
-            {
-                MessageBox.Show("Введите настоящий E-mail адрес!");
-                Email_Box = null;
-                return;
-            }
+            
+            
 
 
             if (Email_Box == null || FirstPasswordBox == null || SecondPasswordBox == null)
@@ -105,38 +93,62 @@ namespace WpfApp1.ViewModels.Client
             }
             else
             {
-                if (FirstPasswordBox == SecondPasswordBox)
+
+                Email_Box = Email_Box.Trim();
+                FirstPasswordBox = FirstPasswordBox.Trim();
+                SecondPasswordBox = SecondPasswordBox.Trim();
+                if (!complexPassword.IsMatch(FirstPasswordBox))
                 {
-                    /// <summary>
-                    /// Валидация всех ЭУ в окне
-                    /// </summary>
-                    try
+                    MessageBox.Show("Пароль должен быть в длину более 6 символов, содержать цифры, спец символы, латинские буквы в верхнем и нижнем регистре");
+                    FirstPasswordBox = null;
+                    return;
+                }
+                if (!complexEmail.IsMatch(Email_Box))
+                {
+                    MessageBox.Show("Введите настоящий E-mail адрес!");
+                    Email_Box = null;
+                    return;
+                }
+                var EmailSearch = App.db.Clients.FirstOrDefault(x => x.Email == Email_Box);
+                if (EmailSearch == null)
+                {
+                    if (FirstPasswordBox == SecondPasswordBox)
                     {
-
-                        App.db.Clients.Add(new Model.Client { Email = Email_Box, Password = FirstPasswordBox, Role = 0 });
-                        App.db.SaveChanges();
-                    }
-                    catch
-                    {
-
-                    }
-                    finally
-                    {
-                        Login login = new Login();
-                        foreach (Window win in Application.Current.Windows)
+                        /// <summary>
+                        /// Валидация всех ЭУ в окне
+                        /// </summary>
+                        try
                         {
-                            if (win is Register)
-                            {
-                                win.Close();
-                            }
-                        }
-                        login.Show();
-                    }
 
+                            App.db.Clients.Add(new Model.Client { Email = Email_Box, Password = FirstPasswordBox, Role = 0 });
+                            App.db.SaveChanges();
+                        }
+                        catch
+                        {
+
+                        }
+                        finally
+                        {
+                            Login login = new Login();
+                            foreach (Window win in Application.Current.Windows)
+                            {
+                                if (win is Register)
+                                {
+                                    win.Close();
+                                }
+                            }
+                            login.Show();
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Пароли должны совпадать!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Пароли должны совпадать!");
+                    MessageBox.Show("Пользователь с таким Email уже зарегистрирован!\nЕсли это ваш профиль, войдите в систему под своим паролем!");
                 }
             }
         }

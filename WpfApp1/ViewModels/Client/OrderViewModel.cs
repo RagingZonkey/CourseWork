@@ -209,7 +209,7 @@ namespace WpfApp1.ViewModels.Client
 
         private void go_back(object sender)
         {
-            WindowClient winadm = new WindowClient(logins);
+            WindowService winadm = new WindowService(logins);
             foreach (Window win in Application.Current.Windows)
             {
                 if (win is Order)

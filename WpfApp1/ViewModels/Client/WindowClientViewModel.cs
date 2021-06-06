@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WpfApp1.Commands;
@@ -39,7 +36,8 @@ namespace WpfApp1.ViewModels.Client
         public ICommand CleanUp { get; private set; }
         public ICommand CleanUp_OS { get; private set; }
 
-        OrderedProduct p;
+        OrderedProduct op;
+        Product p;
         OrderedService s;
 
         public decimal productsResultingPrice;
@@ -214,25 +212,28 @@ namespace WpfApp1.ViewModels.Client
 
         private void go_cleanup(object sender)
         {
-            WindowService adm = new WindowService(logins);
-            foreach (Window win in Application.Current.Windows)
-            {
-                if (win is WindowClient)
-                {
-                    win.Close();
-                }
-            }
+            //WindowService adm = new WindowService(logins);
+            //foreach (Window win in Application.Current.Windows)
+            //{
+            //    if (win is WindowClient)
+            //    {
+            //        win.Close();
+            //    }
+            //}
 
 
             
-            p = SelectedProduct;
-            if (p != null)
+            op = SelectedProduct;
+            if (op != null)
             {
-                var orderedProductToDelete = App.db.OrderedProducts.FirstOrDefault(y => y.Id == p.Id);
+                var orderedProductToDelete = App.db.OrderedProducts.FirstOrDefault(y => y.Id == op.Id);
+                var productAmountRenewal = App.db.Products.FirstOrDefault(x => x.Id == orderedProductToDelete.ProductId);
+                productAmountRenewal.Amount += op.Quantity;
                 App.db.OrderedProducts.Remove(orderedProductToDelete);
+                OrderedProducts.Remove(orderedProductToDelete);
                 App.db.SaveChanges();
             }
-            adm.Show();
+            //adm.Show();
 
 
         }
@@ -240,22 +241,23 @@ namespace WpfApp1.ViewModels.Client
         private void go_cleanup_os(object sender)
         {
             try {
-                WindowService adm = new WindowService(logins);
-                foreach (Window win in Application.Current.Windows)
-                {
-                    if (win is WindowClient)
-                    {
-                        win.Close();
-                    }
-                }
+                //WindowService adm = new WindowService(logins);
+                //foreach (Window win in Application.Current.Windows)
+                //{
+                //    if (win is WindowClient)
+                //    {
+                //        win.Close();
+                //    }
+                //}
                 s = SelectedService;
                 if (s != null)
                 {
                     var orderedServiceToDelete = App.db.OrderedServices.FirstOrDefault(y => y.Id == s.Id);
                     App.db.OrderedServices.Remove(orderedServiceToDelete);
+                    OrderedServices.Remove(orderedServiceToDelete);
                     App.db.SaveChanges();
                 }
-                adm.Show();
+                //adm.Show();
             }
             catch(Exception ex)
             {

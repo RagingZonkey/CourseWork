@@ -92,20 +92,21 @@ namespace WpfApp1.ViewModels
                 MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данный товар?", "Delete", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    WindowAdmin adm = new WindowAdmin();
-                    foreach (Window win in Application.Current.Windows)
-                    {
-                        if (win is WindowProducts)
-                        {
-                            win.Close();
-                        }
-                    }
+                    //WindowAdmin adm = new WindowAdmin();
+                    //foreach (Window win in Application.Current.Windows)
+                    //{
+                    //    if (win is WindowProducts)
+                    //    {
+                    //        win.Close();
+                    //    }
+                    //}
 
 
-                    adm.Show();
+                    //adm.Show();
 
                     App.db.OrderedProducts.RemoveRange(orderedProductToDelete);
                     App.db.Products.Remove(p);
+                    Products.Remove(p);
                     App.db.SaveChanges();
 
 

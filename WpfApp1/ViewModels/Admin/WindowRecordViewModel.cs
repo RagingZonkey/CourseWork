@@ -108,25 +108,26 @@ namespace WpfApp1.ViewModels
                     try
                     {
                         App.db.OrderedServices.Remove(s);
+                        OrderedServices.Remove(s);
                         App.db.SaveChanges();
                     }
                     catch (Exception ex)
                     {
                         System.Windows.Forms.MessageBox.Show(ex.Message);
                     }
-                    finally
-                    {
-                        MessageBox.Show("Заказ успешно отменен!", "Ok");
-                        WindowAdmin adm = new WindowAdmin();
-                        foreach (Window win in Application.Current.Windows)
-                        {
-                            if (win is WindowRecord)
-                            {
-                                win.Close();
-                            }
-                        }
-                        adm.Show();
-                    }
+                    //finally
+                    //{
+                    //    MessageBox.Show("Заказ успешно отменен!", "Ok");
+                    //    WindowAdmin adm = new WindowAdmin();
+                    //    foreach (Window win in Application.Current.Windows)
+                    //    {
+                    //        if (win is WindowRecord)
+                    //        {
+                    //            win.Close();
+                    //        }
+                    //    }
+                    //    adm.Show();
+                    //}
 
                 }
                 else

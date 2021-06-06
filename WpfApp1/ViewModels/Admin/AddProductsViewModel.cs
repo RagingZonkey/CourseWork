@@ -33,6 +33,20 @@ namespace WpfApp1.ViewModels
             }
         }
 
+
+
+        private int amount_box;
+
+        public int Amount_Box
+        {
+            get { return amount_box; }
+            set
+            {
+                amount_box = value;
+                OnPropertyChanged("Amount_Box");
+            }
+        }
+
         private decimal cost_box;
 
         public decimal Cost_Box
@@ -104,7 +118,7 @@ namespace WpfApp1.ViewModels
         {
             try
             {
-                WindowAdminService winadm = new WindowAdminService();
+                WindowProducts winadm = new WindowProducts();
                 foreach (Window win in Application.Current.Windows)
                 {
                     if (win is AddProducts)
@@ -123,7 +137,7 @@ namespace WpfApp1.ViewModels
 
         private void go_add(object obj)
         {
-            if (ImagePath == null || Title_Box == null || Cost_Box.ToString() == null || Description_Box == null)
+            if (ImagePath == null || Title_Box == null || Cost_Box.ToString() == null || Description_Box == null || Amount_Box.ToString() == null)
             {
 
                 MessageBox.Show("Выберите изображение и заполните пустые поля!");
@@ -133,15 +147,15 @@ namespace WpfApp1.ViewModels
             else
 
             {
-                if (Cost_Box == 0)
+                if (Cost_Box == 0 || Amount_Box == 0)
                 {
-                    MessageBox.Show("Проверьте правильность введенных данных о цене товара!");
+                    MessageBox.Show("Проверьте правильность введенных данных о цене и количестве товара!");
                 }
                 else
                 {
                     try
                     {
-                        App.db.Products.Add(new Product { Title = Title_Box, Cost = Cost_Box, Description = Description_Box, MainImagePath = ImagePath });
+                        App.db.Products.Add(new Product { Title = Title_Box, Cost = Cost_Box, Description = Description_Box, MainImagePath = ImagePath, Amount = Amount_Box });
                         App.db.SaveChanges();
 
                     }
