@@ -99,61 +99,80 @@ namespace WpfApp1.ViewModels
         private void go_delete(object sender)
         {
             s = SelectedService;
-            if (s != null)
+            if (SelectedService != null) // Магия / не трогать
             {
-                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную запись?", "Delete", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
+                if (OrderedServices != null)
                 {
-
-                    try
+                
+                    MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную запись?", "Delete", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
                     {
-                        App.db.OrderedServices.Remove(s);
-                        OrderedServices.Remove(s);
-                        App.db.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Windows.Forms.MessageBox.Show(ex.Message);
-                    }
-                    //finally
-                    //{
-                    //    MessageBox.Show("Заказ успешно отменен!", "Ok");
-                    //    WindowAdmin adm = new WindowAdmin();
-                    //    foreach (Window win in Application.Current.Windows)
-                    //    {
-                    //        if (win is WindowRecord)
-                    //        {
-                    //            win.Close();
-                    //        }
-                    //    }
-                    //    adm.Show();
-                    //}
 
+                        try
+                        {
+                            App.db.OrderedServices.Remove(s);
+                            OrderedServices.Remove(s);
+                            App.db.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Windows.Forms.MessageBox.Show(ex.Message);
+                        }
+                        //finally
+                        //{
+                        //    MessageBox.Show("Заказ успешно отменен!", "Ok");
+                        //    WindowAdmin adm = new WindowAdmin();
+                        //    foreach (Window win in Application.Current.Windows)
+                        //    {
+                        //        if (win is WindowRecord)
+                        //        {
+                        //            win.Close();
+                        //        }
+                        //    }
+                        //    adm.Show();
+                        //}
+
+                    }
+                    else
+                    {
+
+                    }
+                
                 }
                 else
                 {
-
+                MessageBox.Show("В базе данных нет ни одного заказа\n для начала выполните добавление!");
                 }
             }
             else
             {
-                MessageBox.Show("В базе данных нет ни одной заказа\n для начала выполните добавление!");
+                MessageBox.Show("Выберите запись!", "Error");
             }
         }
 
         private void go_edit(object sender)
         {
+            s = SelectedService;
             if (SelectedService != null) // Магия / не трогать
             {
-                EditRecord ed = new EditRecord(SelectedService);
-                ed.Show();
-                foreach (Window win in Application.Current.Windows)
-                {
-                    if (win is WindowRecord)
+                if (OrderedServices != null)
+            {
+                
+                    EditRecord ed = new EditRecord(SelectedService);
+                    ed.Show();
+                    foreach (Window win in Application.Current.Windows)
                     {
-                        win.Hide();
+                        if (win is WindowRecord)
+                        {
+                            win.Hide();
+                        }
                     }
-                }
+                
+            }
+            else
+            {
+                MessageBox.Show("В базе данных нет ни одного заказа\n для начала выполните добавление!");
+            }
             }
             else
             {

@@ -65,21 +65,31 @@ namespace WpfApp1.ViewModels
 
         private void go_edit(object sender)
         {
+            p = SelectedProduct;
             if (SelectedProduct != null) // Магия / не трогать
             {
-                EditProducts ed = new EditProducts(SelectedProduct);
-                ed.Show();
-                foreach (Window win in Application.Current.Windows)
+                if (Products != null)
                 {
-                    if (win is WindowProducts)
+                
+                    EditProducts ed = new EditProducts(SelectedProduct);
+                    ed.Show();
+                    foreach (Window win in Application.Current.Windows)
                     {
-                        win.Hide();
+                        if (win is WindowProducts)
+                        {
+                            win.Hide();
+                        }
                     }
+                
+                }
+                else
+                {
+                MessageBox.Show("В базе данных нет ни одного товара,\n для начала выполните добавление!");
                 }
             }
             else
             {
-                MessageBox.Show("Выберите услугу!", "Error");
+                MessageBox.Show("Выберите товар!", "Error");
             }
         }
 
@@ -87,50 +97,59 @@ namespace WpfApp1.ViewModels
         {
             p = SelectedProduct;
             var orderedProductToDelete = App.db.OrderedProducts.Where(y => y.ProductId == SelectedProduct.Id);
-            if (p != null)
+            if (SelectedProduct != null) // Магия / не трогать
             {
-                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данный товар?", "Delete", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
+                if (Products != null)
                 {
-                    //WindowAdmin adm = new WindowAdmin();
-                    //foreach (Window win in Application.Current.Windows)
-                    //{
-                    //    if (win is WindowProducts)
-                    //    {
-                    //        win.Close();
-                    //    }
-                    //}
-
-
-                    //adm.Show();
-
-                    App.db.OrderedProducts.RemoveRange(orderedProductToDelete);
-                    App.db.Products.Remove(p);
-                    Products.Remove(p);
-                    App.db.SaveChanges();
-
-
-                    if (p == null)
+                
+                    MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данный товар?", "Delete", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
                     {
-                        MessageBox.Show("Товар успешно удален!", "Ok");
+                        //WindowAdmin adm = new WindowAdmin();
+                        //foreach (Window win in Application.Current.Windows)
+                        //{
+                        //    if (win is WindowProducts)
+                        //    {
+                        //        win.Close();
+                        //    }
+                        //}
+
+
+                        //adm.Show();
+
+                        App.db.OrderedProducts.RemoveRange(orderedProductToDelete);
+                        App.db.Products.Remove(p);
+                        Products.Remove(p);
+                        App.db.SaveChanges();
+
+
+                        if (p == null)
+                        {
+                            MessageBox.Show("Товар успешно удален!", "Ok");
+
+                        }
+
+
 
                     }
+                    else
+                    {
 
-
-
+                    }
+                
                 }
                 else
                 {
-
+                MessageBox.Show("В базе данных нет ни одного товара,\n для начала выполните добавление!");
                 }
             }
             else
             {
-                MessageBox.Show("В базе данных нет ни одного товара,\n для начала выполните добавление!");
+                MessageBox.Show("Выберите товар!", "Error");
             }
-            
-            
-            
+
+
+
         }
 
         private void go_add(object sender)

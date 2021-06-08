@@ -168,7 +168,7 @@ namespace WpfApp1.ViewModels
 
 
                         MessageBox.Show("Продукт успешно добавлен!");
-                        WindowAdminService winadm = new WindowAdminService();
+                        WindowProducts winadm = new WindowProducts();
                         foreach (Window win in Application.Current.Windows)
                         {
                             if (win is AddProducts)

@@ -76,10 +76,11 @@ namespace WpfApp1.ViewModels
 
         private void go_edit(object sender)
         {
-            if (Services != null)
+            if (SelectedService != null) // Магия / не трогать
             {
-                if (SelectedService != null) // Магия / не трогать
+                if (Services != null)
                 {
+                
                     Edit ed = new Edit(SelectedService);
                     ed.Show();
                     foreach (Window win in Application.Current.Windows)
@@ -89,61 +90,71 @@ namespace WpfApp1.ViewModels
                             win.Close();
                         }
                     }
+                
                 }
                 else
                 {
-                    MessageBox.Show("Выберите услугу!");
+                MessageBox.Show("В базе данных нет ни одной услуги\n для начала выполните добавление!");
                 }
             }
             else
             {
-                MessageBox.Show("В базе данных нет ни одной услуги\n для начала выполните добавление!");
+                MessageBox.Show("Выберите услугу!");
             }
         }
 
         private void go_delete(object sender)
         {
             s = SelectedService;
-            var orderedServiceToDelete = App.db.OrderedServices.Where(y => y.ServiceId == SelectedService.Id);
-            if (s != null)
+            if (SelectedService != null) // Магия / не трогать
             {
-                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную услугу?", "Delete", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
+                var orderedServiceToDelete = App.db.OrderedServices.Where(y => y.ServiceId == SelectedService.Id);
+                if (Services != null)
                 {
-                    //WindowAdmin adm = new WindowAdmin();
-                    //foreach (Window win in Application.Current.Windows)
-                    //{
-                    //    if (win is WindowAdminService)
-                    //    {
-                    //        win.Close();
-                    //    }
-                    //}
-
-
-                    //adm.Show();
-                    App.db.OrderedServices.RemoveRange(orderedServiceToDelete);
-                    App.db.Services.Remove(s);
-                    Services.Remove(s);
-                    App.db.SaveChanges();
-                    
-
-                    if (s == null)
+                
+                    MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить данную услугу?", "Delete", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
                     {
-                        MessageBox.Show("Услуга успешно удалена!", "Ok");
+                        //WindowAdmin adm = new WindowAdmin();
+                        //foreach (Window win in Application.Current.Windows)
+                        //{
+                        //    if (win is WindowAdminService)
+                        //    {
+                        //        win.Close();
+                        //    }
+                        //}
+
+
+                        //adm.Show();
+                        App.db.OrderedServices.RemoveRange(orderedServiceToDelete);
+                        App.db.Services.Remove(s);
+                        Services.Remove(s);
+                        App.db.SaveChanges();
+
+
+                        if (s == null)
+                        {
+                            MessageBox.Show("Услуга успешно удалена!", "Ok");
+
+                        }
+
+
 
                     }
+                    else
+                    {
 
-
-
+                    }
+                
                 }
-                else
+                else 
                 {
-                    
+                MessageBox.Show("В базе данных нет ни одной услуги\n для начала выполните добавление!");
                 }
             }
-            else 
+            else
             {
-                MessageBox.Show("В базе данных нет ни одной услуги\n для начала выполните добавление!");
+                MessageBox.Show("Выберите услугу!");
             }
         }
 
