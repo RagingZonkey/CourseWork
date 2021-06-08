@@ -231,7 +231,7 @@ namespace WpfApp1.ViewModels.Client
                 productAmountRenewal.Amount += op.Quantity;
                 App.db.OrderedProducts.Remove(orderedProductToDelete);
                 OrderedProducts.Remove(orderedProductToDelete);
-                ProductsResultingPrice -= orderedProductToDelete.Cost;
+                ProductsResultingPrice -= (orderedProductToDelete.Cost * orderedProductToDelete.Quantity);
                 App.db.SaveChanges();
             }
             //adm.Show();

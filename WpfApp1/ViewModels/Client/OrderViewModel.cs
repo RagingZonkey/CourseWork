@@ -57,7 +57,7 @@ namespace WpfApp1.ViewModels.Client
             set
             {
                 services = value;
-                OnPropertyChanged("Products");
+                OnPropertyChanged("Services");
             }
         }
 

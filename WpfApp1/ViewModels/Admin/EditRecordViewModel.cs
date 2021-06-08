@@ -13,6 +13,8 @@ using WpfApp1.ViewModels.Base;
 using Microsoft.Win32;
 using WpfApp1.Commands;
 using System.Text.RegularExpressions;
+using System.Collections.ObjectModel;
+using WpfApp1.ViewModels.Client;
 
 namespace WpfApp1.ViewModels
 {
@@ -29,14 +31,29 @@ namespace WpfApp1.ViewModels
             ID = init.Id;
             Login = init.Login;
             Title = init.Title;
-            
+            Services = new ObservableCollection<Service>(App.db.Services);
+
             Save_Service = new RelayCommand(record_save);
             GoBack_EditView = new RelayCommand(go_back);
             
         }
 
 
+
         #region Fields and Properties
+
+
+        private ObservableCollection<Service> services;
+
+        public ObservableCollection<Service> Services
+        {
+            get { return services; }
+            set
+            {
+                services = value;
+                OnPropertyChanged("Services");
+            }
+        }
 
         private DateTime date_box;
 
@@ -77,6 +94,17 @@ namespace WpfApp1.ViewModels
             }
         }
 
+        //private ObservableCollection<Service> services;
+
+        //public ObservableCollection<Service> Services
+        //{
+        //    get { return services; }
+        //    set
+        //    {
+        //        services = value;
+        //        OnPropertyChanged("Services");
+        //    }
+        //}
 
 
 
@@ -132,7 +160,18 @@ namespace WpfApp1.ViewModels
                         {
 
                             dateTimeFromService = service.DayReserv;
-                            dateTimeFromService = dateTimeFromService.AddMinutes(OrderedService.DurationInMinutes);
+
+                            int js = 0;
+                            foreach (var sngj in Services)
+                            {
+                                if (sngj.Id == service.ServiceId)
+                                {
+                                js = sngj.DurationInMinutes;
+                                break;
+                                }
+                            }
+
+                            dateTimeFromService = dateTimeFromService.AddMinutes(js);
                             if ((Date_Box > service.DayReserv && Date_Box >= dateTimeFromService) ||
                                 (dateTime <= service.DayReserv && dateTime < dateTimeFromService))
                             {
@@ -189,7 +228,7 @@ namespace WpfApp1.ViewModels
                 }
             
 
-
+    
         }
 
 
