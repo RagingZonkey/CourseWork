@@ -90,101 +90,110 @@ namespace WpfApp1.ViewModels
 
         private void record_save(object obj)
         {
-
-            DateTime oldDate = Date_Box;
-            DateTime endTime = new DateTime(1, 1, 1, 20, 0, 0);
-            DateTime startTime = new DateTime(1, 1, 1, 8, 0, 0);
-
-
-            Regex timeValidation = new Regex("^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$");
-            if (!timeValidation.IsMatch(SelectedTime))
-            {
-                System.Windows.Forms.MessageBox.Show("Вы вышли за пределы формата времени!");
-                Date_Box = oldDate;
-                return;
-            }
-            DateTime curDate = DateTime.Now;
-            bool flag = true;
-            string[] date = SelectedTime.Split(':');
-            Date_Box = Date_Box.AddHours(int.Parse(date[0]));
-            Date_Box = Date_Box.AddMinutes(int.Parse(date[1]));
-            DateTime dateTime = Date_Box;
-            DateTime dateTimeFromService;
-            int duration = 0;
-            if (OrderedService != null)
-            {
-                duration = OrderedService.DurationInMinutes;
-            }
-            else flag = false;
-            //dateTime = Date_Box.AddMinutes(duration);
-            dateTime = dateTime.AddMinutes(duration);
-            endTime = endTime.AddYears(Date_Box.Year - 1);
-            endTime = endTime.AddMonths(Date_Box.Month - 1);
-            endTime = endTime.AddDays(Date_Box.Day - 1);
-            startTime = startTime.AddYears(Date_Box.Year - 1);
-            startTime = startTime.AddMonths(Date_Box.Month - 1);
-            startTime = startTime.AddDays(Date_Box.Day - 1);
-            if ((Date_Box - startTime).TotalMinutes >= 0 && (dateTime - endTime).TotalMinutes <= 0)
-            {
-                foreach (var service in App.db.OrderedServices)
+            
+                if (SelectedTime != null)
                 {
+                    DateTime oldDate = Date_Box;
+                    DateTime endTime = new DateTime(1, 1, 1, 20, 0, 0);
+                    DateTime startTime = new DateTime(1, 1, 1, 8, 0, 0);
 
-                    dateTimeFromService = service.DayReserv;
-                    dateTimeFromService = dateTimeFromService.AddMinutes(OrderedService.DurationInMinutes);
-                    if ((Date_Box > service.DayReserv && Date_Box >= dateTimeFromService) ||
-                        (dateTime <= service.DayReserv && dateTime < dateTimeFromService))
+
+                    Regex timeValidation = new Regex("^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$");
+                    if (!timeValidation.IsMatch(SelectedTime))
                     {
+                        System.Windows.Forms.MessageBox.Show("Вы вышли за пределы формата времени!");
+                        Date_Box = oldDate;
+                        return;
+                    }
+                    DateTime curDate = DateTime.Now;
+                    bool flag = true;
+                    string[] date = SelectedTime.Split(':');
+                    Date_Box = Date_Box.AddHours(int.Parse(date[0]));
+                    Date_Box = Date_Box.AddMinutes(int.Parse(date[1]));
+                    DateTime dateTime = Date_Box;
+                    DateTime dateTimeFromService;
+                    int duration = 0;
+                    if (OrderedService != null)
+                    {
+                        duration = OrderedService.DurationInMinutes;
+                    }
+                    else flag = false;
+                    //dateTime = Date_Box.AddMinutes(duration);
+                    dateTime = dateTime.AddMinutes(duration);
+                    endTime = endTime.AddYears(Date_Box.Year - 1);
+                    endTime = endTime.AddMonths(Date_Box.Month - 1);
+                    endTime = endTime.AddDays(Date_Box.Day - 1);
+                    startTime = startTime.AddYears(Date_Box.Year - 1);
+                    startTime = startTime.AddMonths(Date_Box.Month - 1);
+                    startTime = startTime.AddDays(Date_Box.Day - 1);
+                    if ((Date_Box - startTime).TotalMinutes >= 0 && (dateTime - endTime).TotalMinutes <= 0)
+                    {
+                        foreach (var service in App.db.OrderedServices)
+                        {
+
+                            dateTimeFromService = service.DayReserv;
+                            dateTimeFromService = dateTimeFromService.AddMinutes(OrderedService.DurationInMinutes);
+                            if ((Date_Box > service.DayReserv && Date_Box >= dateTimeFromService) ||
+                                (dateTime <= service.DayReserv && dateTime < dateTimeFromService))
+                            {
+                            }
+                            else
+                            {
+                                flag = false;
+                                Date_Box = oldDate;
+
+                                break;
+                            }
+                        }
+
                     }
                     else
                     {
-                        flag = false;
+                        MessageBox.Show("В выбранное вами время парикмахерская не работает!\nВыберите другое время!");
                         Date_Box = oldDate;
 
-                        break;
+                        return;
                     }
-                }
-                
-            }
-            else
-            {
-                MessageBox.Show("В выбранное вами время парикмахерская не работает!\nВыберите другое время!");
-                Date_Box = oldDate;
-
-                return;
-            }
-            if (Date_Box > DateTime.Now && flag)
-            {
-                try
-                {
-                    var entity = App.db.OrderedServices.FirstOrDefault(x => x.Id == ID);
-                    entity.DayReserv = Date_Box;
-                    App.db.SaveChanges();
-                }
-                catch { MessageBox.Show("На это время уже забронировано место!\nВыберите другой вариант!"); }
-                finally
-                {
-                    WindowRecord winadm = new WindowRecord();
-                    MessageBox.Show("Запись успешно отредактирована!");
-                    foreach (Window win in Application.Current.Windows)
+                    if (Date_Box > DateTime.Now && flag)
                     {
-                        if (win is EditRecord)
+                        try
                         {
-                            win.Close();
+                            var entity = App.db.OrderedServices.FirstOrDefault(x => x.Id == ID);
+                            entity.DayReserv = Date_Box;
+                            App.db.SaveChanges();
+                        }
+                        catch { MessageBox.Show("На это время уже забронировано место!\nВыберите другой вариант!"); }
+                        finally
+                        {
+                            WindowRecord winadm = new WindowRecord();
+                            MessageBox.Show("Запись успешно отредактирована!");
+                            foreach (Window win in Application.Current.Windows)
+                            {
+                                if (win is EditRecord)
+                                {
+                                    win.Close();
+                                }
+                            }
+                            winadm.Show();
                         }
                     }
-                    winadm.Show();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Данное время недоступно для записи! Выберите другой вариант! ");
-            }
+                    else
+                    {
+                        MessageBox.Show("Данное время недоступно для записи! Выберите другой вариант! ");
+                    }
 
+                }
+                else
+                {
+                    MessageBox.Show("Укажите дату и время, на которые хотите сделать заказ!");
+                }
             
+
+
         }
 
 
-        private void go_back(object obj)
+            private void go_back(object obj)
         {
             WindowRecord winadm = new WindowRecord();
             foreach (Window win in Application.Current.Windows)

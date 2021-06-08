@@ -231,6 +231,7 @@ namespace WpfApp1.ViewModels.Client
                 productAmountRenewal.Amount += op.Quantity;
                 App.db.OrderedProducts.Remove(orderedProductToDelete);
                 OrderedProducts.Remove(orderedProductToDelete);
+                ProductsResultingPrice -= orderedProductToDelete.Cost;
                 App.db.SaveChanges();
             }
             //adm.Show();
@@ -255,6 +256,7 @@ namespace WpfApp1.ViewModels.Client
                     var orderedServiceToDelete = App.db.OrderedServices.FirstOrDefault(y => y.Id == s.Id);
                     App.db.OrderedServices.Remove(orderedServiceToDelete);
                     OrderedServices.Remove(orderedServiceToDelete);
+                    ResultingPrice -= orderedServiceToDelete.Cost;
                     App.db.SaveChanges();
                 }
                 //adm.Show();

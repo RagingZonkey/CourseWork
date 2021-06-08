@@ -65,7 +65,7 @@ namespace WpfApp1.ViewModels.Client
         public WindowTovariViewModel(string login)
         {
             logins = login;
-            var entity = App.db.Products.SingleOrDefault();
+            var entity = App.db.Products;
 
 
             Products = new ObservableCollection<Product>(App.db.Products);

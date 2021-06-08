@@ -77,17 +77,17 @@ namespace WpfApp1.ViewModels.Client
 
        
 
-        private string title_box;
+        //private string title_box;
 
-        public string Title_Box
-        {
-            get { return title_box; }
-            set
-            {
-                title_box = value;
-                OnPropertyChanged("Title_Box");
-            }
-        }
+        //public string Title_Box
+        //{
+        //    get { return title_box; }
+        //    set
+        //    {
+        //        title_box = value;
+        //        OnPropertyChanged("Title_Box");
+        //    }
+        //}
 
         private DateTime date_box;
 
@@ -99,109 +99,138 @@ namespace WpfApp1.ViewModels.Client
 
         private void go_order(object sender)
         {
-            DateTime oldDate = Date_Box;
-            DateTime endTime = new DateTime(1, 1, 1, 20, 0, 0);
-            DateTime startTime = new DateTime(1, 1, 1, 8, 0, 0);
-
-
-            Regex timeValidation = new Regex("^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$");
-            if (!timeValidation.IsMatch(SelectedTime))
-            {
-                System.Windows.Forms.MessageBox.Show("Вы вышли за пределы формата времени!");
-                Date_Box = oldDate;
-                return;
-            }
-            DateTime curDate = DateTime.Now;
-            bool flag = true;
-            string[] date = SelectedTime.Split(':');
-            Date_Box = Date_Box.AddHours(int.Parse(date[0]));
-            Date_Box = Date_Box.AddMinutes(int.Parse(date[1]));
-            DateTime dateTime = Date_Box;
-            DateTime dateTimeFromService;
-            int duration = 0;
+            
             if (SelectedService != null)
+
             {
-                duration = SelectedService.DurationInMinutes;
-            }
-            else flag = false;
-            //dateTime = Date_Box.AddMinutes(duration);
-            dateTime = dateTime.AddMinutes(duration);
-            endTime = endTime.AddYears(Date_Box.Year - 1);
-            endTime = endTime.AddMonths(Date_Box.Month -1);
-            endTime = endTime.AddDays(Date_Box.Day - 1);
-            startTime = startTime.AddYears(Date_Box.Year - 1);
-            startTime = startTime.AddMonths(Date_Box.Month - 1);
-            startTime = startTime.AddDays(Date_Box.Day - 1);
-            if ((Date_Box - startTime).TotalMinutes >= 0 && (dateTime - endTime).TotalMinutes <= 0)
-            {
-                foreach (var service in App.db.OrderedServices)
+                if (SelectedTime != null)
                 {
 
-                    dateTimeFromService = service.DayReserv;
-                    dateTimeFromService = dateTimeFromService.AddMinutes(SelectedService.DurationInMinutes);
-                    if ((Date_Box > service.DayReserv && Date_Box >= dateTimeFromService) ||
-                        (dateTime <= service.DayReserv && dateTime < dateTimeFromService))
+                    DateTime oldDate = Date_Box;
+                    DateTime endTime = new DateTime(1, 1, 1, 20, 0, 0);
+                    DateTime startTime = new DateTime(1, 1, 1, 8, 0, 0);
+
+
+                    Regex timeValidation = new Regex("^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$");
+                    if (!timeValidation.IsMatch(SelectedTime))
                     {
+                        System.Windows.Forms.MessageBox.Show("Вы вышли за пределы формата времени!");
+                        Date_Box = oldDate;
+                        return;
+                    }
+                    DateTime curDate = DateTime.Now;
+                    bool flag = true;
+                    string[] date = SelectedTime.Split(':');
+                    Date_Box = Date_Box.AddHours(int.Parse(date[0]));
+                    Date_Box = Date_Box.AddMinutes(int.Parse(date[1]));
+                    DateTime dateTime = Date_Box;
+                    DateTime dateTimeFromService;
+                    int duration = 0;
+                    if (SelectedService != null)
+                    {
+                        duration = SelectedService.DurationInMinutes;
+                    }
+                    else flag = false;
+                    //dateTime = Date_Box.AddMinutes(duration);
+                    dateTime = dateTime.AddMinutes(duration);
+                    endTime = endTime.AddYears(Date_Box.Year - 1);
+                    endTime = endTime.AddMonths(Date_Box.Month - 1);
+                    endTime = endTime.AddDays(Date_Box.Day - 1);
+                    startTime = startTime.AddYears(Date_Box.Year - 1);
+                    startTime = startTime.AddMonths(Date_Box.Month - 1);
+                    startTime = startTime.AddDays(Date_Box.Day - 1);
+
+                    if ((Date_Box - startTime).TotalMinutes >= 0 && (dateTime - endTime).TotalMinutes <= 0)
+                    {
+                        foreach (var service in App.db.OrderedServices)
+                        {
+
+                            dateTimeFromService = service.DayReserv;
+                            int js = 0;
+                            foreach(var sngj in Services)
+                            {
+                                if(sngj.Id == service.ServiceId)
+                                {
+                                    js = sngj.DurationInMinutes;
+                                    break;
+                                }
+                            }
+                            dateTimeFromService = dateTimeFromService.AddMinutes(js);
+
+                            if ((Date_Box > service.DayReserv && Date_Box >= dateTimeFromService) ||
+                                (dateTime <= service.DayReserv && dateTime < dateTimeFromService))
+                            {
+                            }
+                            else
+                            {
+                                flag = false;
+                                Date_Box = oldDate;
+
+                                break;
+                            }
+                        }
+                        //DateTime? selectedDate = Date_Box.SelectedDate;
                     }
                     else
                     {
-                        flag = false;
+                        MessageBox.Show("В выбранное вами время парикмахерская не работает!\nВыберите другое время!");
                         Date_Box = oldDate;
 
-                        break;
+                        return;
                     }
-                }
-                //DateTime? selectedDate = Date_Box.SelectedDate;
-            }
-            else
-            {
-                MessageBox.Show("В выбранное вами время парикмахерская не работает!\nВыберите другое время!");
-                Date_Box = oldDate;
-
-                return;
-            }
-            if (Date_Box > DateTime.Now && flag)
-            {
-                try
-                {
-                    OrderedService orderedService = new OrderedService
+                    if (Date_Box > DateTime.Now && flag)
                     {
-                        DayReserv = Date_Box,
-                        Login = logins,
-                        ServiceId = SelectedService.Id
 
-                    
-                    };
-                    App.db.OrderedServices.Add(orderedService);
-                    App.db.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    Date_Box = oldDate;
 
-                    WindowClient winadm = new WindowClient(logins);
-                    MessageBox.Show("Запись проведена успешно!!");
-                    foreach (Window win in Application.Current.Windows)
-                    {
-                        if (win is Order)
+                        try
                         {
-                            win.Close();
+                            OrderedService orderedService = new OrderedService
+                            {
+                                DayReserv = Date_Box,
+                                Login = logins,
+                                ServiceId = SelectedService.Id
+
+
+                            };
+                            App.db.OrderedServices.Add(orderedService);
+                            App.db.SaveChanges();
                         }
+                        catch (Exception ex)
+                        {
+                            System.Windows.Forms.MessageBox.Show(ex.Message);
+                        }
+                        finally
+                        {
+                            Date_Box = oldDate;
+
+                            WindowClient winadm = new WindowClient(logins);
+                            MessageBox.Show("Запись проведена успешно!!");
+                            foreach (Window win in Application.Current.Windows)
+                            {
+                                if (win is Order)
+                                {
+                                    win.Close();
+                                }
+                            }
+                            winadm.Show();
+                        }
+
                     }
-                    winadm.Show();
+                    else
+                    {
+                        MessageBox.Show("На это время уже забронировано место!\nВыберите другой вариант!");
+                    }
+
+                }
+                else 
+                {
+                    MessageBox.Show("Укажите дату и время, на которые хотите сделать заказ!");
                 }
             }
             else
             {
-                MessageBox.Show("На это время уже забронировано место!\nВыберите другой вариант!");
+                MessageBox.Show("Для начала выберите услугу!");
             }
-
-
-
         }
 
 
