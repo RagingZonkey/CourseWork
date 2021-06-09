@@ -31,6 +31,7 @@ namespace WpfApp1.ViewModels
             ID = init.Id;
             Login = init.Login;
             Title = init.Title;
+            //ServiceId = init.ServiceId;
             Services = new ObservableCollection<Service>(App.db.Services);
 
             Save_Service = new RelayCommand(record_save);
@@ -94,17 +95,6 @@ namespace WpfApp1.ViewModels
             }
         }
 
-        //private ObservableCollection<Service> services;
-
-        //public ObservableCollection<Service> Services
-        //{
-        //    get { return services; }
-        //    set
-        //    {
-        //        services = value;
-        //        OnPropertyChanged("Services");
-        //    }
-        //}
 
 
 
@@ -156,7 +146,7 @@ namespace WpfApp1.ViewModels
                     startTime = startTime.AddDays(Date_Box.Day - 1);
                     if ((Date_Box - startTime).TotalMinutes >= 0 && (dateTime - endTime).TotalMinutes <= 0)
                     {
-                        foreach (var service in App.db.OrderedServices)
+                        foreach (var service in App.db.OrderedServices.Where(n => n.Id != OrderedService.Id))
                         {
 
                             dateTimeFromService = service.DayReserv;

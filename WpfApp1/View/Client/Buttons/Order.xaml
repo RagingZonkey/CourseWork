@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.view.Client.Buy" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d" Icon="/Assets/CLEANCUT_Нежелательный фон 2 2.png"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
-        Title="Заказ" Height="590" Width="800">
+        Title="Заказ" Height="800" Width="1200">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="108*"/>
@@ -16,8 +16,8 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
-            <RowDefinition Height="375*"/>
-            <RowDefinition Height="24*"/>
+            <RowDefinition Height="360*"/>
+            <RowDefinition Height="200*"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3" Margin="-10,10,10,-10" RenderTransformOrigin="0.5,0.5">
             <Border.RenderTransform>
@@ -89,17 +89,69 @@
                                     HorizontalAlignment="Center"
                                 Mask="00:00" />
             </StackPanel>
-            <DockPanel Width="800" Height="200">
+            <DockPanel Width="900" Height="120" Margin="0, -70,0 , 0">
                 <Button  
                          
-                         Margin="150,0,0,100"
+                         Margin="300,0,0,0"
                          Width="129" Height="40"
                          Content="Зарезервировать" Command="{Binding OrderService}" Background="Transparent"/>
                 <Button  DockPanel.Dock="Top" Height="40" Width="129" 
-                         Content="Назад" Command="{Binding Back}" Background="Transparent" Margin="-50,0,300,100"/>
+                         Content="Назад" Command="{Binding Back}" Background="Transparent" Margin="15,40,300,0"/>
+                <TextBlock FontWeight="Bold"
+                       Foreground="DarkRed"
+                           FontSize="16"
+                    DockPanel.Dock="Bottom" Margin="-450,20,0,0"
+                           Text="В списке ниже отображены услуги, а также дата и время, запись на которые уже осуществлялась!" 
+                           HorizontalAlignment="Center"></TextBlock>
             </DockPanel>
+            
 
         </DockPanel>
         
+        <ScrollViewer Name="scroll" CanContentScroll="True"  Grid.Column="1"
+                      Grid.Row="2" >
+
+            <DockPanel Grid.Column="1" Grid.Row="1"  >
+                <ListBox x:Name="recordlist" 
+                         ItemsSource="{Binding OrderedServices}"
+                         
+                         DockPanel.Dock="Top" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+
+                            <Border BorderBrush="#b2b6c2" BorderThickness="2" Width="700">
+
+                                <DockPanel>
+                                    <Image DockPanel.Dock="Left" Width="83"  Source="{Binding Path=MainImagePath}"/>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock  Margin="10 0 0 0" Text="{Binding Path=Title}"></TextBlock>
+                                        
+                                        <TextBlock  Margin="10 0 0 0" Text="Продолжительность:      "></TextBlock>
+                                        <TextBlock  Margin="10 0 0 0" Text="Дата резервации:      "></TextBlock>
+                                        
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock  Text=" "></TextBlock>
+                                        
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock  Text="{Binding Path=DurationInMinutes}"></TextBlock>
+                                            <TextBlock  Text=" мин"></TextBlock>
+                                        </StackPanel>
+                                        <TextBlock  Text="{Binding Path=DayReserv}"></TextBlock>
+                                        
+                                    </StackPanel>
+
+                                </DockPanel>
+                            </Border>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+            </DockPanel>
+
+        </ScrollViewer>
+
     </Grid>
 </Window>

@@ -44,6 +44,15 @@ namespace WpfApp1.ViewModels.Client
             logins = login;
             Services = new ObservableCollection<Service>(App.db.Services);
 
+            OrderedServices = new ObservableCollection<OrderedService>(App.db.OrderedServices);
+            foreach (var service in OrderedServices)
+            {
+                service.DurationInMinutes = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).DurationInMinutes;
+                service.MainImagePath = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).MainImagePath;
+                service.Title = App.db.Services.FirstOrDefault(n => n.Id == service.ServiceId).Title;
+
+            }
+
             OrderService = new RelayCommand(go_order);
             Back = new RelayCommand(go_back);
         }
@@ -61,7 +70,18 @@ namespace WpfApp1.ViewModels.Client
             }
         }
 
-       
+        private ObservableCollection<OrderedService> orderedServices;
+
+        public ObservableCollection<OrderedService> OrderedServices
+        {
+            get { return orderedServices; }
+            set
+            {
+                orderedServices = value;
+                OnPropertyChanged("OrderedServices");
+            }
+        }
+
 
         private Service selectedService;
 
@@ -77,17 +97,7 @@ namespace WpfApp1.ViewModels.Client
 
        
 
-        //private string title_box;
-
-        //public string Title_Box
-        //{
-        //    get { return title_box; }
-        //    set
-        //    {
-        //        title_box = value;
-        //        OnPropertyChanged("Title_Box");
-        //    }
-        //}
+        
 
         private DateTime date_box;
 
